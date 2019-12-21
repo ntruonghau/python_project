@@ -1,11 +1,11 @@
-{% extends "giao_vien/base_template/admin-template.html" %}
+{% extends "web_layout/quan-ly-master.html" %}
 
 <!-- Header Block -->
 
 {% block head %}
 
 {{ super()}}
-
+{% block title %} Quản lý - Trang chủ{% endblock %}
 {% endblock %}
 
 <!-- Content Block -->
@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                     <h4 class="page-title">Profile</h4>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">Học sinh</li>
+                        <li class="breadcrumb-item active">Quản lý</li>
                     </ol>
 
                 </div>

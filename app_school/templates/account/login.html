@@ -1,4 +1,4 @@
-{% extends "account/base_template/gateway-template.html" %}
+{% extends "web_layout/account-layout.html" %}
 
 {% block content %}
 <div class="card">
@@ -13,7 +13,7 @@
             <h4 class="font-18 m-b-5 text-center">Chào mừng đến với web trường</h4>
             <p class="text-muted text-center">Đăng nhập để tiếp tục vào trang thông tin</p>
 
-            <form class="form-horizontal m-t-30" action="index.html">
+            <form class="form-horizontal m-t-30">
 
                 <div class="form-group">
                     <label class="control-label">Vai trò</label>
@@ -42,7 +42,7 @@
 
                 <div class="form-group m-t-10 mb-0 row">
                     <div class="col-12 m-t-20">
-                        <a href="pages-recoverpw-2.html"><i class="mdi mdi-lock"></i> Quên mật khẩu?</a>
+                        <a href="/recoverpw"><i class="mdi mdi-lock"></i> Quên mật khẩu?</a>
                     </div>
                 </div>
             </form>

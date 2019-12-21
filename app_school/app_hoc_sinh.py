@@ -4,4 +4,4 @@ from app_school import app
 
 @app.route('/hoc-sinh', methods=['GET','POST'])
 def hoc_sinh():
-    return render_template('hoc_sinh/dashboard.html')
+    return render_template('hoc_sinh/hs_dashboard.html')

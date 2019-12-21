@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Veltrix - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>{% block title %}  {% endblock %}</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesbrand" name="author" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}">
@@ -114,51 +114,78 @@
 
 
 
-                        <li class="menu-title"> Lớp học </li>
+                        <li class="menu-title"> Quản lý Khổi </li>
                         <li>
                             <a href="/" class="waves-effect">
                                 <i class="ti-home"></i>
-                                <span> Danh sách theo lớp </span>
+                                <span> Danh sách khối </span>
                             </a>
-                            <ul class="submenu">
-                                <li><a href="email-inbox.html">Lớp 10</a></li>
-                                <li><a href="email-read.html">Lớp 11</a></li>
-                                <li><a href="email-compose.html">Lớp 12</a></li>
-                            </ul>
                         </li>
+
                         <li>
-                            <a href="/" class="waves-effect">
-                                <i class="ti-home"></i>
-                                <span> Danh sách theo lớp </span>
-                            </a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Chi tiết
+                                    Khối
+                                    <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                                </span></a>
                             <ul class="submenu">
-                                <li><a href="email-inbox.html">Lớp 10</a></li>
-                                <li><a href="email-read.html">Lớp 11</a></li>
-                                <li><a href="email-compose.html">Lớp 12</a></li>
+                                <li><a href="email-inbox.html">Khối 10</a></li>
+                                <li><a href="email-read.html">Khối 11</a></li>
+                                <li><a href="email-compose.html">Khôi 12</a></li>
                             </ul>
                         </li>
 
-                        <li class="menu-title"> Bảng điểm </li>
+
+
+                        <li class="menu-title"> Quản lý Lớp </li>
                         <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Bảng điểm
-                                    theo học kỳ
-                                    <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
-                                </span></a>
-                            <ul class="submenu">
-                                <li><a href="email-inbox.html">Lớp 10</a></li>
-                                <li><a href="email-read.html">Lớp 11</a></li>
-                                <li><a href="email-compose.html">Lớp 12</a></li>
-                            </ul>
+                            <a href="/" class="waves-effect">
+                                <i class="ti-home"></i>
+                                <span> Danh sách Lớp </span>
+                            </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Báo cáo
-                                    điểm số cuối năm
+                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Lớp đang
+                                    quản lý
                                     <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
                                 </span></a>
                             <ul class="submenu">
-                                <li><a href="email-inbox.html">Lớp 10</a></li>
-                                <li><a href="email-read.html">Lớp 11</a></li>
-                                <li><a href="email-compose.html">Lớp 12</a></li>
+                                <li><a href="email-inbox.html">Lớp 1</a></li>
+                                <li><a href="email-read.html">Lớp 2</a></li>
+                                <li><a href="email-compose.html">Lớp 3</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Lớp đang
+                                    dạy
+                                    <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                                </span></a>
+                            <ul class="submenu">
+                                <li><a href="email-inbox.html">Lớp 1</a></li>
+                                <li><a href="email-read.html">Lớp 2</a></li>
+                                <li><a href="email-compose.html">Lớp 3</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <li class="menu-title"> Quản lý Bộ môn </li>
+                        <li>
+                            <a href="/" class="waves-effect">
+                                <i class="ti-home"></i>
+                                <span> Danh sách bộ môn </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="ti-email"></i><span> Bộ môn
+                                    đang dạy
+                                    <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                                </span></a>
+                            <ul class="submenu">
+                                <li><a href="email-inbox.html">Môn 1</a></li>
+                                <li><a href="email-read.html">Môn 2</a></li>
+                                <li><a href="email-compose.html">Môn 3</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -181,16 +208,9 @@
 
         {% block foot %}
         <footer class="footer">
-            © 2019 Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i
-                    class="mdi mdi-heart text-danger"></i>
-                by Themesbrand</span>.
+            <p>© 2019 Trường Hậu, Tuấn Anh, Thanh Hòa with <i class="mdi mdi-heart text-danger"></i></p>
         </footer>
         {% endblock %}
-        <footer class="footer">
-            © 2019 Veltrix <span class="d-none d-sm-inline-block"> - Crafted with <i
-                    class="mdi mdi-heart text-danger"></i>
-                by Themesbrand</span>.
-        </footer>
         <!-- ============================================================== -->
         <!-- End Right content here -->
         <!-- ============================================================== -->
