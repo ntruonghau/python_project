@@ -2,17 +2,15 @@
 Xây dựng website trường học sử dụng Flask Python 
 
 ## Member
-___
+
 | # 	| Tên thành viên 	|
 |---	|----------------	|
 | 1 	| Tuấn Anh       	|
-| 2 	| Hòa Thanh      	|
+| 2 	| Thanh Hòa       	|
 | 3 	| Hậu Nguyễn     	|
 
 ## Build Time
-___
 About 1 mounth
-
 
 ## Language and Module
 
@@ -25,5 +23,4 @@ About 1 mounth
 | 5 	| Flask-SQLAlchemy   	|
 
 ## Project 
-___
 ![model](./do_an_diagram.png)
