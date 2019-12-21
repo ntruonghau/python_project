@@ -5,3 +5,6 @@ app = Flask(__name__)
 app.secret_key = "2019"
 
 import app_school.app_gateway
+import app_school.app_giao_vien
+import app_school.app_hoc_sinh
+import app_school.app_quan_ly

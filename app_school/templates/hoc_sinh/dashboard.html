@@ -1,0 +1,63 @@
+{% extends "giao_vien/base_template/admin-template.html" %}
+
+<!-- Header Block -->
+
+{% block head %}
+
+{{ super()}}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="page-title-box">
+            <div class="row align-items-center">
+
+                <div class="col-sm-6">
+                    <h4 class="page-title">Profile</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Học sinh</li>
+                    </ol>
+
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="float-right d-none d-md-block">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light"
+                                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-settings mr-2"></i> Cài đặt
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Chỉnh sửa profile</a>
+                                <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- container-fluid -->
+
+</div>
+<!-- content -->
+
+
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

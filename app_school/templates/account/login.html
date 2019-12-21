@@ -5,14 +5,16 @@
     <div class="card-body">
 
         <div class="text-center">
-            <a href="/" class="logo"><img src="{{ url_for('static', filename = 'assets/images/logo-light.png') }}" height="22" alt="logo"></a>
+            <a href="/" class="logo"><img src="{{ url_for('static', filename = 'assets/images/logo-light.png') }}"
+                    height="22" alt="logo"></a>
         </div>
 
         <div class="p-3">
             <h4 class="font-18 m-b-5 text-center">Chào mừng đến với web trường</h4>
             <p class="text-muted text-center">Đăng nhập để tiếp tục vào trang thông tin</p>
 
-            <form class="form-horizontal m-t-30" >
+            <form class="form-horizontal m-t-30" action="index.html">
+
                 <div class="form-group">
                     <label class="control-label">Vai trò</label>
                     <select class="form-control select2">
@@ -21,25 +23,26 @@
                         <option>Quản Lý</option>
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="username">Tên Đăng nhập</label>
+                    <label for="username">Tên đăng nhập</label>
                     <input type="text" class="form-control" id="username" placeholder="Enter username">
                 </div>
 
                 <div class="form-group">
-                    <label for="userpassword">Mật Khẩu</label>
+                    <label for="userpassword">Mật khẩu</label>
                     <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
                 </div>
 
                 <div class="form-group row m-t-20">
-                    <div class="col-sm-6 text-right">
+                    <div class="col-sm-12 text-right">
                         <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Đăng nhập</button>
                     </div>
                 </div>
 
                 <div class="form-group m-t-10 mb-0 row">
                     <div class="col-12 m-t-20">
-                        <a href="/recoverpw"><i class="mdi mdi-lock"></i> Quên mật khẩu?</a>
+                        <a href="pages-recoverpw-2.html"><i class="mdi mdi-lock"></i> Quên mật khẩu?</a>
                     </div>
                 </div>
             </form>
@@ -51,7 +54,7 @@
 <div class="m-t-40 text-center">
     <p>Chưa có tài khoản ? <a href="/register" class="font-500 text-primary"> Tạo tài khoản </a> </p>
     {% block foot %}
-        {{ super() }}
+    {{ super() }}
     {% endblock %}
 </div>
 {% endblock %}
