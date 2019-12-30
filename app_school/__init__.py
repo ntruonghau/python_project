@@ -11,9 +11,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + app.config['DATABASE_FILE
 app.config['SQLALCHEMY_ECHO'] = True
 
 
-import app_school.xu_ly.Xu_ly_Model
+from app_school.xu_ly.Xu_ly_Model import Base, db_session
 import app_school.app_gateway
 import app_school.app_giao_vien
 import app_school.app_hoc_sinh
 import app_school.app_quan_ly
-
