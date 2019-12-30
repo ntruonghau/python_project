@@ -11,6 +11,10 @@ class Form_Register(FlaskForm) :
     Th_Matkhau = PasswordField("Mật khẩu" , [validators.InputRequired() ,validators.Length(min=4, max=20), validators.EqualTo('Th_Mat_khau_xac_nhan', message='Mật khẩu và mật khẩu đăng nhập phải trùng nhau')])
     Th_Mat_khau_xac_nhan = PasswordField("Mật khẩu xác nhận")
 
+class Form_Login(FlaskForm) :
+    Th_Taikhoan = TextField("Tên tài khoản đăng nhập" , [validators.Required("Vui lòng nhập vào tên đăng nhập"),validators.Length(min=4, max=20)])
+    Th_Matkhau = PasswordField("Mật khẩu" , [validators.InputRequired() ,validators.Length(min=4, max=20)])
+
 class recover_pw(FlaskForm) :
     Th_Email = TextField("Email" , [validators.Required("Vui lòng nhập vào Email") , validators.Email("Vui lòng nhập vào Email") ,validators.Length(min=4, max=30)])
 

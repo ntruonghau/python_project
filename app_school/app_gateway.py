@@ -1,7 +1,7 @@
 from flask import Markup, request, render_template, url_for, session, redirect
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
-from app_school.xu_ly.Xu_ly_Form import Form_Register
+from app_school.xu_ly.Xu_ly_Form import Form_Register, Form_Login
 
 
 @app.route('/', methods=['GET','POST'])
@@ -10,7 +10,24 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    return render_template("account/login.html")
+    form = Form_Login()
+    Th_Taikhoan = ''
+    Th_Matkhau = ''
+    error = ''
+    if form.validate_on_submit():
+        Th_Taikhoan = request.form['Th_Taikhoan']
+        Th_Matkhau = request.form['Th_Matkhau']
+        try:
+            giaovien = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == Th_Taikhoan).one()
+            if giaovien.MatKhau == Th_Matkhau:
+                session['giaovien'] = Th_Taikhoan
+                return redirect(url_for('giao_vien'))
+            else:
+                error = 'Tài khoản hoặc mật khẩu không đúng'
+        except Exception as e:
+            print(str(e))
+            pass
+    return render_template("account/login.html", form=form, error=error)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -19,22 +36,15 @@ def register():
     Th_Taikhoan = ''
     Th_Matkhau = ''
     error = ''
-    print('ab')
     if form.validate_on_submit():
         Th_Email = request.form['Th_Email']
         Th_Taikhoan = request.form['Th_Taikhoan']
         Th_Matkhau = request.form['Th_Matkhau']
-        print('ab')
         giaovien = GiaoVien(TenDangNhap=Th_Taikhoan, MatKhau=Th_Matkhau, Email=Th_Email)
-        print(giaovien.__dict__)
         try:
-            print('success')
             db_session.add(giaovien)
-            print('success')
             db_session.commit()
-            print('success')
             session['giaovien'] = Th_Taikhoan
-            print('success')
             return redirect(url_for('giao_vien'))
         except Exception as e:
             db_session.rollback()
