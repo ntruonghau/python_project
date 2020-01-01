@@ -1,0 +1,705 @@
+{% extends "web_layout/giao-vien-master.html" %}
+
+<!-- Header Block -->
+
+{% block head %}
+
+{{ super()}}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <!-- the hien ten page va options -->
+        <div class="page-title-box">
+            <div class="row align-items-center">
+
+                <div class="col-sm-6">
+                    <h4 class="page-title">Danh sách học sinh</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Hiển thị danh sách học sinh</li>
+                    </ol>
+
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="float-right d-none d-md-block">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light"
+                                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-settings mr-2"></i> Tùy chỉnh
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="/them-hoc-sinh">Thêm học sinh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+
+        <!-- hien thi danh sach hoc sinh -->
+        <div class="row">
+
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li>  
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col -->
+<div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minh</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <div class="float-left mr-4">
+                            <img src="{{ url_for('static', filename= 'assets/images/users/user-2.jpg') }}" alt=""
+                                class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                        </div>
+                        <ul class="list-unstyled social-links float-right">
+                            <li><a href="#" class="btn-primary"><i class="fas fa-eye"></i></a> Thông tin</li>
+                            <li><a href="#" class="btn-info"><i class="far fa-file-alt"></i></a> Điểm số</li> 
+                        </ul>
+                        <h5 class="text-primary font-18 mt-0 mb-1">Nguyễn Văn B</h5>
+                        <p class="font-12 mb-2">27/38 Mai Đức Thọ, Quận Phúc Nhuận, TP Hồ Chí Minhá</p>
+                        <p class="mb-4">Số điện thoại: 09081508</p>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end col -->
+
+            <!-- end col --><div class="col-xl-4 col-md-6 mb-4">
+                <div class="card directory-card h-100">
+                    <div class="card-body">
+                        <form method="POST" class="h-100" action="/them-hoc-sinh">
+                            <button type="submit"
+                                class="btn btn-outline-primary btn-lg btn-block waves-effect h-100">Thêm học sinh</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+        </div>
+    </div>
+    <!-- container-fluid -->
+</div>
+<!-- content -->
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

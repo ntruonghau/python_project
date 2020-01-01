@@ -1,0 +1,313 @@
+{% extends "web_layout/giao-vien-master.html" %}
+
+<!-- Header Block -->
+
+{% block head %}
+
+{{ super()}}
+
+
+
+<!-- DataTables -->
+<link href="{{ url_for('static', filename = 'plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ url_for('static', filename = 'plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<!-- Responsive datatable examples -->
+<link href="{{ url_for('static', filename = 'plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <!-- the hien ten page va options -->
+        <div class="page-title-box">
+            <div class="row align-items-center">
+
+                <div class="col-sm-6">
+                    <h4 class="page-title">Danh sách bảng điểm học sinh</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">Hiển thị danh sách bảng điểm học sinh theo môn học</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+
+        <!-- bang the hien bang diem cua lop hoc -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="mt-0 header-title">Bảng điểm của lớp học</h4>
+
+                        <table class="table table-bordered dt-responsive nowrap"
+                            style="border-collapse: collapse; border-spacing: 1; width: 100%;">
+                            <thead class="bg-primary">
+                                <tr>
+                                    <th>Mã số</th>
+                                    <th>Họ và Tên</th>
+                                    <th>Văn</th>
+                                    <th>Toán</th>
+                                    <th>Anh</th>
+                                    <th>Lý</th>
+                                    <th>Hóa</th>
+                                    <th>Sinh</th>
+                                    <th>Sử</th>
+                                    <th>Địa</th>
+                                    <th>Điểm TB</th>
+                                    <th>Học Lực</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#00001</td>
+                                    <td>Nguyễn Văn B</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>8</td>
+                                    <td>10</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>8.7</td>
+                                    <td>Giỏi</td>
+                                    <td>
+                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                            chi tiết</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+
+    </div>
+    <!-- container-fluid -->
+</div>
+<!-- content -->
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+<!-- Required datatable js -->
+<script src="{{ url_for('static', filename = 'plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Buttons examples -->
+<script src="{{ url_for('static', filename = 'plugins/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/jszip.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/vfs_fonts.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/buttons.html5.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/buttons.print.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/buttons.colVis.min.js') }}"></script>
+<!-- Responsive examples -->
+<script src="{{ url_for('static', filename = 'plugins/datatables/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+
+<!-- Datatable init js -->
+<script src="{{ url_for('static', filename = 'assets/pages/datatables.init.js') }} "></script>
+
+{% endblock %}

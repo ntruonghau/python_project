@@ -3,6 +3,16 @@ from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
 from app_school.xu_ly.Xu_ly_Form import Form_Register, Form_Login
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('error_page/pages-404.html'), 404
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('error_page/pages-500.html'), 404
 
 @app.route('/', methods=['GET','POST'])
 def index():
