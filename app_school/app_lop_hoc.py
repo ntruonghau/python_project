@@ -4,6 +4,7 @@ from app_school.xu_ly.nien_khoa.XL_Nien_khoa import doc_danh_sach_nien_khoa_sele
 from app_school.xu_ly.khoi.XL_Khoi import doc_danh_sach_khoi_select
 from app_school.xu_ly.giao_vien.XL_Giao_vien import doc_danh_sach_gv_select
 from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc
+from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import doc_danh_sach_hoc_sinh_theo_lop
 from app_school.xu_ly.Xu_ly_Model import Lop
 from app_school import app, db_session
 
@@ -15,7 +16,8 @@ def danh_sach_lop():
     
 @app.route('/chi-tiet-lop/<string:lop>', methods=['GET','POST'])
 def danh_sach_hoc_sinh(lop):
-    return render_template('lop_hoc/l_chi_tiet_lop.html')
+    ds_hoc_sinh = doc_danh_sach_hoc_sinh_theo_lop(lop)
+    return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh)
 
     
 @app.route('/bang-diem-lop/<string:lop>', methods=['GET', 'POST'])

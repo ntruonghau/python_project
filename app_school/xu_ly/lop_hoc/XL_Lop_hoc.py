@@ -14,8 +14,15 @@ def doc_danh_sach_lop_hoc(): # select field tupple choice
             l['Ten_Chu_nhiem'] = chu_nhiem.HoVaTen
             l['Ten_Khoi'] = khoi.TenKhoi
             l['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
-            print(l)
             ds_lop.append(l)
     except:
         pass
     return ds_lop
+
+def lay_nien_khoa_theo_lop(lop):
+    try:
+        lop = db_session.query(Lop).filter(Lop.IDLop == lop).one()
+        nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == lop.NamNienKhoa).one()
+    except:
+        pass
+    return nien_khoa
