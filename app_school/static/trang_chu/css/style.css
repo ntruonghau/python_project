@@ -250,13 +250,13 @@ ul.nav.navbar-nav.navbar-right {
   }
 }
 .cover-slider__slide:nth-child(1) {
-  background-image: url("../images/banner1.jpg");
+  background-image: url("../images/banner_1_new.jpg");
 }
 .cover-slider__slide:nth-child(2) {
-  background-image: url("../images/banner2.jpg");
+  background-image: url("../images/banner_2_new.jpg");
 }
 .cover-slider__slide:nth-child(3) {
-  background-image: url("../images/banner3.jpg");
+  background-image: url("../images/banner_3_new.jpg");
 }
 .hide {
   position: absolute;
@@ -298,7 +298,7 @@ section.about-us img.img-responsive {
 section.our-services {
 	padding:100px 0;
 	/*-- W3layouts --*/
-	background:url(../images/service.jpg);
+	background:url(../images/banner_2_new.jpg);
 	background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -629,7 +629,7 @@ section.map iframe.googlemaps {
 /*-- Contact --*/
 section.contact-us {
 	padding:100px 0;
-	background:url(../images/contact.jpg);
+	background:url(../images/contact.png);
 	background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
