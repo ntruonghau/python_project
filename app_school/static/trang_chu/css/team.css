@@ -47,7 +47,7 @@
 	-o-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	-ms-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
-	background:url(../images/team1.jpg);
+	background:url(../images/truong-hau.jpg);
 	opacity: 0;
 }
 .ch-info .ch-info-back2 {
@@ -56,7 +56,7 @@
 	-o-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	-ms-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
-	background:url(../images/team2.jpg);
+	background:url(../images/tuan-anh.jpg);
 	opacity: 0;
 }
 .ch-info .ch-info-back3 {
@@ -65,7 +65,7 @@
 	-o-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	-ms-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 	transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
-	background:url(../images/team3.jpg);
+	background:url(../images/thanh-hoa.jpg);
 	opacity: 0;
 }
 .ch-info .ch-info-back4 {
@@ -78,13 +78,13 @@
 	opacity: 0;
 }
 .ch-img-1 { 
-	background-image: url(../images/team1.jpg);
+	background-image: url(../images/truong-hau.jpg);
 }
 .ch-img-2 { 
-	background-image: url(../images/team2.jpg);
+	background-image: url(../images/tuan-anh.jpg);
 }
 .ch-img-3 { 
-	background-image: url(../images/team3.jpg);
+	background-image: url(../images/thanh-hoa.jpg);
 }
 .ch-img-4 { 
 	background-image: url(../images/team4.jpg);
