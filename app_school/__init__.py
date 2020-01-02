@@ -14,3 +14,4 @@ app.config['SQLALCHEMY_ECHO'] = True
 from app_school.xu_ly.Xu_ly_Model import Base, db_session
 import app_school.app_gateway
 import app_school.app_giao_vien
+import app_school.app_lop_hoc
