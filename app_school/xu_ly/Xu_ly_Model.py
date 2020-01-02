@@ -63,7 +63,7 @@ class Lop(Base):
     DiaDiem = Column(String(100) )
     child = relationship("GiaoVien", backref="Lop")
     TongSoHS = Column(Float )
-    NamNienKhoa = Column(String(20) )
+    NamNienKhoa = Column(String(20))
 
     GV_CN = Column(Integer, ForeignKey(GiaoVien.IDGiaoVien))
     FK_GiaoVien = relationship('GiaoVien', foreign_keys='Lop.GV_CN')

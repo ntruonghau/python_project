@@ -46,191 +46,39 @@
         <!-- danh sach lop -->
         <div class="row">
 
+            {% for lop_hoc in ds_lop_hoc %}
+            <!-- hien thi thong tin lop hoc -->
             <div class="col-xl-3 col-md-6 mb-4 ">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="color-box bg-primary">
-                            Lớp 9A1
+                            {{ lop_hoc['TenLop'] }}
                         </div>
                         <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">36</code>
+                            <li class="list-group-item text-center">Sỉ số: <code
+                                    class="highlighter-rouge">{{ lop_hoc['TongSoHS'] }}</code>
                             </li>
-                            <li class="list-group-item text-center">Lầu 1, Phòng 901</li>
-                            <li class="list-group-item text-center">Khối 9</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
+                            <li class="list-group-item text-center">{{ lop_hoc['DiaDiem'] }}</li>
+                            <li class="list-group-item text-center">{{ lop_hoc['Ten_Khoi'] }}</li>
+                            <li class="list-group-item text-center">Chủ nhiệm: {{ lop_hoc['Ten_Chu_nhiem'] }}</li>
                             <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
+                                <a class="btn btn-success waves-effect waves-light"
+                                    href="/chi-tiet-lop/{{ lop_hoc['IDLop'] }}" role="button">Quản lý học
                                     sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
+                                <a class="btn btn-danger waves-effect waves-light"
+                                    href="/bang-diem-lop/{{ lop_hoc['IDLop'] }}" role="button">Bảng điểm</a>
                             </li>
                             <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
+                                <a class="btn btn-warning waves-effect waves-light"
+                                    href="/chinh-sua-lop/{{ lop_hoc['IDLop'] }}" role="button">Chỉnh sửa thông tin
+                                    lớp</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div> <!-- end col -->
-
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 9A2
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">36</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 1, Phòng 902</li>
-                            <li class="list-group-item text-center">Khối 9</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 9A3
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">36</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 1, Phòng 903</li>
-                            <li class="list-group-item text-center">Khối 9</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 9A4
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">36</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 1, Phòng 904</li>
-                            <li class="list-group-item text-center">Khối 9</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 10A1
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">38</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 2, Phòng 1001</li>
-                            <li class="list-group-item text-center">Khối 10</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 10A2
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">38</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 2, Phòng 1001</li>
-                            <li class="list-group-item text-center">Khối 10</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
-            <div class="col-xl-3 col-md-6 mb-4 ">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="color-box bg-primary">
-                            Lớp 10A3
-                        </div>
-                        <h5 class="mb-0 m-t-20 text-primary text-center font-18">Thông tin</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center">Sỉ số: <code class="highlighter-rouge">38</code>
-                            </li>
-                            <li class="list-group-item text-center">Lầu 2, Phòng 1001</li>
-                            <li class="list-group-item text-center">Khối 10</li>
-                            <li class="list-group-item text-center">Chủ nhiệm: Nguyễn Văn A</li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-success waves-effect waves-light" href="#" role="button">Quản lý học
-                                    sinh</a>
-                                <a class="btn btn-danger waves-effect waves-light" href="#" role="button">Bảng điểm</a>
-                            </li>
-                            <li class="list-group-item text-center">
-                                <a class="btn btn-warning waves-effect waves-light" href="#" role="button">Chỉnh sửa thông tin lớp</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-
+            {% endfor %}
 
             <!-- button them lop hoc -->
 
