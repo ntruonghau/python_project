@@ -4,7 +4,6 @@ from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
 from app_school.xu_ly.Xu_ly_Form import Form_Update_Gv
 
-
 @app.route('/giao-vien', methods=['GET','POST'])
 def giao_vien():
     if session.get("giaovien") == None:
@@ -20,26 +19,26 @@ def giao_vien():
 def edit_giao_vien():
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
-
+    error = ''
     giaovien = session['giaovien']
     giao_vien = Profile_Giao_Vien(giaovien)
-
     form = Form_Update_Gv()
-    if request.method == 'POST':
-        HoVaTen = request.form.get('Th_HoVaTen')
-        GioiTinh = request.form.get('Th_gioiTinh')
-        NgaySinh = request.form.get('Th_NgaySinh')
-        DiaChi = request.form.get('Th_DiaChi')
-        Email = request.form.get('Th_Email')
-        SoDienThoai = request.form.get('Th_SoDienThoai')
-        TrinhDo = request.form.get('Th_TrinhDo')
-        ChuyenMon = request.form.get('Th_ChuyenMon')
+    if form.validate_on_submit():
+        print('success')
+        HoVaTen = request.form['Th_Ho_ten']
+        GioiTinh = request.form['Th_Gioi_tinh']
+        NgaySinh = request.form['Th_Ngay_sinh']
+        DiaChi = request.form['Th_Dia_chi']
+        Email = request.form['Th_Email']
+        SoDienThoai = request.form['Th_Sdt']
+        TrinhDo = request.form['Th_Trinh_do']
+        ChuyenMon = request.form['Th_Chuyen_mon']
 
         gv = {"HoVaTen": HoVaTen, "GioiTinh": GioiTinh, "NgaySinh": NgaySinh, "Email": Email, "DiaChi" : DiaChi,
          "SoDienThoai": SoDienThoai, "TrinhDo": TrinhDo,"ChuyenMon": ChuyenMon}
 
         value = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == giaovien).first()
-        
+
         value.HoVaTen = gv['HoVaTen']
         value.GioiTinh = gv['GioiTinh']
         value.NgaySinh =  datetime.strptime(gv['NgaySinh'],'%Y-%m-%d' ).date()
@@ -48,10 +47,11 @@ def edit_giao_vien():
         value.SoDienThoai = gv['SoDienThoai']
         value.TrinhDo = gv['TrinhDo']
         value.ChuyenMon = gv['ChuyenMon']
-
-
         db_session.flush()
         db_session.commit()
-
+        return redirect('/giao-vien')
         print(gv)
-    return render_template('giao_vien/gv_edit_profile.html' ,giao_vien = giao_vien )
+
+    form.Th_Gioi_tinh.default = giao_vien['GioiTinh']
+    form.process()
+    return render_template('giao_vien/gv_edit_profile.html' ,giao_vien = giao_vien, form=form, error=error)
