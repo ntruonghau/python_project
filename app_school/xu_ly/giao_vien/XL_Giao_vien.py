@@ -1,6 +1,7 @@
+from flask import Markup, request, render_template, url_for, session, redirect
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
-
+from datetime import datetime
 def doc_danh_sach_gv_select(): # select field tupple choice
     ds_giao_vien = []
     try:
@@ -11,3 +12,9 @@ def doc_danh_sach_gv_select(): # select field tupple choice
     except:
         pass
     return ds_giao_vien
+
+def Profile_Giao_Vien(TaiKhoan):
+    gv1 = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == TaiKhoan).first()
+    gv = {"HoVaTen": gv1.HoVaTen, "GioiTinh": gv1.GioiTinh, "NgaySinh": datetime.strptime(gv1.NgaySinh,'%Y-%m-%d' ).date(), "Email": gv1.Email, "DiaChi" : gv1.DiaChi,
+         "SoDienThoai": gv1.SoDienThoai, "TrinhDo":gv1.TrinhDo,"ChuyenMon": gv1.ChuyenMon}
+    return gv

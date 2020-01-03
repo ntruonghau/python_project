@@ -51,16 +51,18 @@
                     <img class="img-thumbnail card-img-top" alt="200x200" width="200"
                         src="{{ url_for('static', filename = 'assets/images/small/img-3.jpg') }}"
                         data-holder-rendered="true" alt="Card image cap">
+
                     <div class="card-body">
-                        <h4 class="card-title font-16 mt-0">Nguyễn Văn A</h4>
-                        <p class="card-text">102 Thống Nhất, Quận 3, Thành phố Hồ Chí Minh</p>
+                        <h4 class="card-title font-16 mt-0"> {{giao_vien['HoVaTen']}}</h4>
+                        <p class="card-text">{{giao_vien['DiaChi']}}</p>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">1/6/1981</li>
-                            <li class="list-group-item">Nam</li>
-                            <li class="list-group-item">09081508</li>
+                            <li class="list-group-item">{{giao_vien['NgaySinh']}}</li>
+                            <li class="list-group-item">{{giao_vien['GioiTinh']}}</li>
+                            <li class="list-group-item">{{giao_vien['SoDienThoai']}}</li>
                             <li class="list-group-item"><a href="/sua-profile">Chỉnh sửa profile</a></li>
                             <li class="list-group-item"><a href="/doi-mat-khau">Đổi mật khẩu</a></li>
                         </ul>
+                    
                     </div>
                 </div>
             </div><!-- end col -->
@@ -77,35 +79,35 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">Họ và Tên</th>
-                                            <td>Mark</td>
+                                            <td>{{giao_vien['HoVaTen']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Giới tinh</th>
-                                            <td>Mark</td>
+                                            <td>{{giao_vien['GioiTinh']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Ngày sinh</th>
-                                            <td>Jacob</td>
+                                            <td>{{giao_vien['NgaySinh']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Địa chỉ</th>
-                                            <td>Larry</td>
+                                            <td>{{giao_vien['DiaChi']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Số điện thoai</th>
-                                            <td>Larry</td>
+                                            <td>{{giao_vien['SoDienThoai']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Trình độ</th>
-                                            <td>Larry</td>
+                                            <td>{{giao_vien['TrinhDo']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Chuyên môn</th>
-                                            <td>Larry</td>
+                                            <td>{{giao_vien['ChuyenMon']}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Email</th>
-                                            <td>Larry</td>
+                                            <td>{{giao_vien['Email']}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
