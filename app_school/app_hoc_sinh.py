@@ -51,5 +51,4 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
     form = Form_Update_Hs()
     id_hoc_sinh = hoc_sinh
     HocSinh = Profile_hoc_sinh(id_hoc_sinh)
-    print(HocSinh)
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=HocSinh,form=form )
