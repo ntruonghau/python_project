@@ -20,3 +20,16 @@ def Profile_Giao_Vien(TaiKhoan):
     gv = {"HoVaTen": gv1.HoVaTen, "GioiTinh": gv1.GioiTinh, "NgaySinh": datetime.strptime(gv1.NgaySinh,'%Y-%m-%d' ).date(), "Email": gv1.Email, "DiaChi" : gv1.DiaChi,
          "SoDienThoai": gv1.SoDienThoai, "TrinhDo":gv1.TrinhDo,"ChuyenMon": gv1.ChuyenMon}
     return gv
+
+def gv_doi_mat_khau(TaiKhoan,matkhau_cu,matkhau_moi):
+        ThongBao = ""
+        gv1 = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == TaiKhoan).first()
+        if matkhau_cu != gv1.MatKhau:
+            ThongBao = "Mật khẩu không khớp"
+        else:
+            gv1.MatKhau = matkhau_moi
+            db_session.flush()
+            db_session.commit()
+            ThongBao = "Đổi Mật Khẩu Thành Công"
+        return ThongBao
+
