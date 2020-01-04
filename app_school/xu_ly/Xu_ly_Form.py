@@ -79,8 +79,9 @@ class Form_Update_Manager(FlaskForm):
     Th_Ho_ten = TextField("Họ và tên", [validators.Required(
         "Vui lòng nhập họ tên."), validators.Length(min=4, max=30)])
     Th_Gioi_tinh = SelectField("Giới tính", choices=[
-                              ("M", "Nam"), ("F", "Nữ"), ("D", "Khác")])
-    Th_Dia_chi = TextAreaField("Địa chỉ")
+                              ("Nam", "Nam"), ("Nữ", "Nữ"), ("Khác", "Khác")])
+    Th_Dia_chi = TextField("Địa chỉ", [validators.Required(
+        "Vui lòng nhập vào địa chỉ"), validators.Length(min=4, max=75)])
     Th_Email = TextField("Email", [validators.Required("Vui lòng nhập vào Email"), validators.Email(
         "Vui lòng nhập vào Email"), validators.Length(min=4, max=30)])
     Th_Tuoi = TextField("Tuổi", [validators.Required(
