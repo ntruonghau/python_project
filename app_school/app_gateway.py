@@ -20,6 +20,8 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+    if session.get("giaovien") != None:
+        return redirect('giao-vien')
     form = Form_Login()
     Th_Taikhoan = ''
     Th_Matkhau = ''
@@ -68,4 +70,6 @@ def lockscreen():
 
 @app.route('/recoverpw', methods=['GET','POST'])
 def recoverpw():
+    if session.get("giaovien") != None:
+        return redirect('giao-vien')
     return render_template("account/recoverpw.html")

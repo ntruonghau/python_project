@@ -2,7 +2,7 @@ from flask import Markup, request, render_template, url_for, session, redirect
 from app_school.xu_ly.Xu_ly_Form import Form_Create_Class
 from app_school.xu_ly.nien_khoa.XL_Nien_khoa import doc_danh_sach_nien_khoa_select
 from app_school.xu_ly.khoi.XL_Khoi import doc_danh_sach_khoi_select
-from app_school.xu_ly.giao_vien.XL_Giao_vien import doc_danh_sach_gv_select
+from app_school.xu_ly.giao_vien.XL_Giao_vien import doc_danh_sach_gv_select, Profile_Giao_Vien
 from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import doc_danh_sach_hoc_sinh_theo_lop
 from app_school.xu_ly.Xu_ly_Model import Lop
@@ -10,23 +10,36 @@ from app_school import app, db_session
 
 @app.route('/danh-sach-lop', methods=['GET','POST'])
 def danh_sach_lop():
+
     ds_lop_hoc = doc_danh_sach_lop_hoc()
     return render_template('lop_hoc/l_danh_sach_lop.html', ds_lop_hoc = ds_lop_hoc)
 
     
 @app.route('/chi-tiet-lop/<string:lop>', methods=['GET','POST'])
 def danh_sach_hoc_sinh(lop):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     ds_hoc_sinh = doc_danh_sach_hoc_sinh_theo_lop(lop)
     return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh)
 
     
 @app.route('/bang-diem-lop/<string:lop>', methods=['GET', 'POST'])
 def bang_diem_lop(lop):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     return render_template('lop_hoc/l_bang_diem_lop.html')
 
 
 @app.route('/them-lop-hoc', methods=['GET','POST'])
 def them_lop_hoc():
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     form = Form_Create_Class()
     ds_nien_khoa = doc_danh_sach_nien_khoa_select()
     ds_khoi = doc_danh_sach_khoi_select()

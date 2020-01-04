@@ -1,6 +1,7 @@
 from flask import Markup, request, render_template, url_for, session, redirect
 from app_school.xu_ly.Xu_ly_Form import *
 from app_school.xu_ly.lop_hoc.XL_Lop_hoc import lay_nien_khoa_theo_lop
+from app_school.xu_ly.giao_vien.XL_Giao_vien import Profile_Giao_Vien
 from app_school.xu_ly.Xu_ly_Model import HocSinh
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import *
 from app_school import app, db_session
@@ -8,6 +9,10 @@ from datetime import date
 
 @app.route('/them-hoc-sinh/<string:lop>', methods=['GET', 'POST'])
 def them_hoc_sinh(lop):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     form = Form_Update_Hs()
     error = ''
     if form.validate_on_submit():
@@ -36,11 +41,18 @@ def them_hoc_sinh(lop):
 
 @app.route('/thong-tin-diem-so/<string:hoc_sinh>', methods=['GET','POST'])
 def thong_tin_diem_so(hoc_sinh):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     return render_template('giao_vien/gv_bang_diem_hoc_sinh.html')
-
 
 @app.route('/thong-tin-hoc-sinh/<string:hoc_sinh>', methods=['GET','POST'])
 def thong_tin_hoc_sinh(hoc_sinh):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     id_hoc_sinh = hoc_sinh
     HocSinh = Profile_hoc_sinh(id_hoc_sinh)
     print(HocSinh)

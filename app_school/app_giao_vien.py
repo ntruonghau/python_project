@@ -70,3 +70,10 @@ def Doi_mat_khau():
         if ThongBao == "Đổi Mật Khẩu Thành Công":
             return redirect('/giao-vien')
     return render_template('giao_vien/gv_doi_mat_khau.html' , form=form,ThongBao=ThongBao)
+
+@app.route('/dang-xuat', methods=['GET','POST'])
+def dang_xuat():
+    if session.get("giaovien") != None:
+        session.pop("giaovien", None)
+    return redirect('/')
+    
