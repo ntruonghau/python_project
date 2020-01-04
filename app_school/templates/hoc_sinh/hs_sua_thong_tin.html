@@ -19,6 +19,7 @@
             <h4 class="mt-0 header-title">Chỉ sửa profile</h4>
             <p class="text-muted m-b-30">Chào mừng bạn đến với trang chỉnh sửa profile</p>
             <form method="POST">
+                {{ form.csrf_token }}
                 <div class="form-group row">
 
                     {{ form.Th_Ho_ten.label(for="example-text-input",class="col-sm-2 col-form-label") }}
@@ -107,32 +108,6 @@
                     {% if form.Th_Sdt_PH.errors %}
                     <ul class=errors>
                         {% for error in form.Th_Sdt_PH.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-                <div class="form-group row">
-                    {{ form.Th_Lop.label(for="example-text-input",class="col-sm-2 col-form-label") }}
-                    <div class="col-sm-10">
-                        {{ form.Th_Lop(class="form-control",type="text",value=HocSinh.Lop,id="example-text-input",placeholder="Nhập Lớp") }}
-                    </div>
-                    {% if form.Th_Lop.errors %}
-                    <ul class=errors>
-                        {% for error in form.Th_Lop.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-                <div class="form-group row">
-                    {{ form.Th_NienKhoa.label(for="example-text-input",class="col-sm-2 col-form-label") }}
-                    <div class="col-sm-10">
-                        {{ form.Th_NienKhoa(class="form-control",value=HocSinh.NienKhoa,id="example-text-input",placeholder="Nhập Niên Khóa") }}
-                    </div>
-                    {% if form.Th_NienKhoa.errors %}
-                    <ul class=errors>
-                        {% for error in form.Th_NienKhoa.errors %}
                         <li>{{ error }}</li>
                         {% endfor %}
                     </ul>

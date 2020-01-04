@@ -43,12 +43,32 @@ def thong_tin_diem_so(hoc_sinh):
 def thong_tin_hoc_sinh(hoc_sinh):
     id_hoc_sinh = hoc_sinh
     HocSinh = Profile_hoc_sinh(id_hoc_sinh)
-    print(HocSinh)
     return render_template('hoc_sinh/hs_thong_tin_hoc_sinh.html',HocSinh=HocSinh)
 
 @app.route('/thong-tin-hoc-sinh/<string:hoc_sinh>/sua-hoc-sinh', methods=['GET','POST'])
 def sua_thong_tin_hoc_sinh(hoc_sinh):
     form = Form_Update_Hs()
     id_hoc_sinh = hoc_sinh
-    HocSinh = Profile_hoc_sinh(id_hoc_sinh)
-    return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=HocSinh,form=form )
+    Hoc_Sinh = Profile_hoc_sinh(id_hoc_sinh)
+    value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
+    if form.validate_on_submit():
+        HocVaTen = request.form['Th_Ho_ten']
+        GioiTinh = request.form['Th_Gioi_tinh']
+        NgaySinh = request.form['Th_Ngay_sinh']
+        DiaChi = request.form['Th_Dia_chi']
+        Email = request.form['Th_Email']
+        SoDienThoai = request.form['Th_Sdt']
+        SoDienThoaiPhuHuynh = request.form['Th_Sdt_PH']
+        
+        value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
+        value.HoVaTen = HocVaTen
+        value.GioiTinh = GioiTinh
+        value.NgaySinh =  datetime.strptime(NgaySinh,'%Y-%m-%d' ).date()
+        value.Email = Email
+        value.DiaChi = DiaChi
+        value.SoDienThoai = SoDienThoai
+        value.SoDienThoaiPhuHuynh = SoDienThoaiPhuHuynh
+        db_session.flush()
+        db_session.commit()
+        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh)
+    return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )

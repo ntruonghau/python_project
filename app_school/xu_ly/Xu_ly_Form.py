@@ -69,10 +69,6 @@ class Form_Update_Hs(FlaskForm):
         "Vui lòng nhập vào Email"), validators.Length(min=4, max=30)])
     Th_Dia_chi = TextField("Địa chỉ", [validators.Required(
         "Vui lòng nhập vào địa chỉ"), validators.Length(min=4, max=75)])
-    Th_Lop = TextField("Lớp", [validators.Required(
-        "Vui lòng nhập vào Lớp"), validators.Length(min=4, max=75)])
-    Th_NienKhoa = TextField("Niên Khóa", [validators.Required(
-        "Vui lòng nhập vào Niên Khóa"), validators.Length(min=4, max=75)])
 
 
 class Form_Update_Manager(FlaskForm):
