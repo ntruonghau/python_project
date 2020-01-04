@@ -73,3 +73,7 @@ def recoverpw():
     if session.get("giaovien") != None:
         return redirect('giao-vien')
     return render_template("account/recoverpw.html")
+
+@app.route('/tra-cuu', methods=['GET','POST'])
+def trang_tra_cuu():
+    return render_template('trang_chu/tra-cuu-hoc-sinh.html')

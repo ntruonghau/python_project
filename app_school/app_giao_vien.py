@@ -76,4 +76,8 @@ def dang_xuat():
     if session.get("giaovien") != None:
         session.pop("giaovien", None)
     return redirect('/')
+
+@app.route('/thoi-khoa-bieu', methods=['GET', 'POST'])
+def thoi_khoa_bieu():
+    return render_template('thoi_khoa_bieu/thoi-khoa-bieu.html')
     

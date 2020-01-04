@@ -14,4 +14,4 @@ def doc_danh_sach_bang_diem_hoc(): # select field tupple choice
 
 def tao_bang_diem_cho_hoc_sinh(id_hoc_sinh):
     hoc_sinh = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).one()
-
+    
