@@ -15,6 +15,8 @@ def doc_danh_sach_gv_select(): # select field tupple choice
 
 def Profile_Giao_Vien(TaiKhoan):
     gv1 = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == TaiKhoan).first()
+    if (gv1.NgaySinh == None):
+        gv1.NgaySinh = '1900-01-01'
     gv = {"HoVaTen": gv1.HoVaTen, "GioiTinh": gv1.GioiTinh, "NgaySinh": datetime.strptime(gv1.NgaySinh,'%Y-%m-%d' ).date(), "Email": gv1.Email, "DiaChi" : gv1.DiaChi,
          "SoDienThoai": gv1.SoDienThoai, "TrinhDo":gv1.TrinhDo,"ChuyenMon": gv1.ChuyenMon}
     return gv
