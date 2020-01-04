@@ -19,11 +19,12 @@
             <h4 class="mt-0 header-title">Chỉ sửa profile</h4>
             <p class="text-muted m-b-30">Chào mừng bạn đến với trang chỉnh sửa profile</p>
             <form method="POST">
+                {{ form.csrf_token }}
                 <div class="form-group row">
 
                     {{ form.Th_Ho_ten.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Ho_ten(class="form-control",value="",id="example-text-input",placeholder="Nhập Họ và Tên") }}
+                        {{ form.Th_Ho_ten(class="form-control",value=HocSinh.HoVaTen, id="example-text-input",placeholder="Nhập Họ và Tên") }}
                     </div>
                     {% if form.Th_Ho_ten.errors %}
                     <ul class=errors>
@@ -50,7 +51,7 @@
                 <div class="form-group row">
                     {{ form.Th_Ngay_sinh.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Ngay_sinh(class="form-control",type="date",value="",id="example-date-input") }}
+                        {{ form.Th_Ngay_sinh(class="form-control",type="date",value=HocSinh.NgaySinh,id="example-date-input") }}
                     </div>
                     {% if form.Th_Ngay_sinh.errors %}
                     <ul class=errors>
@@ -63,7 +64,7 @@
                 <div class="form-group row">
                     {{ form.Th_Dia_chi.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Dia_chi(class="form-control",value="",id="example-text-input",placeholder="Nhập địa chỉ") }}
+                        {{ form.Th_Dia_chi(class="form-control",value=HocSinh.DiaChi,id="example-text-input",placeholder="Nhập địa chỉ") }}
                     </div>
                     {% if form.Th_Dia_chi.errors %}
                     <ul class=errors>
@@ -76,7 +77,7 @@
                 <div class="form-group row">
                     {{ form.Th_Email.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Email(class="form-control",type="email",value="" ,id="example-email-input") }}
+                        {{ form.Th_Email(class="form-control",type="email",value=HocSinh.Email ,id="example-email-input") }}
                     </div>
                     {% if form.Th_Email.errors %}
                     <ul class=errors>
@@ -89,7 +90,7 @@
                 <div class="form-group row">
                     {{ form.Th_Sdt.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Sdt(class="form-control",type="tel",value="",id="example-tel-input") }}
+                        {{ form.Th_Sdt(class="form-control",type="tel",value=HocSinh.SoDienThoai,id="example-tel-input") }}
                     </div>
                     {% if form.Th_Sdt.errors %}
                     <ul class=errors>
@@ -102,37 +103,11 @@
                 <div class="form-group row">
                     {{ form.Th_Sdt_PH.label(for="example-text-input",class="col-sm-2 col-form-label") }}
                     <div class="col-sm-10">
-                        {{ form.Th_Sdt_PH(class="form-control",type="tel",value="",id="example-tel-input") }}
+                        {{ form.Th_Sdt_PH(class="form-control",type="tel",value=HocSinh.SoDienThoaiPH,id="example-tel-input") }}
                     </div>
                     {% if form.Th_Sdt_PH.errors %}
                     <ul class=errors>
                         {% for error in form.Th_Sdt_PH.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-                <div class="form-group row">
-                    {{ form.Th_Lop.label(for="example-text-input",class="col-sm-2 col-form-label") }}
-                    <div class="col-sm-10">
-                        {{ form.Th_Lop(class="form-control",type="text",value="",id="example-text-input",placeholder="Nhập Lớp") }}
-                    </div>
-                    {% if form.Th_Lop.errors %}
-                    <ul class=errors>
-                        {% for error in form.Th_Lop.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </div>
-                <div class="form-group row">
-                    {{ form.Th_NienKhoa.label(for="example-text-input",class="col-sm-2 col-form-label") }}
-                    <div class="col-sm-10">
-                        {{ form.Th_NienKhoa(class="form-control",value="",id="example-text-input",placeholder="Nhập Niên Khóa") }}
-                    </div>
-                    {% if form.Th_NienKhoa.errors %}
-                    <ul class=errors>
-                        {% for error in form.Th_NienKhoa.errors %}
                         <li>{{ error }}</li>
                         {% endfor %}
                     </ul>

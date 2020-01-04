@@ -47,7 +47,7 @@ class GiaoVien(Base):
     SoDienThoai = Column(String(11) )
     TrinhDo =  Column(String(100) )
     ChuyenMon = Column(String(100) )
-
+    Quyen = Column(String(2) )
     def __init__(self, TenDangNhap=None, MatKhau=None, Email=None):
         self.TenDangNhap = TenDangNhap
         self.MatKhau = MatKhau
