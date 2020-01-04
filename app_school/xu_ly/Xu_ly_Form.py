@@ -62,13 +62,17 @@ class Form_Update_Hs(FlaskForm):
     Th_Ngay_sinh = TextField("Ngày sinh", [validators.Required(
         "Vui lòng nhập ngày sinh.")])
     Th_Sdt = TextField("Số điện thoại", [validators.Required(
-        "Vui lòng nhập vào số điện thoại"), validators.Length(min=4, max=15)])
+        "Vui lòng nhập vTh_Dia_chiào số điện thoại"), validators.Length(min=4, max=15)])
     Th_Sdt_PH = TextField("Số điện thoại phụ huynh", [validators.Required(
         "Vui lòng nhập vào số điện thoại phụ huynh"), validators.Length(min=4, max=15)])
     Th_Email = TextField("Email", [validators.Required("Vui lòng nhập vào Email"), validators.Email(
         "Vui lòng nhập vào Email"), validators.Length(min=4, max=30)])
     Th_Dia_chi = TextField("Địa chỉ", [validators.Required(
         "Vui lòng nhập vào địa chỉ"), validators.Length(min=4, max=75)])
+    Th_Lop = TextField("Lớp", [validators.Required(
+        "Vui lòng nhập vào Lớp"), validators.Length(min=4, max=75)])
+    Th_NienKhoa = TextField("Niên Khóa", [validators.Required(
+        "Vui lòng nhập vào Niên Khóa"), validators.Length(min=4, max=75)])
 
 
 class Form_Update_Manager(FlaskForm):
@@ -101,6 +105,9 @@ class Form_Create_Class(FlaskForm):
 class Form_Them_Nien_khoa(FlaskForm):
     Th_Nien_khoa = SelectField("Niên Khóa")
 
+class Form_Reset_pw(FlaskForm):
+    Th_MatkhauCu = PasswordField("Mật khẩu cũ: ", [validators.InputRequired(), validators.Length(min=4, max=20)])
+    Th_MatkhauMoi = PasswordField("Mật khẩu mới: ", [validators.InputRequired(), validators.Length(min=4, max=20)])
 
 '''class Form_UpdateProfile(FlaskForm) :
     Th_Id = IntegerField("Mã số ID" , [validators.Required("Vui lòng nhập vào mã số ID") ,validators.Length(min=4, max=15)])
