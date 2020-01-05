@@ -117,6 +117,7 @@ def thoi_khoa_bieu():
     giaovien = session['giaovien']
     
     TKB = db_session.query(ThoiKhoaBieu).first()
-    t = tao_thoi_khoa_bieu(TKB)
-    return render_template('thoi_khoa_bieu/thoi-khoa-bieu.html' ,TKB = t )
+    thoi_khoa_bieu = tao_thoi_khoa_bieu(TKB)
+
+    return render_template('thoi_khoa_bieu/thoi-khoa-bieu.html' ,TKB= thoi_khoa_bieu)
     
