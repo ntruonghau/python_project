@@ -116,6 +116,16 @@ class BangDiem(Base):
         return self.HoVaTen
 
 
-
+class ThoiKhoaBieu(Base):
+    __tablename__ = 'ThoiKhoaBieu'
+    ID_TKB = Column(Integer, primary_key = True)
+    ID_Lop = Column(Integer, ForeignKey(Lop.IDLop))
+    Thu2 = Column(String(300))
+    Thu3 = Column(String(300))
+    Thu4 = Column(String(300))
+    Thu5 = Column(String(300))
+    Thu6 = Column(String(300))
+    Thu7 = Column(String(300))
+    
 Base.metadata.create_all(engine)
 ##############################################

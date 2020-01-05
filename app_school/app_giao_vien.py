@@ -2,9 +2,11 @@ from flask import Markup, request, render_template, url_for, session, redirect
 from app_school.xu_ly.giao_vien.XL_Giao_vien import *
 from app_school.xu_ly.bang_diem.XL_Bang_diem import doc_bang_diem_theo_id_bang_diem, cap_nhat_bang_diem
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
+from app_school.xu_ly.thoi_khoa_bieu.XL_TKB import *
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien, Mon, HocSinh, BangDiem
 from app_school.xu_ly.Xu_ly_Form import *
+import json
 
 @app.route('/giao-vien', methods=['GET','POST'])
 def giao_vien():
@@ -108,7 +110,13 @@ def dang_xuat():
         session.pop("giaovien", None)
     return redirect('/')
 
-@app.route('/thoi-khoa-bieu', methods=['GET', 'POST'])
+@app.route('/thoi-khoa-bieu', methods=['GET','POST'])
 def thoi_khoa_bieu():
-    return render_template('thoi_khoa_bieu/thoi-khoa-bieu.html')
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
+    giaovien = session['giaovien']
+    
+    TKB = db_session.query(ThoiKhoaBieu).first()
+    t = tao_thoi_khoa_bieu(TKB)
+    return render_template('thoi_khoa_bieu/thoi-khoa-bieu.html' ,TKB = t )
     
