@@ -19,10 +19,14 @@ def danh_sach_lop():
 def danh_sach_hoc_sinh(lop):
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
+    message = ''
     giaovien = session['giaovien']
     giao_vien = Profile_Giao_Vien(giaovien)
     ds_hoc_sinh = doc_danh_sach_hoc_sinh_theo_lop(lop)
-    return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
+    return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh, message=message)
 
     
 @app.route('/bang-diem-lop/<string:lop>', methods=['GET', 'POST'])

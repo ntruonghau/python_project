@@ -1,8 +1,10 @@
 from flask import Markup, request, render_template, url_for, session, redirect
 from app_school.xu_ly.Xu_ly_Form import *
-from app_school.xu_ly.lop_hoc.XL_Lop_hoc import lay_nien_khoa_theo_lop
+from app_school.xu_ly.lop_hoc.XL_Lop_hoc import lay_nien_khoa_theo_lop, cap_nhat_si_so
 from app_school.xu_ly.giao_vien.XL_Giao_vien import Profile_Giao_Vien
-from app_school.xu_ly.Xu_ly_Model import HocSinh
+from app_school.xu_ly.bang_diem.XL_Bang_diem import tao_bang_diem_cho_hoc_sinh, doc_bang_diem_theo_hoc_sinh
+from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
+from app_school.xu_ly.Xu_ly_Model import HocSinh, Lop
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import *
 from app_school import app, db_session
 from datetime import date
@@ -15,6 +17,7 @@ def them_hoc_sinh(lop):
     giao_vien = Profile_Giao_Vien(giaovien)
     form = Form_Update_Hs()
     error = ''
+    message = ''
     if form.validate_on_submit():
         HoVaTen = request.form['Th_Ho_ten']
         GioiTinh = request.form['Th_Gioi_tinh']
@@ -31,7 +34,17 @@ def them_hoc_sinh(lop):
         try:
             db_session.add(hoc_sinh)
             db_session.commit()
-            return redirect("/chi-tiet-lop/" + lop)
+            if cap_nhat_si_so(lop):
+                message += 'Đã cập nhật sỉ số lớp; '
+            else: 
+                error = 'Không thể cập nhật sỉ số lớp'
+            if tao_bang_diem_cho_hoc_sinh(hoc_sinh.IDHocSinh):
+                message += 'Đã thêm học sinh ' + HoVaTen + ';'
+                return redirect(url_for('danh_sach_hoc_sinh', lop=lop, message=message))
+            else:
+                db_session.rollback()
+                error = 'Không thể tạo bảng điểm'
+                pass
         except:
             error = 'Học sinh đã tồn tại'
             db_session.rollback()
@@ -39,13 +52,15 @@ def them_hoc_sinh(lop):
     return render_template('hoc_sinh/hs_them_hoc_sinh.html', form=form, error=error)
 
 
-@app.route('/thong-tin-diem-so/<string:hoc_sinh>', methods=['GET','POST'])
-def thong_tin_diem_so(hoc_sinh):
+@app.route('/thong-tin-diem-so/<string:id_hoc_sinh>', methods=['GET','POST'])
+def thong_tin_diem_so(id_hoc_sinh):
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
     giaovien = session['giaovien']
     giao_vien = Profile_Giao_Vien(giaovien)
-    return render_template('giao_vien/gv_bang_diem_hoc_sinh.html')
+    hs = Profile_hoc_sinh(id_hoc_sinh)
+    ds_bang_diem = doc_bang_diem_theo_hoc_sinh(id_hoc_sinh)
+    return render_template('hoc_sinh/gv_bang_diem_hoc_sinh.html', ds_bang_diem=ds_bang_diem, ten_hs=hs['HoVaTen'], id_hoc_sinh = id_hoc_sinh)
 
 @app.route('/thong-tin-hoc-sinh/<string:hoc_sinh>', methods=['GET','POST'])
 def thong_tin_hoc_sinh(hoc_sinh):

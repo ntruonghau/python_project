@@ -103,7 +103,7 @@ class BangDiem(Base):
     IDMon = Column(Integer, ForeignKey(Mon.IDMon))
     FK_Mon = relationship('Mon', foreign_keys='BangDiem.IDMon')
  
-    HocKy = Column(String(100) )
+    HocKy = Column(Float )
     _15Phut_1_ = Column(Float )
     _15Phut_2_ = Column(Float )
     _15Phut_3_ = Column(Float )

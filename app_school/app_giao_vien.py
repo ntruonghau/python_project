@@ -1,7 +1,9 @@
 from flask import Markup, request, render_template, url_for, session, redirect
 from app_school.xu_ly.giao_vien.XL_Giao_vien import *
+from app_school.xu_ly.bang_diem.XL_Bang_diem import doc_bang_diem_theo_id_bang_diem, cap_nhat_bang_diem
+from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
 from app_school import app, db_session
-from app_school.xu_ly.Xu_ly_Model import GiaoVien
+from app_school.xu_ly.Xu_ly_Model import GiaoVien, Mon, HocSinh, BangDiem
 from app_school.xu_ly.Xu_ly_Form import *
 
 @app.route('/giao-vien', methods=['GET','POST'])
@@ -53,6 +55,21 @@ def edit_giao_vien():
     form.process()
     return render_template('giao_vien/gv_edit_profile.html' ,giao_vien = giao_vien, form=form, error=error)
 
+@app.route('/cham-diem/<string:id_hoc_sinh>/<string:id_bd>', methods=['GET','POST'])
+def cham_diem(id_hoc_sinh, id_bd):
+    bang_diem = doc_bang_diem_theo_id_bang_diem(id_bd)
+    hoc_sinh = Profile_hoc_sinh(id_hoc_sinh)
+    print(bang_diem)
+    return render_template('giao_vien/gv_cham_diem.html', bang_diem=bang_diem, ten_hs = hoc_sinh['HoVaTen'],id_hoc_sinh=id_hoc_sinh,id_bd=id_bd)
+
+@app.route('/cap-nhat-diem/<string:id_hoc_sinh>/<string:id_bd>', methods=['GET','POST'])
+def cap_nhat_diem(id_hoc_sinh, id_bd):
+    print(request.form.get('name'))
+    print(request.form.get('value'))
+    cap_nhat_bang_diem(id_bd, request.form.get('name'),request.form.get('value'))
+    return redirect('/cham-diem/'+id_hoc_sinh+'/'+id_bd)
+
+
 @app.route('/doi-mat-khau', methods=['GET','POST'])
 def Doi_mat_khau():
     if session.get("giaovien") == None:
@@ -70,6 +87,7 @@ def Doi_mat_khau():
         if ThongBao == "Đổi Mật Khẩu Thành Công":
             return redirect('/giao-vien')
     return render_template('giao_vien/gv_doi_mat_khau.html' , form=form,ThongBao=ThongBao)
+
 
 @app.route('/dang-xuat', methods=['GET','POST'])
 def dang_xuat():

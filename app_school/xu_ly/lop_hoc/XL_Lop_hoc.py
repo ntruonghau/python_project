@@ -26,3 +26,14 @@ def lay_nien_khoa_theo_lop(lop):
     except:
         pass
     return nien_khoa
+
+def cap_nhat_si_so(lop, sl_them_giam=1):
+    try:
+        lop = db_session.query(Lop).filter(Lop.IDLop == lop).one()
+        lop.TongSoHS += sl_them_giam
+        db_session.flush()
+        db_session.commit()
+    except:
+        db_session.rollback()
+        return False
+    return True
