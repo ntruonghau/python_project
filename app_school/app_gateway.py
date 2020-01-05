@@ -2,6 +2,7 @@ from flask import Markup, request, render_template, url_for, session, redirect
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
 from app_school.xu_ly.Xu_ly_Form import Form_Register, Form_Login
+from app_school.xu_ly.tra_cuu.tra_cuu import *
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -74,6 +75,13 @@ def recoverpw():
         return redirect('giao-vien')
     return render_template("account/recoverpw.html")
 
-@app.route('/tra-cuu', methods=['GET','POST'])
-def trang_tra_cuu():
-    return render_template('trang_chu/tra-cuu-hoc-sinh.html')
+
+@app.route('/tra-cuu/<string:Chuoi_tra_cuu>/', methods=['GET','POST'])
+def trang_tra_cuu(Chuoi_tra_cuu):
+    id = ""
+    if request.form.get(Chuoi_tra_cuu) :
+        id = Chuoi_tra_cuu
+        danh_sach_hs = Doc_danh_sach_hs()
+        thong_tin_hs = Lay_info_theo_ID( id , danh_sach_hs )
+
+    return render_template('trang_chu/tra-cuu-hoc-sinh.html' , thong_tin_hs = thong_tin_hs )

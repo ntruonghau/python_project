@@ -57,17 +57,20 @@ def edit_giao_vien():
 
 @app.route('/cham-diem/<string:id_hoc_sinh>/<string:id_bd>', methods=['GET','POST'])
 def cham_diem(id_hoc_sinh, id_bd):
+    message = request.form.get('message')
+    print('12312312' , message)
     bang_diem = doc_bang_diem_theo_id_bang_diem(id_bd)
     hoc_sinh = Profile_hoc_sinh(id_hoc_sinh)
     print(bang_diem)
-    return render_template('giao_vien/gv_cham_diem.html', bang_diem=bang_diem, ten_hs = hoc_sinh['HoVaTen'],id_hoc_sinh=id_hoc_sinh,id_bd=id_bd)
+    return render_template('giao_vien/gv_cham_diem.html', bang_diem=bang_diem, ten_hs = hoc_sinh['HoVaTen'],id_hoc_sinh=id_hoc_sinh,id_bd=id_bd, message=message)
 
 @app.route('/cap-nhat-diem/<string:id_hoc_sinh>/<string:id_bd>', methods=['GET','POST'])
 def cap_nhat_diem(id_hoc_sinh, id_bd):
     print(request.form.get('name'))
     print(request.form.get('value'))
     cap_nhat_bang_diem(id_bd, request.form.get('name'),request.form.get('value'))
-    return redirect('/cham-diem/'+id_hoc_sinh+'/'+id_bd)
+    message = 'Đã cập nhật điểm số'
+    return redirect(url_for('cham_diem', id_hoc_sinh=id_hoc_sinh, id_bd=id_bd, message=message))
 
 
 @app.route('/doi-mat-khau', methods=['GET','POST'])
