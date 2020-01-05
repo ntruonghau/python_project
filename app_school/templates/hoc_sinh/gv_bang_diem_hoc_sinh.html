@@ -106,7 +106,7 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td>{{ bang_diem['trung_binh'] if bang_diem['trung_binh'] != None else 'Chưa chấm'}}
+                                                <td>{{ "{0:.2f}".format(bang_diem['trung_binh']) if bang_diem['trung_binh'] != None else 'Chưa chấm'}}
                                                 </td>
                                             </tr>
                                         </tbody>
