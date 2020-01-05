@@ -47,8 +47,41 @@ def trang_lien_he():
 
 @app.route('/trang-chu/tra-cuu', methods=['GET','POST'])
 def trang_tra_cuu():
+    Dia_chi_MH = "/trang-chu/tra-cuu"
+    if request.method == 'POST':
+        Ma_so = request.form.get('Th_Ma_so')
+        if Ma_so == "TRA_CUU":
+            Chuoi_Tra_cuu = request.form.get('Th_Chuoi_Tra_cuu')
+            Dia_chi_MH = "/trang-chu/tra-cuu/" + Chuoi_Tra_cuu + "/"
 
-    return render_template('index/tra_cuu.html')
+
+    return render_template('trang_chu/tra-cuu-hoc-sinh.html')
+
+@app.route('/trang-chu/tra-cuu/<string:Chuoi_Tra_cuu>/', methods=['GET','POST'])
+def trang_tra_cuu_theo_id(Chuoi_Tra_cuu):
+    print("Chuoi tra cuu la :" , Chuoi_Tra_cuu)
+    Danh_sach_hs = Doc_danh_sach_hs()
+    print("Successsssssssssssssssss")
+    print(Danh_sach_hs) 
+    Danh_sach_hs_chon = Danh_sach_hs
+    Danh_sach_hs_chon = Lay_info_theo_ID( Chuoi_Tra_cuu , Danh_sach_hs )
+    print("Success")
+    print(Danh_sach_hs_chon)
+    Id = Danh_sach_hs_chon['IDHocSinh']
+    HoVaTen = Danh_sach_hs_chon['HoVaTen']
+    GioiTinh = Danh_sach_hs_chon['GioiTinh']
+    DiaChi = Danh_sach_hs_chon['DiaChi']
+    Email = Danh_sach_hs_chon['Email']
+    NgaySinh = Danh_sach_hs_chon['NgaySinh']
+    SoDienThoai = Danh_sach_hs_chon['SoDienThoai']
+    SoDienThoaiPhuHuynh = Danh_sach_hs_chon['SoDienThoaiPhuHuynh']
+    IDLop = Danh_sach_hs_chon['IDLop']
+    NienKhoa = Danh_sach_hs_chon['NienKhoa']
+    return render_template('trang_chu/tra-cuu-hoc-sinh.html' , Chuoi_Tra_cuu=Chuoi_Tra_cuu , Danh_sach_hs_chon=Danh_sach_hs_chon , Id = Id,
+        HoVaTen=HoVaTen , GioiTinh=GioiTinh , DiaChi=DiaChi , Email=Email , NgaySinh=NgaySinh , SoDienThoai=SoDienThoai , 
+        SoDienThoaiPhuHuynh=SoDienThoaiPhuHuynh , IDLop=IDLop , NienKhoa=NienKhoa)
+
+
 
 # @app.route('/tra-cuu/<string:Chuoi_tra_cuu>/', methods=['GET','POST'])
 # def trang_tra_cuu(Chuoi_tra_cuu):
