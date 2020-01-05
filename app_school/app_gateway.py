@@ -17,7 +17,7 @@ def page_not_found(e):
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('trang_chu/index.html')
+    return render_template('index/index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -76,12 +76,12 @@ def recoverpw():
     return render_template("account/recoverpw.html")
 
 
-@app.route('/tra-cuu/<string:Chuoi_tra_cuu>/', methods=['GET','POST'])
-def trang_tra_cuu(Chuoi_tra_cuu):
-    id = ""
-    if request.form.get(Chuoi_tra_cuu) :
-        id = Chuoi_tra_cuu
-        danh_sach_hs = Doc_danh_sach_hs()
-        thong_tin_hs = Lay_info_theo_ID( id , danh_sach_hs )
+# @app.route('/tra-cuu/<string:Chuoi_tra_cuu>/', methods=['GET','POST'])
+# def trang_tra_cuu(Chuoi_tra_cuu):
+#     id = ""
+#     if request.form.get(Chuoi_tra_cuu) :
+#         id = Chuoi_tra_cuu
+#         danh_sach_hs = Doc_danh_sach_hs()
+#         thong_tin_hs = Lay_info_theo_ID( id , danh_sach_hs )
 
-    return render_template('trang_chu/tra-cuu-hoc-sinh.html' , thong_tin_hs = thong_tin_hs )
+#     return render_template('trang_chu/tra-cuu-hoc-sinh.html' , thong_tin_hs = thong_tin_hs )

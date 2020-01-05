@@ -1,0 +1,65 @@
+{% extends "web_layout/trang-chu-master.html" %}    
+{% block head %}
+
+{{ super()}}
+{% block title %} Trang dịch vụ {% endblock %}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<div class="content">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="card-header">
+                    <h4 style="color: whitesmoke;">Các dịch vụ</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless mb-0">
+                            <tbody>
+                                <tr>
+                                    <th scope="row"> Kiến trúc</th>
+                                    <td>Được khởi công xây dựng từ năm 1913</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Không gian</th>
+                                    <td>Thoáng mát - thoải mái - tự nhiên</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Trang thiết bị</th>
+                                    <td>Được trang bị đầy đủ các thiết bị giảng dạy học tập</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Giáo viên</th>
+                                    <td>Hơn 500 giáo viên - nhân viên</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Giáo trình</th>
+                                    <td>Luôn được cập nhật phù hợp với thời đại</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Thành tích</th>
+                                    <td>Đạt nhiều giải thưởng trong các cuộc thi lớn</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

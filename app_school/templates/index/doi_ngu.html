@@ -1,0 +1,87 @@
+{% extends "web_layout/trang-chu-master.html" %}    
+{% block head %}
+
+{{ super()}}
+{% block title %} Trang đội ngũ {% endblock %}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+<section class="our-team"> 
+    <div class="content">
+        <div class="container-fluid">
+            <div class="page-title-box">
+                <div class="row align-items-center">
+                    <div class="col-md-12 mb-4 ">
+                        <button class="btn btn-dark">
+                        <h4 class="page-title">Nhóm thành lập</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active">Các thành viên tham gia</li>
+                        </ol>
+                        </button>
+                    </div>
+                    <br/>           
+                    
+                    <div class="card mb-8 col-md-4" style="max-width: 800px ;">
+                        <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ url_for('static' , filename ='trang_chu/images/truong-hau.jpg') }}" class="card-img" alt="about">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                            <h5 class="card-title" style="color: whitesmoke;">Trường Hậu</h5>
+                            <p class="card-text" style="color: whitesmoke;">Leader.</p>
+                            <br/>
+                            <a href="/trang-chu/doi-ngu/truong-hau" class="btn btn-primary">Thêm thông tin</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card mb-8 col-md-4" style="max-width: 800px ;">
+                        <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ url_for('static' , filename ='trang_chu/images/tuan-anh.jpg') }}" class="card-img" alt="about">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                            <h5 class="card-title" style="color: whitesmoke;">Tuấn Anh</h5>
+                            <p class="card-text" style="color: whitesmoke;">Member.</p>
+                            <br/>
+                            <a href="/trang-chu/doi-ngu/tuan-anh" class="btn btn-primary">Thêm thông tin</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card mb-8 col-md-4" style="max-width: 800px ;">
+                        <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ url_for('static' , filename ='trang_chu/images/thanh-hoa.jpg') }}" class="card-img" alt="about">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                            <h5 class="card-title" style="color: whitesmoke;">Thanh Hòa</h5>
+                            <p class="card-text" style="color: whitesmoke;">Member.</p>
+                            <br/>
+                            <a href="/trang-chu/doi-ngu/thanh-hoa" class="btn btn-primary">Thêm thông tin</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        <!-- container-fluid -->
+        </div>
+    </div>
+</section>     
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

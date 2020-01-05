@@ -1,0 +1,80 @@
+{% extends "web_layout/trang-chu-master.html" %}    
+{% block head %}
+
+{{ super()}}
+{% block title %} Trang liên hệ {% endblock %}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+<section class="contact-us">
+<div class="content">
+    <div class="container">
+        <div class="row">
+                
+            <div class="col-md-12" style="text-align: center;" >
+                <form action="#" method="post" >
+                    <div>
+                        <h2 style="color: whitesmoke;">Liên hệ</h2>
+                        <br/>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group ">
+                            <input class="form-control" id="name" name="name" placeholder="Họ và tên" type="text"
+                                required>
+                        </div>
+                    </div>
+                    <div class="row email-bar">
+                        <div class="col-sm-12 form-group ">
+                            <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                                required>
+                        </div>
+                    </div>
+                    <textarea class="form-control btn btn-primary" id="comments" name="comments" 
+                        placeholder="Lời nhắn ... " rows="5"></textarea><br>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button class="btn btn-primary btn-lg" type="submit">Gửi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>            
+            <div class="row">
+                    <div class="col-md-6">
+                        <iframe class="googlemaps"
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15677.686045996057!2d106.6872621!3d10.7789931!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x48a70047aa2b6170!2zVHLGsOG7nW5nIFRydW5nIGjhu41jIHBo4buVIHRow7RuZyBOZ3V54buFbiBUaOG7iyBNaW5oIEtoYWksIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1577792440008!5m2!1svi!2s"
+                           frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+            </div>
+           
+            <div class="col-md-6" >
+                <div class="contact-info" style="text-align:right;">
+                    <h4>Liên hệ với chúng tôi qua</h4>
+                    <p><strong>Đường dây nóng :</strong>0123456789</p>
+                    <p><strong>Email :</strong> <a href="0123456789@gmail.com">0123456789@gmail.com</a></p>
+                    <p class="addr"><strong>Địa chỉ :</strong>275 Điện Biên Phủ, Phường 7, Quận 3, Hồ Chí Minh.</p>
+                    <ul class="social-icons2">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div> 
+
+
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

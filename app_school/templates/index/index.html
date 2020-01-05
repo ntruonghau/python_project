@@ -1,0 +1,24 @@
+{% extends "web_layout/trang-chu-master.html" %}    
+{% block head %}
+
+{{ super()}}
+{% block title %} Trang chính {% endblock %}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<img src="{{ url_for('static' , filename ='trang_chu/images/banner_1_new.jpg') }}" alt="about" class="img-responsive">
+
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}

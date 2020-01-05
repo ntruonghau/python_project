@@ -16,3 +16,4 @@ import app_school.app_gateway
 import app_school.app_giao_vien
 import app_school.app_lop_hoc
 import app_school.app_hoc_sinh
+import app_school.app_trang_chu
