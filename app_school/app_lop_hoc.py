@@ -10,9 +10,12 @@ from app_school import app, db_session
 
 @app.route('/danh-sach-lop', methods=['GET','POST'])
 def danh_sach_lop():
-
+    message = ''
     ds_lop_hoc = doc_danh_sach_lop_hoc()
-    return render_template('lop_hoc/l_danh_sach_lop.html', ds_lop_hoc = ds_lop_hoc)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
+    return render_template('lop_hoc/l_danh_sach_lop.html', ds_lop_hoc = ds_lop_hoc, message=message)
 
     
 @app.route('/chi-tiet-lop/<string:lop>', methods=['GET','POST'])
@@ -63,7 +66,7 @@ def them_lop_hoc():
         try:
             db_session.add(lop_hoc)
             db_session.commit()
-            return redirect(url_for('danh_sach_lop'))
+            return redirect(url_for('danh_sach_lop', message='Thêm lớp thành công'))
         except:
             db_session.rollback()
             error = 'Lớp học đã tồn tại'

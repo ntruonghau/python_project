@@ -66,11 +66,15 @@ def thong_tin_diem_so(id_hoc_sinh):
 def thong_tin_hoc_sinh(hoc_sinh):
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
+    message = ''
     giaovien = session['giaovien']
     giao_vien = Profile_Giao_Vien(giaovien)
     id_hoc_sinh = hoc_sinh
     HocSinh = Profile_hoc_sinh(id_hoc_sinh)
-    return render_template('hoc_sinh/hs_thong_tin_hoc_sinh.html',HocSinh=HocSinh)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
+    return render_template('hoc_sinh/hs_thong_tin_hoc_sinh.html',HocSinh=HocSinh, message=message)
 
 @app.route('/thong-tin-hoc-sinh/<string:hoc_sinh>/sua-hoc-sinh', methods=['GET','POST'])
 def sua_thong_tin_hoc_sinh(hoc_sinh):
@@ -97,5 +101,5 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
         value.SoDienThoaiPhuHuynh = SoDienThoaiPhuHuynh
         db_session.flush()
         db_session.commit()
-        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh)
+        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh, message='Cập nhật học sinh thành công')
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )

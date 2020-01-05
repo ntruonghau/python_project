@@ -11,10 +11,13 @@ def giao_vien():
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
     giaovien = session['giaovien']
-
+    message = ''
     giao_vien = Profile_Giao_Vien(giaovien)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
 
-    return render_template('giao_vien/gv_dashboard.html',giao_vien = giao_vien)
+    return render_template('giao_vien/gv_dashboard.html',giao_vien = giao_vien, message=message)
 
 @app.route('/sua-profile', methods=['GEt','POST'])
 def edit_giao_vien():
@@ -49,7 +52,7 @@ def edit_giao_vien():
         value.ChuyenMon = gv['ChuyenMon']
         db_session.flush()
         db_session.commit()
-        return redirect('/giao-vien')
+        return redirect(url_for('giao_vien', message='Cập nhật thành công'))
 
     form.Th_Gioi_tinh.default = giao_vien['GioiTinh']
     form.process()
