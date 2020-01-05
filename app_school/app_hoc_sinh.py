@@ -26,9 +26,9 @@ def them_hoc_sinh(lop):
         NgaySinh = request.form['Th_Ngay_sinh']
         SoDienThoai = request.form['Th_Sdt']
         SoDienThoaiPhuHuynh = request.form['Th_Sdt_PH']
-        IDLop = lop
+        IDLop = int(lop)
         nien_khoa = lay_nien_khoa_theo_lop(lop)
-        IDNienKhoa = nien_khoa.ID
+        IDNienKhoa = int(nien_khoa.ID)
         hoc_sinh = HocSinh(HoVaTen=HoVaTen, GioiTinh=GioiTinh, DiaChi=DiaChi, Email=Email, NgaySinh=NgaySinh,
                            SoDienThoai=SoDienThoai, SoDienThoaiPhuHuynh=SoDienThoaiPhuHuynh, IDLop=IDLop, IDNienKhoa=IDNienKhoa)
         try:
@@ -37,18 +37,19 @@ def them_hoc_sinh(lop):
             if cap_nhat_si_so(lop):
                 message += 'Đã cập nhật sỉ số lớp; '
             else: 
-                error = 'Không thể cập nhật sỉ số lớp'
+                error += 'Không thể cập nhật sỉ số lớp'
             if tao_bang_diem_cho_hoc_sinh(hoc_sinh.IDHocSinh):
                 message += 'Đã thêm học sinh ' + HoVaTen + ';'
                 return redirect(url_for('danh_sach_hoc_sinh', lop=lop, message=message))
             else:
                 db_session.rollback()
-                error = 'Không thể tạo bảng điểm'
+                error += 'Không thể tạo bảng điểm'
                 pass
         except:
             error = 'Học sinh đã tồn tại'
             db_session.rollback()
             pass
+        print(error)
     return render_template('hoc_sinh/hs_them_hoc_sinh.html', form=form, error=error)
 
 

@@ -7,7 +7,6 @@ from app_school.xu_ly.tra_cuu.tra_cuu import *
 
 @app.route('/trang-chu/thong-tin', methods=['GET','POST'])
 def trang_thong_tin():
-
     return render_template('index/thong_tin.html')
     
 @app.route('/trang-chu/dich-vu', methods=['GET','POST'])
@@ -32,7 +31,6 @@ def trang_doi_ngu_1():
 
 @app.route('/trang-chu/doi-ngu/tuan-anh', methods=['GET','POST'])
 def trang_doi_ngu_2():
-
     return render_template('index/doi_ngu_tuan_anh.html')
 
 @app.route('/trang-chu/doi-ngu/thanh-hoa', methods=['GET','POST'])

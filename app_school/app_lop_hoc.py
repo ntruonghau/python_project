@@ -3,19 +3,37 @@ from app_school.xu_ly.Xu_ly_Form import Form_Create_Class
 from app_school.xu_ly.nien_khoa.XL_Nien_khoa import doc_danh_sach_nien_khoa_select
 from app_school.xu_ly.khoi.XL_Khoi import doc_danh_sach_khoi_select
 from app_school.xu_ly.giao_vien.XL_Giao_vien import doc_danh_sach_gv_select, Profile_Giao_Vien
-from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc
+from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc, doc_danh_sach_lop_hoc_theo_giao_vien
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import doc_danh_sach_hoc_sinh_theo_lop
 from app_school.xu_ly.Xu_ly_Model import Lop
 from app_school import app, db_session
 
 @app.route('/danh-sach-lop', methods=['GET','POST'])
 def danh_sach_lop():
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))
     message = ''
-    ds_lop_hoc = doc_danh_sach_lop_hoc()
+    ds_lop_hoc = []
+    giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
+    ds_nien_khoa = doc_danh_sach_nien_khoa_select()
+    if giao_vien['Quyen'] == '1':
+        ds_lop_hoc = doc_danh_sach_lop_hoc_theo_giao_vien(giao_vien['ID_GV'])
+    elif giao_vien['Quyen'] == '2':
+        ds_lop_hoc = doc_danh_sach_lop_hoc()
+    if request.form.get('nien_khoa'):
+        nien_khoa = request.form.get('nien_khoa')
+        if nien_khoa != 'all':
+            ds_lop_hoc_moi = list(ds_lop_hoc)
+            for lop_hoc in ds_lop_hoc_moi:
+                print(lop_hoc)
+                print(type(lop_hoc['ID_nien_khoa']))
+                if str(lop_hoc['ID_nien_khoa']) != nien_khoa:
+                    del ds_lop_hoc[ds_lop_hoc.index(lop_hoc)]
     if request.args.get('message'):
         message = request.args.get('message')
         print(message)
-    return render_template('lop_hoc/l_danh_sach_lop.html', ds_lop_hoc = ds_lop_hoc, message=message)
+    return render_template('lop_hoc/l_danh_sach_lop.html', ds_lop_hoc = ds_lop_hoc, ds_nien_khoa=ds_nien_khoa, message=message, quyen = giao_vien['Quyen'])
 
     
 @app.route('/chi-tiet-lop/<string:lop>', methods=['GET','POST'])
@@ -29,7 +47,7 @@ def danh_sach_hoc_sinh(lop):
     if request.args.get('message'):
         message = request.args.get('message')
         print(message)
-    return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh, message=message)
+    return render_template('lop_hoc/l_chi_tiet_lop.html', IDLop = lop, ds_hoc_sinh=ds_hoc_sinh, message=message, quyen = giao_vien['Quyen'])
 
     
 @app.route('/bang-diem-lop/<string:lop>', methods=['GET', 'POST'])

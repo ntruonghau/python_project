@@ -20,10 +20,21 @@
 
                 <div class="col-sm-6">
                     <h4 class="page-title">Danh sách lớp</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">Hiển thị danh sách lớp học</li>
-                    </ol>
-
+                    <form method="POST">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-text-input">Niên Khóa</label>
+                            <select name="nien_khoa" class="col-sm-5 form-control "
+                                id="example-text-input">
+                                <option value="all">Tất cả</option>
+                                {% for nien_khoa in ds_nien_khoa %}
+                                <option value="{{ nien_khoa[0] }}">{{ nien_khoa[1] }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="col-md-3">
+                                <input class="btn btn-primary waves-light h-100" type="submit" value="Lọc" style="text-align: right;">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-sm-6">
 
@@ -34,7 +45,8 @@
                                 <i class="mdi mdi-settings mr-2"></i> Tùy chỉnh
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="/them-lop-hoc">Thêm lớp học</a>
+                                <a class="dropdown-item" {% if quyen == '2' %}href="/them-lop-hoc" {% endif %}>Thêm lớp
+                                    học</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +60,7 @@
 
             {% for lop_hoc in ds_lop_hoc %}
             <!-- hien thi thong tin lop hoc -->
-            <div class="col-xl-3 col-md-6 mb-4 ">
+            <div class="col-xl-3 col-md-6 mb-4 " id="_{{ lop_hoc['Ten_Nien_khoa'] }}">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="color-box bg-primary">
@@ -62,6 +74,7 @@
                             <li class="list-group-item text-center">{{ lop_hoc['DiaDiem'] }}</li>
                             <li class="list-group-item text-center">{{ lop_hoc['Ten_Khoi'] }}</li>
                             <li class="list-group-item text-center">Chủ nhiệm: {{ lop_hoc['Ten_Chu_nhiem'] }}</li>
+                            <li class="list-group-item text-center">Niên khóa: {{ lop_hoc['Ten_Nien_khoa'] }}</li>
                             <li class="list-group-item text-center">
                                 <a class="btn btn-success waves-effect waves-light"
                                     href="/chi-tiet-lop/{{ lop_hoc['IDLop'] }}" role="button">Quản lý học
@@ -81,7 +94,7 @@
             {% endfor %}
 
             <!-- button them lop hoc -->
-
+            {% if quyen == '2' %}
             <div class="col-xl-3 col-md-6 mb-4 ">
                 <div class="card h-100">
                     <div class="card-body">
@@ -93,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             <!-- end col -->
 
         </div>

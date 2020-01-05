@@ -14,6 +14,25 @@ def doc_danh_sach_lop_hoc(): # select field tupple choice
             l['Ten_Chu_nhiem'] = chu_nhiem.HoVaTen
             l['Ten_Khoi'] = khoi.TenKhoi
             l['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
+            l['ID_nien_khoa'] = nien_khoa.ID
+            ds_lop.append(l)
+    except:
+        pass
+    return ds_lop
+
+def doc_danh_sach_lop_hoc_theo_giao_vien(id_giao_vien): # select field tupple choice
+    ds_lop = []
+    try:
+        ds_l = db_session.query(Lop).filter(Lop.GV_CN == id_giao_vien).all()
+        for lop in ds_l:
+            l = lop.__dict__
+            del l['_sa_instance_state']
+            chu_nhiem = db_session.query(GiaoVien).filter(GiaoVien.IDGiaoVien == l['GV_CN']).one()
+            khoi = db_session.query(Khoi).filter(Khoi.IDKhoi == l['IDKhoi']).one()
+            nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == l['NamNienKhoa']).one()
+            l['Ten_Chu_nhiem'] = chu_nhiem.HoVaTen
+            l['Ten_Khoi'] = khoi.TenKhoi
+            l['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
             ds_lop.append(l)
     except:
         pass
