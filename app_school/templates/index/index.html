@@ -10,7 +10,12 @@
 
 {% block content %}
 
-<img src="{{ url_for('static' , filename ='trang_chu/images/banner_1_new.jpg') }}" alt="about" class="img-responsive">
+<div class="content">
+    <div class="row">
+        <h1 class="c3-title ml-auto mr-auto mb-5">Trang chủ trường Trung học Phổ thông Minh Khai</h1>
+        <img src="{{ url_for('static' , filename ='trang_chu/images/banner_1_new.jpg') }}" alt="about" class="img-responsive vh-100 col-md-12">
+    </div>
+</div>
 
 
 {% endblock %}

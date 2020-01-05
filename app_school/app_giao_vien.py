@@ -100,7 +100,7 @@ def Doi_mat_khau():
         print(MatkhauMoi)
         ThongBao = gv_doi_mat_khau(giaovien,MatkhauCu,MatkhauMoi)
         if ThongBao == "Đổi Mật Khẩu Thành Công":
-            return redirect('/giao-vien')
+            return redirect(url_for('giao_vien', message='Đổi mật khẩu thành công'))
     return render_template('giao_vien/gv_doi_mat_khau.html' , form=form,ThongBao=ThongBao)
 
 
