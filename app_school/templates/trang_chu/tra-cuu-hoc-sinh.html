@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <title>Trang tra cứu</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,11 +9,21 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
   <link href="{{ url_for('static', filename= 'tra_cuu/css/main.css') }}" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename= 'tra_cuu/css/bootstrap.min.css') }}">
+  <script>
+    function handleEnter(e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if (keycode == '13') {
+            var s = document.getElementById("Th_Ma_so");
+            s.value = "TRA_CUU";
+            document.getElementById("He_thong").submit();
+        }
+    }
+</script>
 </head>
 
 <body>
   <div class="s130">
-    <form>
+    <form method="POST" id="He_thong">
       <div class="inner-form">
         <div class="input-field first-wrap">
           <div class="svg-wrapper">
@@ -22,10 +33,14 @@
               </path>
             </svg>
           </div>
-          <input id="search" type="text" placeholder="What are you looking for?" />
+          <div class="DANH_SACH_CHUC_NANG">
+            <div class="btn  CHUC_NANG">
+              <input name="Th_Chuoi_Tra_cuu" spellcheck="false" autocomplete="off" value="{{Chuoi_Tra_cuu}}" onkeypress="handleEnter(event)" placeholder="Nhập vào mã số ID ?"/>
+            </div>
+          </div>
         </div>
         <div class="input-field second-wrap">
-          <button class="btn-search" type="button">SEARCH</button>
+          <button class="btn-search" type="button">Tìm kiếm </button>
         </div>
       </div>
     </form>
@@ -51,16 +66,16 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">{{thong_tin_hs[0]}}</th>
-              <td>{{thong_tin_hs[1]}}</td>
-              <td>{{thong_tin_hs[2]}}</td>
-              <td>{{thong_tin_hs[3]}}</td>
-              <td>{{thong_tin_hs[4]}}</td>
-              <td>{{thong_tin_hs[5]}}</td>
-              <td>{{thong_tin_hs[6]}}</td>
-              <td>{{thong_tin_hs[7]}}</td>
-              <td>{{thong_tin_hs[8]}}</td>
-              <td>{{thong_tin_hs[9]}}</td>
+              <th scope="row">{{Id}}</th>
+              <td>{{HoVaTen}}</td>
+              <td>{{GioiTinh}}</td>
+              <td>{{DiaChi}}</td>
+              <td>{{Email}}</td>
+              <td>{{NgaySinh}}</td>
+              <td>{{SoDienThoai}}</td>
+              <td>{{SoDienThoaiPhuHuynh}}</td>
+              <td>{{IDLop}}</td>
+              <td>{{NienKhoa}}</td>
             </tr>
           </tbody>
         </table>
