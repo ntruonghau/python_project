@@ -34,54 +34,24 @@
             </svg>
           </div>
           <div class="DANH_SACH_CHUC_NANG">
-            <div class="btn  CHUC_NANG">
+            <div class="btn  CHUC_NANG ">
               <input name="Th_Chuoi_Tra_cuu" spellcheck="false" autocomplete="off" value="{{Chuoi_Tra_cuu}}" onkeypress="handleEnter(event)" placeholder="Nhập vào mã số ID ?"/>
             </div>
           </div>
         </div>
-        <div class="input-field second-wrap">
-          <button class="btn-search" type="button">Tìm kiếm </button>
-        </div>
+          <div class="input-field second-wrap ">
+            <button class="btn-search" type="submit" >Tìm kiếm </button>
+          </div>
       </div>
+
+
     </form>
+
   </div>
-  <div class="container">
-    <h3>Thông tin tra cứu</h3>
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-dark">
-          <thead>
-            <tr>
-              <th scope="col">ID Học Sinh</th>
-              <th scope="col">Họ và tên</th>
-              <th scope="col">Giới tính</th>
-              <th scope="col">Địa chỉ</th>
-              <th scope="col">Email</th>
-              <th scope="col">Ngày sinh</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">SĐT Phụ huynh</th>
-              <th scope="col">ID lớp</th>
-              <th scope="col">ID niên khóa</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">{{Id}}</th>
-              <td>{{HoVaTen}}</td>
-              <td>{{GioiTinh}}</td>
-              <td>{{DiaChi}}</td>
-              <td>{{Email}}</td>
-              <td>{{NgaySinh}}</td>
-              <td>{{SoDienThoai}}</td>
-              <td>{{SoDienThoaiPhuHuynh}}</td>
-              <td>{{IDLop}}</td>
-              <td>{{NienKhoa}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+      <div class="container-fluid">
+        <iframe src="{{dia_chi_mh}}" style="width:100%; height: 40vh; border:none"></iframe>
+      </div>  
+      
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
