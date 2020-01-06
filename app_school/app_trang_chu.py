@@ -47,9 +47,13 @@ def trang_lien_he():
 def trang_tra_cuu():
     Chuoi_Tra_cuu = ""
     dia_chi_mh = "/trang-chu/tra-cuu/0"
+    Danh_sach_hs = Doc_danh_sach_hs_id()
+    dem = len(Danh_sach_hs)
     if request.form.get("Th_Chuoi_Tra_cuu") :
         Chuoi_Tra_cuu = request.form.get("Th_Chuoi_Tra_cuu")
         dia_chi_mh = "/trang-chu/tra-cuu/" + Chuoi_Tra_cuu
+        if int(Chuoi_Tra_cuu) > int(dem) :
+            dia_chi_mh = "/trang-chu/tra-cuu/0"
     return render_template('trang_chu/tra-cuu-hoc-sinh.html' , dia_chi_mh=dia_chi_mh)
 
 @app.route('/trang-chu/tra-cuu/<string:Chuoi_Tra_cuu>/', methods=['GET','POST'])

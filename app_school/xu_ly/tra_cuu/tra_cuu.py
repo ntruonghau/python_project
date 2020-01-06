@@ -33,6 +33,15 @@ def Doc_danh_sach_hs():
         Danh_sach.append(info_hs)
     return Danh_sach
 
+def Doc_danh_sach_hs_id():
+    Danh_sach = []    
+    danh_sach_hs = Doc_danh_sach_hs_CSDL()
+    for HocSinh in danh_sach_hs:    
+        info_hs = {}
+        info_hs["IDHocSinh"] = HocSinh[0]
+        Danh_sach.append(info_hs)
+    return Danh_sach
+
 def Lay_info_theo_ID(ID, Danh_sach_CHTN):
     Danh_sach=list(filter(
         lambda HocSinh: str(ID).strip() == str(HocSinh["IDHocSinh"]).strip() ,Danh_sach_CHTN))
