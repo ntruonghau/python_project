@@ -101,6 +101,22 @@ class Form_Create_Class(FlaskForm):
 class Form_Them_Nien_khoa(FlaskForm):
     Th_Nien_khoa = SelectField("Niên Khóa")
 
+class Form_Chon_TKB(FlaskForm):
+    Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
+    TH_Lop = SelectField("Lớp", coerce=int)
+
+class Form_Cap_nhat_TKB(FlaskForm):
+    Th_Nien_khoa = TextField("Niên Khóa")
+    Th_Lop = TextField("Lớp")
+    Th_Thu = TextField("Thứ")
+    Th_Buoi = TextField("Buổi")
+    Th_Tiet = TextField("Tiết")
+    Th_Giao_vien = SelectField("Giáo viên", coerce=int)
+    Th_Mon = SelectField("Môn", coerce=int)
+
+
+
+
 class Form_Reset_pw(FlaskForm):
     Th_MatkhauCu = PasswordField("Mật khẩu cũ: ", [validators.InputRequired(), validators.Length(min=4, max=20)])
     Th_MatkhauMoi = PasswordField("Mật khẩu mới: ", [validators.InputRequired(), validators.Length(min=4, max=20)])

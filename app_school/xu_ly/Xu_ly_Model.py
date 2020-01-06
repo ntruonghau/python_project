@@ -118,14 +118,13 @@ class BangDiem(Base):
 
 class ThoiKhoaBieu(Base):
     __tablename__ = 'ThoiKhoaBieu'
-    ID_TKB = Column(Integer, primary_key = True)
-    ID_Lop = Column(Integer, ForeignKey(Lop.IDLop))
-    Thu2 = Column(String(300))
-    Thu3 = Column(String(300))
-    Thu4 = Column(String(300))
-    Thu5 = Column(String(300))
-    Thu6 = Column(String(300))
-    Thu7 = Column(String(300))
+    ID_Nien_khoa = Column(Integer, ForeignKey('NienKhoa.ID'), primary_key = True)
+    ID_Giao_vien = Column(Integer, ForeignKey('GiaoVien.IDGiaoVien'), primary_key = True)
+    Thu = Column(Integer, primary_key = True, autoincrement=False)
+    Buoi = Column(Integer, primary_key = True, autoincrement=False)
+    Tiet = Column(Integer, primary_key = True, autoincrement=False)
+    ID_Lop = Column(Integer, ForeignKey('Lop.IDLop'))
+    ID_Mon = Column(Integer, ForeignKey('Mon.IDMon'))
     
 Base.metadata.create_all(engine)
 ##############################################

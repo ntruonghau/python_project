@@ -27,7 +27,6 @@ def danh_sach_lop():
             ds_lop_hoc_moi = list(ds_lop_hoc)
             for lop_hoc in ds_lop_hoc_moi:
                 print(lop_hoc)
-                print(type(lop_hoc['ID_nien_khoa']))
                 if str(lop_hoc['ID_nien_khoa']) != nien_khoa:
                     del ds_lop_hoc[ds_lop_hoc.index(lop_hoc)]
     if request.args.get('message'):

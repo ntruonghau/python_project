@@ -2,71 +2,76 @@ from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import *
 import json
 
-def ten_giao_vien(giao_vien):
-    gv = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == giao_vien).first()
+
+def ten_giao_vien(id_giao_vien):
+    gv = db_session.query(GiaoVien).filter(
+        GiaoVien.IDGiaoVien == id_giao_vien).first()
     return gv.HoVaTen
 
-def ten_mon(mon):
-    mon = db_session.query(Mon).filter(Mon.IDMon == mon).first()
+
+def ten_mon(id_mon):
+    mon = db_session.query(Mon).filter(Mon.IDMon == id_mon).first()
     return mon.TenMon
 
-def tao_thoi_khoa_bieu(ThoiKhoaBieu):
-    TKB = {}
-    Thu2 =json.loads(ThoiKhoaBieu.Thu2)
-    for i in range(1,5):
-        Thu2['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu2['Sang'][str(i)]['GiaoVien'])
-        Thu2['Sang'][str(i)]['Mon'] = ten_mon( Thu2['Sang'][str(i)]['Mon'])
 
-        Thu2['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu2['Chieu'][str(i)]['GiaoVien'])
-        Thu2['Chieu'][str(i)]['Mon'] = ten_mon( Thu2['Chieu'][str(i)]['Mon'])
+def ten_nien_khoa(id_nien_khoa):
+    nien_khoa = db_session.query(NienKhoa).filter(
+        NienKhoa.ID == id_nien_khoa).first()
+    return nien_khoa.NamNienKhoa
 
-    Thu3 =json.loads(ThoiKhoaBieu.Thu3) 
-    for i in range(1,5):
-        Thu3['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu3['Sang'][str(i)]['GiaoVien'])
-        Thu3['Sang'][str(i)]['Mon'] = ten_mon( Thu3['Sang'][str(i)]['Mon'])
+def ten_lop(id_lop):
+    lop = db_session.query(Lop).filter(
+    Lop.IDLop == id_lop).first()
+    return lop.TenLop
 
-        Thu3['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu3['Chieu'][str(i)]['GiaoVien'])
-        Thu3['Chieu'][str(i)]['Mon'] = ten_mon( Thu3['Chieu'][str(i)]['Mon'])   
 
-    Thu4 =json.loads(ThoiKhoaBieu.Thu4)  
-    for i in range(1,5):
-        Thu4['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu4['Sang'][str(i)]['GiaoVien'])
-        Thu4['Sang'][str(i)]['Mon'] = ten_mon( Thu4['Sang'][str(i)]['Mon'])
+def doc_thong_tin_chi_tiet_tkb(id_nien_khoa, id_lop, id_thu, id_buoi, id_tiet):
+    chi_tiet_tkb = db_session.query(ThoiKhoaBieu).filter(ThoiKhoaBieu.ID_Nien_khoa == id_nien_khoa,
+                                                         ThoiKhoaBieu.Thu == id_thu,
+                                                         ThoiKhoaBieu.Buoi == id_buoi,
+                                                         ThoiKhoaBieu.Tiet == id_tiet).first()
+    return chi_tiet_tkb
 
-        Thu4['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu4['Chieu'][str(i)]['GiaoVien'])
-        Thu4['Chieu'][str(i)]['Mon'] = ten_mon( Thu4['Chieu'][str(i)]['Mon'])  
+def doc_thong_tin_chi_tiet_tkb_theo_lop(id_nien_khoa, id_lop, id_thu, id_buoi, id_tiet):
+    chi_tiet_tkb = db_session.query(ThoiKhoaBieu).filter(ThoiKhoaBieu.ID_Nien_khoa == id_nien_khoa,
+                                                        ThoiKhoaBieu.ID_Lop == id_lop,
+                                                        ThoiKhoaBieu.Thu == id_thu,
+                                                        ThoiKhoaBieu.Buoi == id_buoi,
+                                                        ThoiKhoaBieu.Tiet == id_tiet).first()
+    return chi_tiet_tkb
 
-    Thu5 =json.loads(ThoiKhoaBieu.Thu5)  
-    for i in range(1,5):
-        Thu5['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu5['Sang'][str(i)]['GiaoVien'])
-        Thu5['Sang'][str(i)]['Mon'] = ten_mon( Thu5['Sang'][str(i)]['Mon'])
+def them_thoi_khoa_bieu(thoi_khoa_bieu):
+    try:
+        db_session.add(thoi_khoa_bieu)
+        db_session.commit()
+    except:
+        db_session.rollback()
+        return False
+    return True
 
-        Thu5['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu5['Chieu'][str(i)]['GiaoVien'])
-        Thu5['Chieu'][str(i)]['Mon'] = ten_mon( Thu5['Chieu'][str(i)]['Mon'])  
+def tao_thoi_khoa_bieu_rong():
+    tkb = [
+            [ #   2   3   4   5   6   7
+                ['-','-','-','-','-','-'], # 1
+                ['-','-','-','-','-','-'], # 2
+                ['-','-','-','-','-','-'], # 3
+                ['-','-','-','-','-','-']  # 4
+            ],
+            [
+                ['-','-','-','-','-','-'],
+                ['-','-','-','-','-','-'],
+                ['-','-','-','-','-','-'],
+                ['-','-','-','-','-','-']
+            ]
+        ]
+    return tkb
 
-    Thu6 =json.loads(ThoiKhoaBieu.Thu6)  
-    for i in range(1,5):
-        Thu6['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu6['Sang'][str(i)]['GiaoVien'])
-        Thu6['Sang'][str(i)]['Mon'] = ten_mon( Thu6['Sang'][str(i)]['Mon'])
-
-        Thu6['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu6['Chieu'][str(i)]['GiaoVien'])
-        Thu6['Chieu'][str(i)]['Mon'] = ten_mon( Thu6['Chieu'][str(i)]['Mon'])  
-
-    Thu7 =json.loads(ThoiKhoaBieu.Thu7)  
-    for i in range(1,5):
-        Thu7['Sang'][str(i)]['GiaoVien'] = ten_giao_vien( Thu7['Sang'][str(i)]['GiaoVien'])
-        Thu7['Sang'][str(i)]['Mon'] = ten_mon( Thu7['Sang'][str(i)]['Mon'])
-
-        Thu7['Chieu'][str(i)]['GiaoVien'] = ten_giao_vien( Thu7['Chieu'][str(i)]['GiaoVien'])
-        Thu7['Chieu'][str(i)]['Mon'] = ten_mon( Thu7['Chieu'][str(i)]['Mon']) 
-         
-    TKB['Thu2'] = Thu2
-    TKB['Thu3'] = Thu3
-    TKB['Thu4'] = Thu4
-    TKB['Thu5'] = Thu5
-    TKB['Thu6'] = Thu6
-    TKB['Thu7'] = Thu7
-
-    TKB['Lop'] = ""
-    TKB['NienKhoa'] = ""
-    return TKB
+def doc_thoi_khoa_bieu(id_nien_khoa, id_lop):
+    tkb = tao_thoi_khoa_bieu_rong()
+    for i in range(0,2):
+        for j in range(0,4):
+            for g in range(0,6):
+                tkb_chi_tiet = doc_thong_tin_chi_tiet_tkb_theo_lop(id_nien_khoa,id_lop,g+2,i+1,j+1)
+                if tkb_chi_tiet != None:
+                    tkb[i][j][g] = ten_lop(tkb_chi_tiet.ID_Lop) + ' - ' + ten_giao_vien(tkb_chi_tiet.ID_Giao_vien) + ' - ' + ten_mon(tkb_chi_tiet.ID_Mon)
+    return tkb

@@ -1,7 +1,18 @@
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import Lop, GiaoVien, Khoi, NienKhoa
 
-def doc_danh_sach_lop_hoc(): # select field tupple choice
+def doc_danh_sach_lop_hoc_select(): # select field tupple choice
+    ds_lop = []
+    try:
+        ds_l = db_session.query(Lop).all()
+        for lop in ds_l:
+            l = (lop.IDLop,  lop.TenLop)
+            ds_lop.append(l)
+    except:
+        pass
+    return ds_lop
+
+def doc_danh_sach_lop_hoc():
     ds_lop = []
     try:
         ds_l = db_session.query(Lop).all()
@@ -33,6 +44,7 @@ def doc_danh_sach_lop_hoc_theo_giao_vien(id_giao_vien): # select field tupple ch
             l['Ten_Chu_nhiem'] = chu_nhiem.HoVaTen
             l['Ten_Khoi'] = khoi.TenKhoi
             l['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
+            l['ID_nien_khoa'] = nien_khoa.ID
             ds_lop.append(l)
     except:
         pass

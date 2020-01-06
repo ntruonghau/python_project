@@ -13,6 +13,17 @@ def doc_danh_sach_gv_select(): # select field tupple choice
         pass
     return ds_giao_vien
 
+def doc_danh_sach_gv_loai_tru_select(GV_ID): # select field tupple choice
+    ds_giao_vien = []
+    try:
+        ds_gv = db_session.query(GiaoVien).filter(GiaoVien.IDGiaoVien != GV_ID).all()
+        for giao_vien in ds_gv:
+            gv = (giao_vien.IDGiaoVien,  giao_vien.HoVaTen + ' - ' + giao_vien.TenDangNhap)
+            ds_giao_vien.append(gv)
+    except:
+        pass
+    return ds_giao_vien
+
 def Profile_Giao_Vien(TaiKhoan):
     gv1 = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == TaiKhoan).first()
     gv = {"HoVaTen": gv1.HoVaTen, "GioiTinh": gv1.GioiTinh, "NgaySinh": datetime.strptime(gv1.NgaySinh,'%Y-%m-%d' ).date(), "Email": gv1.Email, "DiaChi" : gv1.DiaChi,

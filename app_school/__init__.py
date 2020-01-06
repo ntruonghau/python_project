@@ -17,3 +17,4 @@ import app_school.app_giao_vien
 import app_school.app_lop_hoc
 import app_school.app_hoc_sinh
 import app_school.app_trang_chu
+import app_school.app_thoi_khoa_bieu
