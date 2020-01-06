@@ -3,6 +3,7 @@ from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien
 from app_school.xu_ly.Xu_ly_Form import Form_Register, Form_Login
 from app_school.xu_ly.tra_cuu.tra_cuu import *
+from app_school.xu_ly.lien_he.xu_ly_lien_he import *
 
 
 @app.route('/trang-chu/thong-tin', methods=['GET','POST'])
@@ -40,7 +41,15 @@ def trang_doi_ngu_3():
 
 @app.route('/trang-chu/lien-he', methods=['GET','POST'])
 def trang_lien_he():
-
+    Ho_va_ten = ""
+    Email = ""
+    Noi_dung = ""
+    if request.form.get("Th_Ho_va_ten") :
+        Ho_va_ten = request.form.get("Th_Ho_va_ten")
+        Email = request.form.get("Th_email")
+        Noi_dung = request.form.get("Th_noi_dung")
+        danh_sach_contact = {"Ho_va_ten" : Ho_va_ten , "Email" : Email , "Noi_dung" : Noi_dung }
+        ghi_info_contact(danh_sach_contact)
     return render_template('index/lien_he.html')
 
 @app.route('/trang-chu/tra-cuu', methods=['GET','POST'])
