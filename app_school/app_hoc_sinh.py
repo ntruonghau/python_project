@@ -107,3 +107,55 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
         db_session.commit()
         return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh, message='Cập nhật học sinh thành công')
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )
+
+@app.route('/hoc-sinh', methods=['GET','POST'])
+def hoc_sinh():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    error = ''
+    hocsinh = session['hocsinh']
+    hoc_sinh = Profile_hoc_sinh(hocsinh)
+
+    return render_template('hoc_sinh/thong_tin.html',HocSinh=hoc_sinh )
+
+@app.route('/hoc-sinh/sua-hoc-sinh', methods=['GET','POST'])
+def cap_nhat_hoc_sinh():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    error = ''
+    hocsinh = session['hocsinh']
+    form = Form_Update_Hs()
+    id_hoc_sinh = hocsinh
+    Hoc_Sinh = Profile_hoc_sinh(id_hoc_sinh)
+    value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
+    if form.validate_on_submit():
+        HocVaTen = request.form['Th_Ho_ten']
+        GioiTinh = request.form['Th_Gioi_tinh']
+        NgaySinh = request.form['Th_Ngay_sinh']
+        DiaChi = request.form['Th_Dia_chi']
+        Email = request.form['Th_Email']
+        SoDienThoai = request.form['Th_Sdt']
+        SoDienThoaiPhuHuynh = request.form['Th_Sdt_PH']
+        
+        value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
+        value.HoVaTen = HocVaTen
+        value.GioiTinh = GioiTinh
+        value.NgaySinh =  datetime.strptime(NgaySinh,'%Y-%m-%d' ).date()
+        value.Email = Email
+        value.DiaChi = DiaChi
+        value.SoDienThoai = SoDienThoai
+        value.SoDienThoaiPhuHuynh = SoDienThoaiPhuHuynh
+        db_session.flush()
+        db_session.commit()
+        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh, message='Cập nhật học sinh thành công')
+    return render_template('hoc_sinh/cap_nhat_thong_tin.html',HocSinh=Hoc_Sinh , form = form)
+
+@app.route('/hoc-sinh/bang_diem', methods=['GET','POST'])
+def bang_diem_hoc_sinh():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    error = ''
+    hocsinh = session['hocsinh']
+
+    return render_template('hoc_sinh/bang_diem.html')
+

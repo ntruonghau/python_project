@@ -1,6 +1,6 @@
 from flask import Markup, request, render_template, url_for, session, redirect
 from app_school import app, db_session
-from app_school.xu_ly.Xu_ly_Model import GiaoVien
+from app_school.xu_ly.Xu_ly_Model import *
 from app_school.xu_ly.Xu_ly_Form import Form_Register, Form_Login
 from app_school.xu_ly.tra_cuu.tra_cuu import *
 
@@ -30,13 +30,22 @@ def login():
     if form.validate_on_submit():
         Th_Taikhoan = request.form['Th_Taikhoan']
         Th_Matkhau = request.form['Th_Matkhau']
+        Th_Quyen = request.form['Th_Vaitro']
         try:
-            giaovien = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == Th_Taikhoan).one()
-            if giaovien.MatKhau == Th_Matkhau:
-                session['giaovien'] = Th_Taikhoan
-                return redirect(url_for('giao_vien'))
+            if Th_Quyen == 'gv': 
+                giaovien = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == Th_Taikhoan).one()
+                if giaovien.MatKhau == Th_Matkhau:
+                    session['giaovien'] = Th_Taikhoan
+                    return redirect(url_for('giao_vien'))
+                else:
+                    error = 'Tài khoản hoặc mật khẩu không đúng'
             else:
-                error = 'Tài khoản hoặc mật khẩu không đúng'
+                hocsinh = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == Th_Taikhoan).one()
+                if hocsinh.MatKhau == Th_Matkhau:
+                    session['hocsinh'] = Th_Taikhoan
+                    return redirect(url_for('hoc_sinh'))
+                else:
+                    error = 'Tài khoản hoặc mật khẩu không đúng'
         except Exception as e:
             print(str(e))
             pass
