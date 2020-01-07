@@ -24,13 +24,16 @@ def doc_danh_sach_bang_diem_hoc_sinh_theo_lop(lop): # select field tupple choice
     try:
         ds_hs = db_session.query(HocSinh).filter(HocSinh.IDLop == lop).all()
         for hoc_sinh in ds_hs:
-            hs = dict(hoc_sinh.__dict__)
-            del hs['_sa_instance_state']
+            hs = {}
             lop_hoc = db_session.query(Lop).filter(Lop.IDLop == lop).one()
-            nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == hs['IDNienKhoa']).one()
+            nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == hoc_sinh.IDNienKhoa).one()
+            hs['IDNienKhoa'] = hoc_sinh.IDNienKhoa
+            hs['IDLop'] = hoc_sinh.IDLop
+            hs['IDHocSinh'] = hoc_sinh.IDHocSinh
+            hs['HoVaTen'] = hoc_sinh.HoVaTen
             hs['Ten_Lop'] = lop_hoc.TenLop
             hs['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
-            hs['bang_diem'] = diem_trung_binh_theo_hoc_sinh(hs['IDHocSinh'])
+            hs['bang_diem'] = dict(diem_trung_binh_theo_hoc_sinh(hoc_sinh.IDHocSinh))
             count = 0
             sum = 0
             for diem in hs['bang_diem'].values():
@@ -52,6 +55,7 @@ def doc_danh_sach_bang_diem_hoc_sinh_theo_lop(lop): # select field tupple choice
             elif hs['trung_binh'] < 10:
                 hs['xep_loai'] = 'Giỏi'
             ds_hoc_sinh.append(hs)
+            print(hs)
     except:
         pass
     return ds_hoc_sinh

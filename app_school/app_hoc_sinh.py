@@ -26,11 +26,14 @@ def them_hoc_sinh(lop):
         NgaySinh = request.form['Th_Ngay_sinh']
         SoDienThoai = request.form['Th_Sdt']
         SoDienThoaiPhuHuynh = request.form['Th_Sdt_PH']
+        MatKhau = request.form['Th_Mat_khau']
+        if MatKhau == '':
+            MatKhau = '1234'
         IDLop = int(lop)
         nien_khoa = lay_nien_khoa_theo_lop(lop)
         IDNienKhoa = int(nien_khoa.ID)
         hoc_sinh = HocSinh(HoVaTen=HoVaTen, GioiTinh=GioiTinh, DiaChi=DiaChi, Email=Email, NgaySinh=NgaySinh,
-                           SoDienThoai=SoDienThoai, SoDienThoaiPhuHuynh=SoDienThoaiPhuHuynh, IDLop=IDLop, IDNienKhoa=IDNienKhoa)
+                           SoDienThoai=SoDienThoai, SoDienThoaiPhuHuynh=SoDienThoaiPhuHuynh, IDLop=IDLop, IDNienKhoa=IDNienKhoa, MatKhau=MatKhau)
         try:
             db_session.add(hoc_sinh)
             db_session.commit()

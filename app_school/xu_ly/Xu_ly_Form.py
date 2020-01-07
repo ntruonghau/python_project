@@ -58,12 +58,13 @@ class Form_Update_Gv(FlaskForm):
 class Form_Update_Hs(FlaskForm):
     Th_Ho_ten = TextField("Họ và tên", [validators.Required(
         "Vui lòng nhập họ tên."), validators.Length(min=4, max=30)])
+    Th_Mat_khau = TextField("Mật Khẩu (optional)")
     Th_Gioi_tinh = SelectField("Giới tính", choices=[
                               ("Nam", "Nam"), ("Nữ", "Nữ"), ("Khác", "Khác")])
     Th_Ngay_sinh = TextField("Ngày sinh", [validators.Required(
         "Vui lòng nhập ngày sinh.")])
     Th_Sdt = TextField("Số điện thoại", [validators.Required(
-        "Vui lòng nhập vTh_Dia_chiào số điện thoại"), validators.Length(min=4, max=15)])
+        "Vui lòng nhập vào số điện thoại"), validators.Length(min=4, max=15)])
     Th_Sdt_PH = TextField("Số điện thoại phụ huynh", [validators.Required(
         "Vui lòng nhập vào số điện thoại phụ huynh"), validators.Length(min=4, max=15)])
     Th_Email = TextField("Email", [validators.Required("Vui lòng nhập vào Email"), validators.Email(
