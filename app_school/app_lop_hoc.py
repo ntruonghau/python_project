@@ -89,3 +89,4 @@ def them_lop_hoc():
             error = 'Lớp học đã tồn tại'
             pass
     return render_template('lop_hoc/l_them_lop.html', form=form, error=error)
+

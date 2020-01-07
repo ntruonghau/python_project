@@ -55,14 +55,14 @@ def trang_lien_he():
 @app.route('/trang-chu/tra-cuu', methods=['GET','POST'])
 def trang_tra_cuu():
     Chuoi_Tra_cuu = ""
-    dia_chi_mh = "/trang-chu/tra-cuu/0"
+    dia_chi_mh = "/trang-chu/ket-qua-tra-cuu-khong-co"
     Danh_sach_hs = Doc_danh_sach_hs_id()
     dem = len(Danh_sach_hs)
     if request.form.get("Th_Chuoi_Tra_cuu") :
         Chuoi_Tra_cuu = request.form.get("Th_Chuoi_Tra_cuu")
         dia_chi_mh = "/trang-chu/tra-cuu/" + Chuoi_Tra_cuu
         if int(Chuoi_Tra_cuu) >= int(dem) :
-            dia_chi_mh = "/trang-chu/tra-cuu/0"
+            dia_chi_mh = "/trang-chu/ket-qua-tra-cuu-khong-co"
     return render_template('trang_chu/tra-cuu-hoc-sinh.html' , dia_chi_mh=dia_chi_mh , Chuoi_Tra_cuu=Chuoi_Tra_cuu)
 
 @app.route('/trang-chu/tra-cuu/<string:Chuoi_Tra_cuu>/', methods=['GET','POST'])
@@ -85,6 +85,57 @@ def trang_tra_cuu_theo_id(Chuoi_Tra_cuu):
     return render_template('index/tra_cuu_chon.html' , Chuoi_Tra_cuu=Chuoi_Tra_cuu , Danh_sach_hs_chon=Danh_sach_hs_chon , Id = Id,
         HoVaTen=HoVaTen , GioiTinh=GioiTinh , DiaChi=DiaChi , Email=Email , NgaySinh=NgaySinh , SoDienThoai=SoDienThoai , 
         SoDienThoaiPhuHuynh=SoDienThoaiPhuHuynh , IDLop=IDLop , NienKhoa=NienKhoa , dia_chi_mh=dia_chi_mh)
+
+
+@app.route("/trang-chu/xem-diem" , methods=['POST','GET'])
+def trang_xem_diem() :
+    Chuoi_Tra_cuu = ""
+    Chuoi_Kiem_tra = ""
+    Mon = ""
+    dia_chi_mh = "/trang-chu/ket-qua-tra-cuu-khong-co"
+    Danh_sach_hs = Doc_danh_sach_hs_id()
+    dem = len(Danh_sach_hs)
+    if request.form.get("Th_Chuoi_Tra_cuu") :
+        Chuoi_Tra_cuu = request.form.get("Th_Chuoi_Tra_cuu")
+        dia_chi_mh = "/trang-chu/xem-diem/" + Chuoi_Tra_cuu  
+        Chuoi_Kiem_tra = Chuoi_Tra_cuu.split("-")
+        if int(Chuoi_Kiem_tra[1]) == 1 :                # Môn học
+            Mon = "Bảng điểm môn Toán"
+        elif int(Chuoi_Kiem_tra[1]) == 2 :
+            Mon = "Bảng điểm môn Văn"
+        elif int(Chuoi_Kiem_tra[1]) == 3 :
+            Mon = "Bảng điểm môn Anh"
+        elif int(Chuoi_Kiem_tra[1]) == 4 :
+            Mon = "Bảng điểm môn Lý"
+        elif int(Chuoi_Kiem_tra[1]) == 5 :
+            Mon = "Bảng điểm môn Hóa"  
+        else :
+            Mon = ""        
+    
+        if int(Chuoi_Kiem_tra[0]) >= int(dem) :
+            dia_chi_mh = "/trang-chu/ket-qua-tra-cuu-khong-co"
+            Mon = ""
+        elif int(Chuoi_Kiem_tra[1]) > 5 :
+            dia_chi_mh = "/trang-chu/ket-qua-tra-cuu-khong-co"
+            Mon = ""   
+    return render_template("trang_chu/xem-diem-hoc-sinh.html", Chuoi_Tra_cuu=Chuoi_Tra_cuu , dia_chi_mh=dia_chi_mh ,
+        Mon=Mon)   
+
+
+@app.route('/trang-chu/xem-diem/<string:Chuoi_Tra_cuu>/', methods=['GET','POST'])
+def trang_xem_diem_theo_id(Chuoi_Tra_cuu):
+    Danh_sach_ktra = Doc_diem()
+    Danh_sach_hien_thi = tra_cuu_diem_theo_mon(Chuoi_Tra_cuu , Danh_sach_ktra)  
+
+    dia_chi_mh = "/trang-chu/xem-diem/" + Chuoi_Tra_cuu
+    return render_template("index/xem_diem_chon.html" , Chuoi_Tra_cuu=Chuoi_Tra_cuu , dia_chi_mh=dia_chi_mh , 
+        Danh_sach_hien_thi=Danh_sach_hien_thi )
+
+
+@app.route("/trang-chu/ket-qua-tra-cuu-khong-co", methods=['GET','POST'])
+def trang_ket_qua_tra_cuu_khong_co() :
+
+    return render_template("index/ket_qua_k_co.html")
 
 
 
