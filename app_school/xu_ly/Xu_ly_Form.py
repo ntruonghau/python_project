@@ -130,6 +130,11 @@ class Form_Them_Lich_Thi(FlaskForm):
         "Vui lòng nhập ngày thi.")])
     Th_ThoiGian = TextField("Thời Gian" ,[validators.InputRequired()])
 
+class Form_Sua_Lich_Thi(FlaskForm):
+    Th_NgayThi = TextField("Ngày thi", [validators.Required(
+        "Vui lòng nhập ngày thi.")])
+    Th_ThoiGian = TextField("Thời Gian" ,[validators.InputRequired()])
+
 '''class Form_UpdateProfile(FlaskForm) :
     Th_Id = IntegerField("Mã số ID" , [validators.Required("Vui lòng nhập vào mã số ID") ,validators.Length(min=4, max=15)])
     Th_Taikhoan = TextField("Tên tài khoản đăng nhập" , [validators.Required("Vui lòng nhập vào tên đăng nhập"),validators.Length(min=4, max=20)])
