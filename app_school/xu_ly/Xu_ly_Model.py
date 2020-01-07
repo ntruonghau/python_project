@@ -75,6 +75,7 @@ class Lop(Base):
 
 class HocSinh(Base):
     __tablename__ = 'HocSinh'
+    MatKhau = Column(String(100))
     IDHocSinh = Column(Integer, primary_key = True)
     HoVaTen = Column(String(100) )
     GioiTinh = Column(String(10) )
