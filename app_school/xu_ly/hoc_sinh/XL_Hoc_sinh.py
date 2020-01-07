@@ -67,4 +67,3 @@ def Profile_hoc_sinh(id_hs):
     hs = {"IDHocSinh": hoc_sinh.IDHocSinh,"HoVaTen": hoc_sinh.HoVaTen, "GioiTinh": hoc_sinh.GioiTinh, "NgaySinh": datetime.strptime(hoc_sinh.NgaySinh,'%Y-%m-%d' ).date(), "Email": hoc_sinh.Email, "DiaChi" : hoc_sinh.DiaChi,
          "SoDienThoai": hoc_sinh.SoDienThoai, "SoDienThoaiPH":hoc_sinh.SoDienThoaiPhuHuynh,"Lop": lop_hoc.TenLop,"NienKhoa": nien_khoa.NamNienKhoa }
     return hs
-    

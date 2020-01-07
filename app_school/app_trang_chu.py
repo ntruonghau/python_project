@@ -44,13 +44,15 @@ def trang_lien_he():
     Ho_va_ten = ""
     Email = ""
     Noi_dung = ""
+    message = ""
     if request.form.get("Th_Ho_va_ten") :
         Ho_va_ten = request.form.get("Th_Ho_va_ten")
         Email = request.form.get("Th_email")
         Noi_dung = request.form.get("Th_noi_dung")
         danh_sach_contact = {"Ho_va_ten" : Ho_va_ten , "Email" : Email , "Noi_dung" : Noi_dung }
         ghi_info_contact(danh_sach_contact)
-    return render_template('index/lien_he.html')
+        message='Đã gửi thông tin liên hệ'
+    return render_template('index/lien_he.html', message=message)
 
 @app.route('/trang-chu/tra-cuu', methods=['GET','POST'])
 def trang_tra_cuu():

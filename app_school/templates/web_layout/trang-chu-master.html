@@ -37,6 +37,9 @@
     <script src="{{ url_for('static' , filename ='trang_chu/js/modernizr.js') }}"></script>
     <!-- /js files -->
    
+    <!-- Sweet Alert -->
+    <link href="{{ url_for('static', filename = 'plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet"
+        type="text/css">
     {% endblock %}
 </head>
 
@@ -101,35 +104,27 @@
                                 <span> Trang chính </span>
                             </a>
                             <a href="/trang-chu/thong-tin" class="waves-effect">
-                                <i class="ti-home"></i>
+                                <i class=" ti-info "></i>
                                 <span> Thông tin </span>
                             </a>
                             <a href="/trang-chu/dich-vu" class="waves-effect">
-                                <i class="ti-home"></i>
+                                <i class=" ti-support "></i>
                                 <span> Dịch vụ </span>
                             </a>
                             <a href="/trang-chu/thu-vien" class="waves-effect">
-                                <i class="ti-home"></i>
+                                <i class=" ti-bookmark "></i>
                                 <span> Thư viện </span>
                             </a>
                             <a href="/trang-chu/doi-ngu" class="waves-effect">
-                                <i class="ti-home"></i>
+                                <i class=" ti-cup "></i>
                                 <span> Đội ngũ </span>
                             </a>
                             <a href="/trang-chu/lien-he" class="waves-effect">
-                                <i class="ti-home"></i>
+                                <i class=" ti-headphone-alt "></i>
                                 <span> Liên hệ </span>
                             </a>
-                            <a href="/trang-chu/tra-cuu" target = "_blank" class="waves-effect">
-                                <i class="ti-home"></i>
-                                <span> Tra cứu </span>
-                            </a>
-                            <a href="/trang-chu/xem-diem" target = "_blank" class="waves-effect">
-                                <i class="ti-home"></i>
-                                <span> Xem điểm </span>
-                            </a>
                             <a href="/login" class="waves-effect">
-                                <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right"></span>
+                                <i class=" ti-user "></i><span class="badge badge-primary badge-pill float-right"></span>
                                 <span> Đăng nhập </span>
                             </a>
 
@@ -183,6 +178,23 @@
 
     <!-- App js -->
     <script src="{{ url_for('static' , filename = 'assets/js/app.js') }}"></script>
+
+    <script src="{{ url_for('static', filename = 'plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
+    <script>
+        {% if message %}
+        Swal.fire(
+            {
+                title: 'Thành công!',
+                text: '{{ message }}',
+                type: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#626ed4',
+                cancelButtonColor: "#ec4561"
+            }
+        )
+        {% endif %}
+    </script>
+
     {% endblock %}
 
 </body>
