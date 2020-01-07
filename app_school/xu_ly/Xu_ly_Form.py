@@ -115,12 +115,26 @@ class Form_Cap_nhat_TKB(FlaskForm):
     Th_Giao_vien = SelectField("Giáo viên", coerce=int)
     Th_Mon = SelectField("Môn", coerce=int)
 
-
-
-
 class Form_Reset_pw(FlaskForm):
     Th_MatkhauCu = PasswordField("Mật khẩu cũ: ", [validators.InputRequired(), validators.Length(min=4, max=20)])
     Th_MatkhauMoi = PasswordField("Mật khẩu mới: ", [validators.InputRequired(), validators.Length(min=4, max=20)])
+
+class Form_Lich_Thi(FlaskForm):
+    Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
+    Th_Khoi = SelectField("Khối", coerce=int)
+
+class Form_Them_Lich_Thi(FlaskForm):
+    Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
+    Th_Khoi = SelectField("Khối", coerce=int)
+    Th_Mon = SelectField("Môn", coerce=int)
+    Th_NgayThi = TextField("Ngày thi", [validators.Required(
+        "Vui lòng nhập ngày thi.")])
+    Th_ThoiGian = TextField("Thời Gian" ,[validators.InputRequired()])
+
+class Form_Sua_Lich_Thi(FlaskForm):
+    Th_NgayThi = TextField("Ngày thi", [validators.Required(
+        "Vui lòng nhập ngày thi.")])
+    Th_ThoiGian = TextField("Thời Gian" ,[validators.InputRequired()])
 
 '''class Form_UpdateProfile(FlaskForm) :
     Th_Id = IntegerField("Mã số ID" , [validators.Required("Vui lòng nhập vào mã số ID") ,validators.Length(min=4, max=15)])

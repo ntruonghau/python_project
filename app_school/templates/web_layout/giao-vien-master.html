@@ -128,7 +128,16 @@
                                 <i class=" ti-calendar "></i>
                                 <span> Thời Khóa biểu </span>
                             </a>
+                            <li class="mm-active">
+                                <a href="javascript:void(0);" class="waves-effect" aria-expanded="true"><i class=" ti-pencil "></i><span> Lịch Thi <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu mm-collapse mm-show" style="">
+                                    <li><a href="/xem-lich-thi">Xem Lịch Thi</a></li>
+                                    <li><a href="/them-lich-thi">Thêm Lịch Thi</a></li>
+                                </ul>
+                            </li>
                         </li>
+
+
 
                 </div>
                 <!-- Sidebar -->
@@ -190,7 +199,7 @@
                 confirmButtonColor: '#626ed4',
                 cancelButtonColor: "#ec4561"
             }
-        )   
+        )
         {% endif %}
     </script>
     {% endblock %}

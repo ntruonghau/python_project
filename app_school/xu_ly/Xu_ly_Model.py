@@ -125,6 +125,14 @@ class ThoiKhoaBieu(Base):
     Tiet = Column(Integer, primary_key = True, autoincrement=False)
     ID_Lop = Column(Integer, ForeignKey('Lop.IDLop'))
     ID_Mon = Column(Integer, ForeignKey('Mon.IDMon'))
-    
+
+class LichThi(Base):
+    __tablename__ = 'LichThi'
+    ID_Nien_khoa = Column(Integer, ForeignKey('NienKhoa.ID'), primary_key = True)
+    ID_Khoi =  Column(Integer,ForeignKey('Khoi.IDKhoi') ,primary_key = True)
+    ID_Mon = Column(Integer, ForeignKey('Mon.IDMon'),primary_key = True)
+    ThoiGianThi = Column(String(100) )
+    ThoiGianLamBai = Column(String(100) )
+
 Base.metadata.create_all(engine)
 ##############################################
