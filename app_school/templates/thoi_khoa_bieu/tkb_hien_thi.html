@@ -8,10 +8,13 @@
 
 
 <!-- Plugins css -->
-<link href="{{url_for('static',filename = 'plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
-<link href="{{url_for('static',filename = 'plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+<link href="{{url_for('static',filename = 'plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}"
+    rel="stylesheet">
+<link href="{{url_for('static',filename = 'plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}"
+    rel="stylesheet">
 <link href="{{url_for('static',filename = 'plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{url_for('static',filename = 'plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />  
+<link href="{{url_for('static',filename = 'plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}"
+    rel="stylesheet" />
 {% endblock %}
 
 <!-- Content Block -->
@@ -50,6 +53,7 @@
             <div class="col-md-6 m-auto">
                 <div class="card">
                     <div class="card-body">
+                        {% if Quyen == '2' %}
                         <form method="POST">
                             <div class="form-group">
                                 <label class="control-label">Chọn lớp</label>
@@ -58,7 +62,8 @@
                                     <optgroup class="bg-secondary" label="{{nien_khoa[1]}}">
                                         {% for lop in ds_lop %}
                                         {% if nien_khoa[0]|string == (lop[2]|string) %}
-                                        <option value="{{nien_khoa[0]}}-{{lop[0]}}" {% if id_lop|int == lop[0]|int %}selected{% endif %} >{{lop[1]}}</option>
+                                        <option value="{{nien_khoa[0]}}-{{lop[0]}}"
+                                            {% if id_lop|int == lop[0]|int %}selected{% endif %}>{{lop[1]}}</option>
                                         {% endif %}
                                         {% endfor %}
                                     </optgroup>
@@ -69,6 +74,23 @@
                                 <input class="btn btn-primary waves-light" type="submit" value="Xác nhận">
                             </div>
                         </form>
+                        {% else %}
+                        <form method="POST">
+                            <div class="form-group">
+                                <label class="control-label">Chọn niên khóa</label>
+                                <select name="nien_khoa" class="form-control select2">
+                                    {% for nien_khoa in ds_nien_khoa %}
+                                    <option value="{{nien_khoa[0]}}"
+                                        {% if id_nien_khoa|int == nien_khoa[0]|int %}selected{% endif %}>
+                                        {{nien_khoa[1]}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <input class="btn btn-primary waves-light" type="submit" value="Xác nhận">
+                            </div>
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -102,8 +124,9 @@
                             <th scope="row">{{ loop.index }}</th>
                             {% set id_tiet = loop.index %}
                             {% for chi_tiet in tiet %}
-                            <td><a
-                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/1/{{ id_tiet }}">{{chi_tiet}}</a>
+                            <td><a {% if Quyen == '2' %}
+                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/1/{{ id_tiet }}"
+                                    {% endif %}>{{chi_tiet}}</a>
                             </td>
                             {% endfor %}
                         </tr>
@@ -117,8 +140,9 @@
                             <th scope="row">{{ loop.index }}</th>
                             {% set id_tiet = loop.index %}
                             {% for chi_tiet in tiet %}
-                            <td><a
-                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/2/{{ id_tiet }}">{{chi_tiet}}</a>
+                            <td><a {% if Quyen == '2' %}
+                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/2/{{ id_tiet }}"
+                                    {% endif %}>{{chi_tiet}}</a>
                             </td>
                             {% endfor %}
                         </tr>

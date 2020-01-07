@@ -21,23 +21,27 @@ def thoi_khoa_bieu():
     if session.get("giaovien") == None:
         return redirect(url_for('index'))
     giaovien = session['giaovien']
+    giao_vien = Profile_Giao_Vien(giaovien)
     nien_khoa = ''
     lop = ''
     ds_nien_khoa = doc_danh_sach_nien_khoa_select()
     ds_lop = doc_danh_sach_lop_hoc_nien_khoa_select()
-    print(ds_lop)
-    print(ds_nien_khoa)
     lop = ds_lop[0][0]
     nien_khoa = ds_nien_khoa[0][0]
-    if request.form.get('lop_nien_khoa'):
-        lop = request.form.get('lop_nien_khoa').split('-')[1]
-        nien_khoa = request.form.get('lop_nien_khoa').split('-')[0]
-        id_lop = lop
-        print(id_lop)
     # TKB = db_session.query(ThoiKhoaBieu).first()
-    tkb = doc_thoi_khoa_bieu(nien_khoa, lop)
+    if int(giao_vien['Quyen']) == 2:
+        if request.form.get('lop_nien_khoa'):
+            lop = request.form.get('lop_nien_khoa').split('-')[1]
+            nien_khoa = request.form.get('lop_nien_khoa').split('-')[0]
+        tkb = doc_thoi_khoa_bieu(nien_khoa, lop)
+    elif int(giao_vien['Quyen']) == 1:
+        if request.form.get('nien_khoa'):
+            nien_khoa = request.form.get('nien_khoa')
+        tkb = doc_thoi_khoa_bieu_gv(nien_khoa, giao_vien['ID_GV'])
+    else:
+        tkb = tao_thoi_khoa_bieu_rong()
     return render_template('thoi_khoa_bieu/tkb_hien_thi.html', tkb=tkb, id_nien_khoa=nien_khoa,
-                           ds_nien_khoa=ds_nien_khoa, id_lop=lop, ds_lop=ds_lop)
+                           ds_nien_khoa=ds_nien_khoa, id_lop=lop, ds_lop=ds_lop, Quyen=giao_vien['Quyen'])
 
 
 @app.route('/cap-nhat-tkb/<string:id_nien_khoa>/<string:id_lop>/<string:id_thu>/<string:id_buoi>/<string:id_tiet>', methods=['GET', 'POST'])
@@ -60,17 +64,30 @@ def cap_nhat_tkb(id_nien_khoa, id_lop, id_thu, id_buoi, id_tiet):
     chi_tiet['buoi'] = ds_buoi[int(id_buoi) - 1]
     chi_tiet['tiet'] = ds_tiet[int(id_tiet) - 1]
     # dieu chinh thong tin
-    if chi_tiet_tkb:
-        form.Th_Giao_vien.default = chi_tiet_tkb.ID_Giao_vien
-        form.Th_Mon.default = chi_tiet_tkb.ID_Mon
-        if str(id_lop) != str(chi_tiet_tkb.ID_Lop):
+    for tkb in chi_tiet_tkb:
+        form.Th_Giao_vien.default = tkb.ID_Giao_vien
+        form.Th_Mon.default = tkb.ID_Mon
+        if str(id_lop) != str(tkb.ID_Lop):
             form.Th_Giao_vien.choices = doc_danh_sach_gv_loai_tru_select(
-                chi_tiet_tkb.ID_Giao_vien)
+                tkb.ID_Giao_vien)
     if form.validate_on_submit():
         id_giao_vien = request.form['Th_Giao_vien']
         id_mon = request.form['Th_Mon']
         tkb = ThoiKhoaBieu(ID_Nien_khoa=id_nien_khoa, ID_Giao_vien=id_giao_vien,
                      Thu=id_thu, Buoi=id_buoi, Tiet=id_tiet, ID_Lop=id_lop, ID_Mon=id_mon)
-        if them_thoi_khoa_bieu(tkb):
+        tkb_chi_tiet = doc_thong_tin_chi_tiet_tkb_theo_lop(id_nien_khoa, id_lop, id_thu, id_buoi, id_tiet)
+        if tkb_chi_tiet:
+            print('exist')
+            tkb_chi_tiet.ID_Giao_vien = id_giao_vien
+            tkb_chi_tiet.ID_Mon = id_mon
+            try:
+                db_session.flush()
+                db_session.commit()
+                return redirect(url_for('thoi_khoa_bieu'))
+            except:
+                db_session.rollback()
+                pass
+        elif them_thoi_khoa_bieu(tkb):
+            print('add')
             return redirect(url_for('thoi_khoa_bieu'))
     return render_template('thoi_khoa_bieu/tkb_cap_nhat.html', form=form, chi_tiet=chi_tiet)
