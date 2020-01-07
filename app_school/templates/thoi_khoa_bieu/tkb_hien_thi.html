@@ -1,0 +1,135 @@
+{% extends "web_layout/giao-vien-master.html" %}
+
+<!-- Header Block -->
+
+{% block head %}
+
+{{ super()}}
+
+{% endblock %}
+
+<!-- Content Block -->
+
+{% block content %}
+
+<!-- Start content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="page-title-box">
+            <div class="row align-items-center">
+
+                <div class="col-sm-6">
+                    <h4 class="page-title">Thời khóa biểu</h4>
+                </div>
+                <!-- <div class="col-sm-6">
+
+                    <div class="float-right d-none d-md-block">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light"
+                                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-settings mr-2"></i> Cài đặt
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="/sua-profile">Chỉnh sửa profile</a>
+                                <a class="dropdown-item" href="/doi-mat-khau">Đổi mật khẩu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {{ form.csrf_token() }}
+                            <div class="form-group row">
+                                {{form.Th_Nien_khoa.label(class="col-sm-4 col-form-label",for="example-text-input") }}
+                                {{form.Th_Nien_khoa(class="col-sm-7 form-control",id="example-text-input")}}
+                            </div>
+                            <div class="form-group row">
+                                {{form.TH_Lop.label(class="col-sm-4 col-form-label",for="example-text-input") }}
+                                {{form.TH_Lop(class="col-sm-7 form-control",id="example-text-input")}}
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <input class="btn btn-primary waves-light" type="submit" value="Xác nhận">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <!-- them thoi khoa bieu tai day -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Buổi</th>
+                            <th scope="col">Tiết</th>
+                            <th scope="col">Thứ 2</th>
+                            <th scope="col">Thứ 3</th>
+                            <th scope="col">Thứ 4</th>
+                            <th scope="col">Thứ 5</th>
+                            <th scope="col">Thứ 6</th>
+                            <th scope="col">Thứ 7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5">Sáng</td>
+                        </tr>
+                        {% for tiet in tkb[0] %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            {% set id_tiet = loop.index %}
+                            {% for chi_tiet in tiet %}
+                            <td><a
+                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/1/{{ id_tiet }}">{{chi_tiet}}</a>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <td rowspan="5">Chiều</td>
+                        </tr>
+                        {% for tiet in tkb[1] %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            {% set id_tiet = loop.index %}
+                            {% for chi_tiet in tiet %}
+                            <td><a
+                                    href="/cap-nhat-tkb/{{ id_nien_khoa }}/{{ id_lop }}/{{ loop.index + 1 }}/2/{{ id_tiet }}">{{chi_tiet}}</a>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- end col -->
+    </div> <!-- end row -->
+
+</div>
+<!-- container-fluid -->
+</div>
+<!-- content -->
+
+{% endblock %}
+
+<!-- Script block -->
+
+{% block script %}
+
+{{ super()}}
+
+{% endblock %}
