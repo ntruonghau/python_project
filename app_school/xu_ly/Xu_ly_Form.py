@@ -19,7 +19,7 @@ class Form_Register(FlaskForm):
 class Form_Login(FlaskForm):
     Th_Vaitro = SelectField("Vai trò", choices=[('gv','Giáo Viên'),('hs','Học Sinh')])
     Th_Taikhoan = TextField("Tên tài khoản đăng nhập", [validators.Required(
-        "Vui lòng nhập vào tên đăng nhập"), validators.Length(min=4, max=20)])
+        "Vui lòng nhập vào tên đăng nhập"), validators.Length(min=1, max=20)])
     Th_Matkhau = PasswordField(
         "Mật khẩu", [validators.InputRequired(), validators.Length(min=4, max=20)])
 
