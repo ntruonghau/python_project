@@ -12,6 +12,17 @@ def doc_danh_sach_lop_hoc_select(): # select field tupple choice
         pass
     return ds_lop
 
+def doc_danh_sach_lop_hoc_nien_khoa_select(): # select field tupple choice
+    ds_lop = []
+    try:
+        ds_l = db_session.query(Lop).all()
+        for lop in ds_l:
+            l = (lop.IDLop, lop.TenLop, lop.NamNienKhoa)
+            ds_lop.append(l)
+    except:
+        pass
+    return ds_lop
+
 def doc_danh_sach_lop_hoc():
     ds_lop = []
     try:

@@ -50,21 +50,16 @@
                     <div class="card-body">
 
                         <h4 class="mt-0 header-title">Bảng điểm của lớp học</h4>
-
+                        {% if ds_hoc_sinh | length != 0 %}
                         <table class="table table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 1; width: 100%;">
                             <thead class="bg-primary">
                                 <tr>
                                     <th>Mã số</th>
                                     <th>Họ và Tên</th>
-                                    <th>Văn</th>
-                                    <th>Toán</th>
-                                    <th>Anh</th>
-                                    <th>Lý</th>
-                                    <th>Hóa</th>
-                                    <th>Sinh</th>
-                                    <th>Sử</th>
-                                    <th>Địa</th>
+                                    {% for mon in ds_hoc_sinh[0]['bang_diem'].keys() %}
+                                    <th style="width: 7.5%;">{{mon}}</th>
+                                    {% endfor %}
                                     <th>Điểm TB</th>
                                     <th>Học Lực</th>
                                     <th>Options</th>
@@ -73,206 +68,27 @@
 
 
                             <tbody>
+                                {% for hoc_sinh in ds_hoc_sinh %}
                                 <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
+                                    <td>#{{ '{:05d}'.format(hoc_sinh['IDHocSinh']) }}</td>
+                                    <td>{{ hoc_sinh['HoVaTen'] }}</td>
+                                    {% for diem in hoc_sinh['bang_diem'].values() %}
+                                    <td>{{diem['trung_binh'] if diem['trung_binh'] != None else "Chưa chấm" }}</td>
+                                    {% endfor %}
+                                    <td>{{ '{:.1f}'.format(hoc_sinh['trung_binh']) }}</td>
+                                    <td>{{ hoc_sinh['xep_loai'] }}</td>
                                     <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
+                                        <a class="btn btn-success waves-effect waves-light"
+                                            href="/thong-tin-diem-so/{{hoc_sinh['IDHocSinh']}}" role="button">Xem
                                             chi tiết</a>&nbsp;
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#00001</td>
-                                    <td>Nguyễn Văn B</td>
-                                    <td>9</td>
-                                    <td>9</td>
-                                    <td>8</td>
-                                    <td>10</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td>9</td>
-                                    <td>10</td>
-                                    <td>8.7</td>
-                                    <td>Giỏi</td>
-                                    <td>
-                                        <a class="btn btn-success waves-effect waves-light" href="/" role="button">Xem
-                                            chi tiết</a>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
-                            </table>
+                        </table>
+                        {% else %}
+                        <div class="m-auto text-center"><p class="font-10 italic">Hiện tại lớp chưa có học sinh</p></div>
+                        {% endif %}
                     </div>
                 </div>
             </div> <!-- end col -->

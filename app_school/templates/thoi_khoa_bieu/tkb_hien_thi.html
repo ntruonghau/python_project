@@ -6,6 +6,12 @@
 
 {{ super()}}
 
+
+<!-- Plugins css -->
+<link href="{{url_for('static',filename = 'plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
+<link href="{{url_for('static',filename = 'plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+<link href="{{url_for('static',filename = 'plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{url_for('static',filename = 'plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />  
 {% endblock %}
 
 <!-- Content Block -->
@@ -45,14 +51,18 @@
                 <div class="card">
                     <div class="card-body">
                         <form method="POST">
-                            {{ form.csrf_token() }}
-                            <div class="form-group row">
-                                {{form.Th_Nien_khoa.label(class="col-sm-4 col-form-label",for="example-text-input") }}
-                                {{form.Th_Nien_khoa(class="col-sm-7 form-control",id="example-text-input")}}
-                            </div>
-                            <div class="form-group row">
-                                {{form.TH_Lop.label(class="col-sm-4 col-form-label",for="example-text-input") }}
-                                {{form.TH_Lop(class="col-sm-7 form-control",id="example-text-input")}}
+                            <div class="form-group">
+                                <label class="control-label">Chọn lớp</label>
+                                <select name="lop_nien_khoa" class="form-control select2">
+                                    {% for nien_khoa in ds_nien_khoa %}
+                                    <optgroup class="bg-secondary" label="{{nien_khoa[1]}}">
+                                        {% for lop in ds_lop %}
+                                        {% if nien_khoa[0]|string == (lop[2]|string) %}
+                                        <option value="{{nien_khoa[0]}}-{{lop[0]}}" {% if id_lop|int == lop[0]|int %}selected{% endif %} >{{lop[1]}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group text-center">
@@ -132,4 +142,17 @@
 
 {{ super()}}
 
+
+<!-- Plugins js -->
+<script
+    src="{{ url_for('static', filename = 'plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename = 'plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script>
+
+<!-- Plugins Init js -->
+<script src="assets/pages/form-advanced.js"></script>
 {% endblock %}

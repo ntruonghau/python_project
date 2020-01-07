@@ -5,7 +5,7 @@ from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
 from app_school.xu_ly.thoi_khoa_bieu.XL_TKB import *
 from app_school.xu_ly.nien_khoa.XL_Nien_khoa import doc_danh_sach_nien_khoa_select
 from app_school.xu_ly.mon_hoc.XL_Mon_hoc import doc_danh_sach_mon_hoc
-from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc_select
+from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc_select, doc_danh_sach_lop_hoc_nien_khoa_select
 from app_school import app, db_session
 from app_school.xu_ly.Xu_ly_Model import GiaoVien, Mon, HocSinh, BangDiem
 from app_school.xu_ly.Xu_ly_Form import *
@@ -24,23 +24,20 @@ def thoi_khoa_bieu():
     nien_khoa = ''
     lop = ''
     ds_nien_khoa = doc_danh_sach_nien_khoa_select()
-    ds_lop = doc_danh_sach_lop_hoc_select()
+    ds_lop = doc_danh_sach_lop_hoc_nien_khoa_select()
+    print(ds_lop)
+    print(ds_nien_khoa)
     lop = ds_lop[0][0]
     nien_khoa = ds_nien_khoa[0][0]
-    form = Form_Chon_TKB()
-    form.TH_Lop.choices = ds_lop
-    form.Th_Nien_khoa.choices = ds_nien_khoa
-    form.TH_Lop.default = lop
-    form.Th_Nien_khoa.default = nien_khoa
-    if form.validate_on_submit():
-        lop = request.form['TH_Lop']
-        nien_khoa = request.form['Th_Nien_khoa']
-        form.TH_Lop.default = lop
-        form.Th_Nien_khoa.default = nien_khoa
+    if request.form.get('lop_nien_khoa'):
+        lop = request.form.get('lop_nien_khoa').split('-')[1]
+        nien_khoa = request.form.get('lop_nien_khoa').split('-')[0]
+        id_lop = lop
+        print(id_lop)
     # TKB = db_session.query(ThoiKhoaBieu).first()
     tkb = doc_thoi_khoa_bieu(nien_khoa, lop)
     return render_template('thoi_khoa_bieu/tkb_hien_thi.html', tkb=tkb, id_nien_khoa=nien_khoa,
-                           ds_nien_khoa=ds_nien_khoa, id_lop=lop, ds_lop=ds_lop, form=form)
+                           ds_nien_khoa=ds_nien_khoa, id_lop=lop, ds_lop=ds_lop)
 
 
 @app.route('/cap-nhat-tkb/<string:id_nien_khoa>/<string:id_lop>/<string:id_thu>/<string:id_buoi>/<string:id_tiet>', methods=['GET', 'POST'])

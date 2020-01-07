@@ -60,6 +60,27 @@ def doc_bang_diem_theo_id_bang_diem(id_bang_diem):
         return None
     return bd
 
+def diem_trung_binh_theo_hoc_sinh(id_hoc_sinh):
+    ds_bang_diem = {}
+    try:
+        ds_bangdiem = db_session.query(BangDiem).filter(BangDiem.IDHocSinh == id_hoc_sinh).all()
+        for bang_diem in ds_bangdiem:
+            bd = {}
+            mon = db_session.query(Mon).filter(Mon.IDMon == bang_diem.IDMon).one()
+            bd['id_bd'] = bang_diem.IDBangDiem
+            bd['trung_binh'] = bang_diem.TrungBinhMon
+            try:
+                db_session.flush()
+                db_session.commit()
+                ds_bang_diem[mon.TenMon] = bd
+            except:
+                db_session.rollback()
+                pass
+    except:
+        db_session.rollback()
+        pass
+    return ds_bang_diem
+
 def doc_bang_diem_theo_hoc_sinh(id_hoc_sinh):  # select field tupple choice
     ds_bang_diem = []
     try:

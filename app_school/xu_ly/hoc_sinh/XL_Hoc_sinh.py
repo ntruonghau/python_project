@@ -1,5 +1,6 @@
 from app_school import app, db_session
-from app_school.xu_ly.Xu_ly_Model import HocSinh,Lop,NienKhoa
+from app_school.xu_ly.Xu_ly_Model import HocSinh, Lop, NienKhoa, BangDiem
+from app_school.xu_ly.bang_diem.XL_Bang_diem import diem_trung_binh_theo_hoc_sinh
 from datetime import datetime
 
 def doc_danh_sach_hoc_sinh_theo_lop(lop): # select field tupple choice
@@ -13,6 +14,43 @@ def doc_danh_sach_hoc_sinh_theo_lop(lop): # select field tupple choice
             nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == hs['IDNienKhoa']).one()
             hs['Ten_Lop'] = lop_hoc.TenLop
             hs['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
+            ds_hoc_sinh.append(hs)
+    except:
+        pass
+    return ds_hoc_sinh
+
+def doc_danh_sach_bang_diem_hoc_sinh_theo_lop(lop): # select field tupple choice
+    ds_hoc_sinh = []
+    try:
+        ds_hs = db_session.query(HocSinh).filter(HocSinh.IDLop == lop).all()
+        for hoc_sinh in ds_hs:
+            hs = dict(hoc_sinh.__dict__)
+            del hs['_sa_instance_state']
+            lop_hoc = db_session.query(Lop).filter(Lop.IDLop == lop).one()
+            nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == hs['IDNienKhoa']).one()
+            hs['Ten_Lop'] = lop_hoc.TenLop
+            hs['Ten_Nien_khoa'] = nien_khoa.NamNienKhoa
+            hs['bang_diem'] = diem_trung_binh_theo_hoc_sinh(hs['IDHocSinh'])
+            count = 0
+            sum = 0
+            for diem in hs['bang_diem'].values():
+                if diem['trung_binh']:
+                    count += 1
+                    sum += diem['trung_binh']
+            if count != 0:
+                hs['trung_binh'] = sum/count
+            else:
+                hs['trung_binh'] = None
+            if count != len(hs['bang_diem'].values()):
+                hs['xep_loai'] = 'Chưa thể xếp loại học lực'
+            elif hs['trung_binh'] < 5:
+                hs['xep_loai'] = 'Kém'
+            elif hs['trung_binh'] < 6.5:
+                hs['xep_loai'] = 'Trung Bình'
+            elif hs['trung_binh'] < 8:
+                hs['xep_loai'] = 'Khá'
+            elif hs['trung_binh'] < 10:
+                hs['xep_loai'] = 'Giỏi'
             ds_hoc_sinh.append(hs)
     except:
         pass

@@ -4,7 +4,8 @@ from app_school.xu_ly.nien_khoa.XL_Nien_khoa import doc_danh_sach_nien_khoa_sele
 from app_school.xu_ly.khoi.XL_Khoi import doc_danh_sach_khoi_select
 from app_school.xu_ly.giao_vien.XL_Giao_vien import doc_danh_sach_gv_select, Profile_Giao_Vien
 from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc, doc_danh_sach_lop_hoc_theo_giao_vien
-from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import doc_danh_sach_hoc_sinh_theo_lop
+from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import doc_danh_sach_hoc_sinh_theo_lop, doc_danh_sach_bang_diem_hoc_sinh_theo_lop
+from app_school.xu_ly.mon_hoc.XL_Mon_hoc import doc_danh_sach_mon_hoc
 from app_school.xu_ly.Xu_ly_Model import Lop
 from app_school import app, db_session
 
@@ -55,7 +56,9 @@ def bang_diem_lop(lop):
         return redirect(url_for('index'))
     giaovien = session['giaovien']
     giao_vien = Profile_Giao_Vien(giaovien)
-    return render_template('lop_hoc/l_bang_diem_lop.html')
+    ds_hoc_sinh = doc_danh_sach_bang_diem_hoc_sinh_theo_lop(lop)
+    ds_mon = doc_danh_sach_mon_hoc()
+    return render_template('lop_hoc/l_bang_diem_lop.html', ds_hoc_sinh = ds_hoc_sinh, ds_mon=ds_mon)
 
 
 @app.route('/them-lop-hoc', methods=['GET','POST'])
