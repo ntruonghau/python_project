@@ -8,9 +8,19 @@ def Ten_Mon(ID_Mon):
 
 def load_lich_thi(id_nien_khoa,id_khoi):
     lich_thi = db_session.query(LichThi).filter(LichThi.ID_Nien_khoa == id_nien_khoa, LichThi.ID_Khoi == id_khoi).all()
+    lst = []
     for i in lich_thi:
-        i.ID_Mon = Ten_Mon(i.ID_Mon)
-    return  lich_thi
+        t = {}
+        t['ID_Mon']  = Ten_Mon(i.ID_Mon)
+        t['Mon'] = i.ID_Mon
+        t['NienKhoa'] = id_nien_khoa
+        t['Khoi'] = id_khoi
+        t['ThoiGianThi'] = i.ThoiGianThi
+        t['ThoiGianLamBai'] = i.ThoiGianLamBai
+        
+        lst.append(t)
+    return lst
+    
 
 def Them_Lich_Thi(lich_thi):
     _lich_ = db_session.query(LichThi).filter(LichThi.ID_Khoi == lich_thi.ID_Khoi, LichThi.ID_Nien_khoa == lich_thi.ID_Nien_khoa ,LichThi.ID_Mon == lich_thi.ID_Mon).first()
