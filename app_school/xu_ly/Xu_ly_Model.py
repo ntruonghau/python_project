@@ -135,5 +135,31 @@ class LichThi(Base):
     ThoiGianThi = Column(String(100) )
     ThoiGianLamBai = Column(String(100) )
 
+class LienHe(Base):
+    __tablename__ = 'LienHe'
+    Nguoi_Gui = Column(String(100))
+    Email = Column( String(100)  ,primary_key = True)
+    Noi_Dung = Column(String(200))
+
+
+class QuanLi(Base):
+    __tablename__ = 'QuanLi'
+    IDQuanLi = Column(Integer, primary_key = True)
+    TenDangNhap = Column(String(100),  unique=True)
+    MatKhau = Column(String(100) )
+    HoVaTen = Column(String(100) )
+    GioiTinh = Column(String(10) )
+    DiaChi =  Column(String(100) )
+    Email = Column(String(100) )
+    NgaySinh = Column(String(30) )
+    SoDienThoai = Column(String(11) )
+    def __init__(self, TenDangNhap=None, MatKhau=None, Email=None):
+        self.TenDangNhap = TenDangNhap
+        self.MatKhau = MatKhau
+        self.Email = Email
+
+    def __str__(self):
+        return self.HoVaTen
+
 Base.metadata.create_all(engine)
 ##############################################
