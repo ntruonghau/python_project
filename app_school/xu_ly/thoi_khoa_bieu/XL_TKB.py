@@ -93,3 +93,13 @@ def doc_thoi_khoa_bieu_gv(id_nien_khoa, id_giao_vien):
                 if tkb_chi_tiet != None:
                     tkb[i][j][g] = ten_lop(tkb_chi_tiet.ID_Lop) + ' - '  + ten_mon(tkb_chi_tiet.ID_Mon)
     return tkb
+
+def doc_thoi_khoa_bieu_hs(id_nien_khoa, id_lop):
+    tkb = tao_thoi_khoa_bieu_rong()
+    for i in range(0,2):
+        for j in range(0,4):
+            for g in range(0,6):
+                tkb_chi_tiet = doc_thong_tin_chi_tiet_tkb_theo_lop(id_nien_khoa,id_lop,g+2,i+1,j+1)
+                if tkb_chi_tiet != None:
+                    tkb[i][j][g] = ten_giao_vien(tkb_chi_tiet.ID_Giao_vien) + ' - ' + ten_mon(tkb_chi_tiet.ID_Mon)
+    return tkb

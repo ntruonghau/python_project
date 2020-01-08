@@ -7,6 +7,7 @@ from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
 from app_school.xu_ly.Xu_ly_Model import HocSinh, Lop
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import *
 from app_school.xu_ly.lich_thi.XL_lich_thi import *
+from app_school.xu_ly.thoi_khoa_bieu.XL_TKB import *
 from app_school import app, db_session
 from datetime import date
 
@@ -212,3 +213,13 @@ def bang_diem_hs():
             so_mon = so_mon + 1
     DiemTB = DiemTB / so_mon
     return render_template('hoc_sinh/xem_bang_diem.html',bangdiem = bangdiem, DiemTB = DiemTB)
+
+@app.route('/hoc-sinh/thoi-khoa-bieu', methods=['GET', 'POST'])
+def thoi_khoa_bieu_hs():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    hocsinh = session['hocsinh']
+    hs  = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == hocsinh).first()
+    tkb = doc_thoi_khoa_bieu_hs(hs.IDLop,hs.IDNienKhoa)
+
+    return render_template('hoc_sinh/xem_thoi_khoa_bieu.html',tkb=tkb)
