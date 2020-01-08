@@ -194,12 +194,21 @@ def lich_thi_hs():
         return redirect(url_for('index'))
     hocsinh = session['hocsinh']
     lt = load_lich_thi_hs(hocsinh)
+    
     return render_template('hoc_sinh/xem_lich_thi.html',lich_thi = lt)
 
-@app.route('/hoc-sinh/thoi-khoa-bieu', methods=['GET', 'POST'])
-def thoi-khoa-bieu-hs():
+@app.route('/hoc-sinh/bangdiem', methods=['GET', 'POST'])
+def bang_diem_hs():
     if session.get("hocsinh") == None:
         return redirect(url_for('index'))
     hocsinh = session['hocsinh']
-    lt = load_lich_thi_hs(hocsinh)
-    return render_template('hoc_sinh/xem_lich_thi.html',lich_thi = lt)
+    DiemTB = 0
+    so_mon  = 0
+    bangdiem = db_session.query(BangDiem).filter(BangDiem.IDHocSinh == hocsinh).all()
+    for i in bangdiem:
+        i.IDMon = Ten_Mon(i.IDMon)
+        if i.TrungBinhMon != None:
+            DiemTB += i.TrungBinhMon
+            so_mon = so_mon + 1
+    DiemTB = DiemTB / so_mon
+    return render_template('hoc_sinh/xem_bang_diem.html',bangdiem = bangdiem, DiemTB = DiemTB)
