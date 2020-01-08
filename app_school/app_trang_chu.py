@@ -49,8 +49,8 @@ def trang_lien_he():
         Ho_va_ten = request.form.get("Th_Ho_va_ten")
         Email = request.form.get("Th_email")
         Noi_dung = request.form.get("Th_noi_dung")
-        danh_sach_contact = {"Ho_va_ten" : Ho_va_ten , "Email" : Email , "Noi_dung" : Noi_dung }
-        ghi_info_contact(danh_sach_contact)
+        Danh_sach = [Ho_va_ten,Email,Noi_dung]
+        Them_lien_he(Danh_sach)
         message='Đã gửi thông tin liên hệ'
     return render_template('index/lien_he.html', message=message)
 
