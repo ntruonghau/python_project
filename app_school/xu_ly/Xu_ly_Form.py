@@ -17,7 +17,7 @@ class Form_Register(FlaskForm):
 
 
 class Form_Login(FlaskForm):
-    Th_Vaitro = SelectField("Vai trò", choices=[('gv','Giáo Viên'),('hs','Học Sinh')])
+    Th_Vaitro = SelectField("Vai trò", choices=[('gv','Giáo Viên'),('hs','Học Sinh'),('ql','Quản Lý')])
     Th_Taikhoan = TextField("Tên tài khoản đăng nhập", [validators.Required(
         "Vui lòng nhập vào tên đăng nhập"), validators.Length(min=1, max=20)])
     Th_Matkhau = PasswordField(
@@ -98,7 +98,6 @@ class Form_Create_Class(FlaskForm):
     Th_Khoi = SelectField("Khối", coerce=int)
     Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
     Th_GV_Chu_nhiem = SelectField("GV Chủ nhiệm", coerce=int)
-
 
 class Form_Them_Nien_khoa(FlaskForm):
     Th_Nien_khoa = SelectField("Niên Khóa")
