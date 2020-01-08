@@ -23,6 +23,8 @@ def index():
 def login():
     if session.get("giaovien") != None:
         return redirect('giao-vien')
+    if session.get("hocsinh") != None:
+            return redirect('hoc-sinh')
     form = Form_Login()
     Th_Taikhoan = ''
     Th_Matkhau = ''

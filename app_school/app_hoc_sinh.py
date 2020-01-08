@@ -108,6 +108,8 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
         db_session.flush()
         db_session.commit()
         return redirect('/thong-tin-hoc-sinh/'+id_hoc_sinh)
+    form.Th_Gioi_tinh.default = Hoc_Sinh['GioiTinh']
+    form.process()  
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )
 
 @app.route('/dang-xuat', methods=['GET', 'POST'])
@@ -140,7 +142,6 @@ def cap_nhat_hoc_sinh():
     form = Form_Update_Hs()
     id_hoc_sinh = hocsinh
     Hoc_Sinh = Profile_hoc_sinh(id_hoc_sinh)
-    form.Th_Gioi_tinh.default = Hoc_Sinh['GioiTinh']
 
     value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
     if form.validate_on_submit():
@@ -164,7 +165,8 @@ def cap_nhat_hoc_sinh():
         db_session.flush()
         db_session.commit()
         return redirect(url_for('hoc_sinh', message='Cập nhật thành công'))
-    
+    form.Th_Gioi_tinh.default = Hoc_Sinh['GioiTinh']
+    form.process()   
     return render_template('hoc_sinh/cap_nhat_thong_tin.html',HocSinh=Hoc_Sinh , form = form)
 
 @app.route('/hoc-sinh/bang_diem', methods=['GET','POST'])
