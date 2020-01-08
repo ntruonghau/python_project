@@ -24,8 +24,8 @@
                                 <tbody>
                                     {% for hs in Danh_sach_hs %}
                                         <tr>
-                                            <th scope="row"> <a href="/quan-li/xem-tai-khoan-hs/{{hs['IDHocSinh']}}">{{hs['IDHocSinh']}}</a></th>
-                                            <td>{{hs['HoVaTen']}} - {{hs['Lop']}} - {{hs['NienKhoa']}} - {{hs['Email']}}</td>
+                                            <th scope="row"><a href="/quan-li/xem-tai-khoan-hs/{{hs['IDHocSinh']}}">{{hs['IDHocSinh']}}</a></th>
+                                            <td><a href="/quan-li/xem-tai-khoan-hs/{{hs['IDHocSinh']}}">{{hs['HoVaTen']}} - {{hs['Lop']}} - {{hs['NienKhoa']}} - {{hs['Email']}}</a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

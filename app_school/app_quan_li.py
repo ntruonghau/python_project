@@ -174,7 +174,6 @@ def trang_xem_tai_khoan_chon(Chuoi_Tra_cuu) :
         return redirect(url_for('login'))
     Danh_sach_gv = Doc_danh_sach_gv()
     Danh_sach_gv_chon = Lay_info_theo_TK(Chuoi_Tra_cuu,Danh_sach_gv)
-    print(Danh_sach_gv_chon)
     return render_template("quan_ly/xem_tai_khoan_gv_chon.html", Danh_sach_gv_chon=Danh_sach_gv_chon)
 
 @app.route("/quan-li/xem-tai-khoan-hs",methods=['GET','POST']) #
@@ -190,7 +189,6 @@ def trang_xem_tai_khoan_hs_chon(Chuoi_Tra_cuu) :
         return redirect(url_for('login'))
     Danh_sach_hs = Doc_danh_sach_hs()
     Danh_sach_hs_chon = Lay_info_theo_ID(Chuoi_Tra_cuu,Danh_sach_hs)
-    print(Danh_sach_hs_chon)
     return render_template("quan_ly/xem_tai_khoan_hs_chon.html", Danh_sach_hs_chon=Danh_sach_hs_chon)
 
 @app.route('/quan-li/dang-xuat', methods=['GET', 'POST'])
