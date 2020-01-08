@@ -67,3 +67,15 @@ def Profile_hoc_sinh(id_hs):
     hs = {"IDHocSinh": hoc_sinh.IDHocSinh,"HoVaTen": hoc_sinh.HoVaTen, "GioiTinh": hoc_sinh.GioiTinh, "NgaySinh": datetime.strptime(hoc_sinh.NgaySinh,'%Y-%m-%d' ).date(), "Email": hoc_sinh.Email, "DiaChi" : hoc_sinh.DiaChi,
          "SoDienThoai": hoc_sinh.SoDienThoai, "SoDienThoaiPH":hoc_sinh.SoDienThoaiPhuHuynh,"Lop": lop_hoc.TenLop,"NienKhoa": nien_khoa.NamNienKhoa }
     return hs
+
+def hs_doi_mat_khau(TaiKhoan, MatkhauCu, MatkhauMoi):
+    ThongBao = ""
+    hs = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == TaiKhoan).first()
+    if MatkhauCu != hs.MatKhau:
+        ThongBao = "Mật khẩu không khớp"
+    else:
+        hs.MatKhau = MatkhauMoi
+        db_session.flush()
+        db_session.commit()
+        ThongBao = "Đổi Mật Khẩu Thành Công"
+    return ThongBao

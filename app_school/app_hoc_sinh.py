@@ -105,8 +105,14 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
         value.SoDienThoaiPhuHuynh = SoDienThoaiPhuHuynh
         db_session.flush()
         db_session.commit()
-        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh, message='Cập nhật học sinh thành công')
+        return redirect('/thong-tin-hoc-sinh/'+id_hoc_sinh)
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )
+
+@app.route('/dang-xuat', methods=['GET', 'POST'])
+def dang_xuat_hs():
+    if session.get("hocsinh") != None:
+        session.pop("hocsinh", None)
+    return redirect('/')
 
 @app.route('/hoc-sinh', methods=['GET','POST'])
 def hoc_sinh():
@@ -127,6 +133,8 @@ def cap_nhat_hoc_sinh():
     form = Form_Update_Hs()
     id_hoc_sinh = hocsinh
     Hoc_Sinh = Profile_hoc_sinh(id_hoc_sinh)
+    form.Th_Gioi_tinh.default = Hoc_Sinh['GioiTinh']
+
     value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
     if form.validate_on_submit():
         HocVaTen = request.form['Th_Ho_ten']
@@ -136,6 +144,7 @@ def cap_nhat_hoc_sinh():
         Email = request.form['Th_Email']
         SoDienThoai = request.form['Th_Sdt']
         SoDienThoaiPhuHuynh = request.form['Th_Sdt_PH']
+        
         
         value = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hoc_sinh).first()
         value.HoVaTen = HocVaTen
@@ -147,7 +156,8 @@ def cap_nhat_hoc_sinh():
         value.SoDienThoaiPhuHuynh = SoDienThoaiPhuHuynh
         db_session.flush()
         db_session.commit()
-        return redirect("/thong-tin-hoc-sinh/"+ id_hoc_sinh, message='Cập nhật học sinh thành công')
+        return redirect(url_for('hoc_sinh', message='Cập nhật thành công'))
+    
     return render_template('hoc_sinh/cap_nhat_thong_tin.html',HocSinh=Hoc_Sinh , form = form)
 
 @app.route('/hoc-sinh/bang_diem', methods=['GET','POST'])
@@ -158,4 +168,22 @@ def bang_diem_hoc_sinh():
     hocsinh = session['hocsinh']
 
     return render_template('hoc_sinh/bang_diem.html')
+
+@app.route('/hoc-sinh/doi-mat-khau', methods=['GET', 'POST'])
+def doi_mat_khau_hs():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    hocsinh = session['hocsinh']
+    
+    hs = Profile_hoc_sinh(hocsinh)
+    ThongBao = ""
+    form = Form_Reset_pw()
+
+    if form.validate_on_submit():
+        MatkhauCu = request.form['Th_MatkhauCu']
+        MatkhauMoi = request.form['Th_MatkhauMoi']
+        ThongBao = hs_doi_mat_khau(hocsinh, MatkhauCu, MatkhauMoi)
+        if ThongBao == "Đổi Mật Khẩu Thành Công":
+            return redirect(url_for('hoc_sinh', message='Đổi mật khẩu thành công'))
+    return render_template('hoc_sinh/doi_mat_khau.html', form=form, ThongBao=ThongBao)
 
