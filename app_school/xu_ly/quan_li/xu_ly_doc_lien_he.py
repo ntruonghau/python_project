@@ -41,8 +41,11 @@ def Lay_info_theo_Email(Email, Danh_sach_LienHe):
         lambda LienHe: str(Email).strip() == str(LienHe["Email"]).strip() ,Danh_sach_LienHe))
     return Danh_sach[0]
 
-danh_sach = Doc_danh_sach_lh()
-print(danh_sach)
-chon = "cba@test.com"
-danh_sach_chon = Lay_info_theo_Email(chon , danh_sach)
-print(danh_sach_chon)
+def Them_tai_khoan(Danh_sach_info) :
+    conn = sqlite3.connect(Thu_muc_du_lieu + "ql_truong_hoc.db")
+    sql = "INSERT INTO GiaoVien (IDGiaoVien,TenDangNhap,MatKhau,HoVaTen,Email) \
+            VALUES (?,?,?,?,?)"
+    if conn.execute(sql,(Danh_sach_info[0],Danh_sach_info[1],Danh_sach_info[2],Danh_sach_info[3],Danh_sach_info[4])) :
+        print("Đã thêm tài khoản thành công !")
+    conn.commit()
+    conn.close()

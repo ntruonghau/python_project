@@ -19,23 +19,16 @@ def trang_quan_li() :
 @app.route("/quan-li/doc-lien-he" , methods = ['GET','POST'])
 def trang_doc_lien_he() :
     Danh_sach_lh = Doc_danh_sach_lh()
-    print(Danh_sach_lh)
-
     form = Form_Feedback()
-    # form.Th_Email.choices 
-
-
     return render_template("quan_ly/doc_lien_he.html" , Danh_sach_lh=Danh_sach_lh)
 
 @app.route("/quan-li/doc-lien-he/<string:Chuoi_tra_cuu>/" , methods=['GET','POST'])
 def trang_tra_loi_lien_he(Chuoi_tra_cuu) :
     danh_sach = Doc_danh_sach_lh()
     danh_sach_chon = Lay_info_theo_Email(Chuoi_tra_cuu , danh_sach)
-    print("danh sách nè",danh_sach_chon)
     noi_dung = ""
     if request.form.get("Th_noi_dung") :
         noi_dung = request.form.get("Th_noi_dung")
-        print("nội dung là :",noi_dung)
 
         app.config['MAIL_SERVER'] = "smtp.gmail.com"
         app.config['MAIL_PORT'] = 465
@@ -50,3 +43,26 @@ def trang_tra_loi_lien_he(Chuoi_tra_cuu) :
         mail.send(msg)
 
     return render_template("quan_ly/tra_loi_lien_he.html" ,danh_sach_chon=danh_sach_chon)
+
+
+@app.route("/quan-li/tao-tai-khoan" , methods=['GET','POST'])
+def trang_tao_tai_khoan() :
+    id_giao_vien = ""
+    ten_dang_nhap = ""
+    mat_khau = ""
+    ho_ten = ""
+    email = ""
+    Danh_sach = []
+    if request.form.get('Th_Id_giao_vien') :
+        id_giao_vien = request.form.get('Th_Id_giao_vien')
+        ten_dang_nhap = request.form.get('Th_Ten_dang_nhap')
+        mat_khau = request.form.get('Th_Mat_khau')
+        ho_ten = request.form.get('Th_Ho_va_ten')
+        email = request.form.get('Th_email')
+        Danh_sach.append(id_giao_vien)
+        Danh_sach.append(ten_dang_nhap)
+        Danh_sach.append(mat_khau)
+        Danh_sach.append(ho_ten)
+        Danh_sach.append(email)
+        Them_tai_khoan(Danh_sach)
+    return render_template("quan_ly/tao_tai_khoan.html")
