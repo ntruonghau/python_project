@@ -81,6 +81,59 @@ def trang_tao_tai_khoan() :
         Them_tai_khoan(Danh_sach)
     return render_template("quan_ly/tao_tai_khoan.html")
 
+@app.route('/quan-li/doi-mat-khau', methods=['GET', 'POST'])
+def doi_mat_khau_ql():
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
+    quanli = session['quanli']
+    
+    ql = Profile_Quan_li(quanli)
+    ThongBao = ""
+    form = Form_Reset_pw()
+
+    if form.validate_on_submit():
+        MatkhauCu = request.form['Th_MatkhauCu']
+        MatkhauMoi = request.form['Th_MatkhauMoi']
+        ThongBao = hs_doi_mat_khau(quanli, MatkhauCu, MatkhauMoi)
+        if ThongBao == "Đổi Mật Khẩu Thành Công":
+            return redirect(url_for('trang_quan_li', message='Đổi mật khẩu thành công'))
+    return render_template('quan_ly/doi_mat_khau.html', form=form, ThongBao=ThongBao)
+
+@app.route('/quan-li/sua-quan-li', methods=['GET','POST'])
+def cap_nhat_quan_li():
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
+    error = ''
+    quanli = session['quanli']
+    quan_li = Profile_Quan_li(quanli)
+    form = Form_Update_Ql()
+    if form.validate_on_submit():
+        HoVaTen = request.form['Th_Ho_ten']
+        GioiTinh = request.form['Th_Gioi_tinh']
+        NgaySinh = request.form['Th_Ngay_sinh']
+        DiaChi = request.form['Th_Dia_chi']
+        Email = request.form['Th_Email']
+        SoDienThoai = request.form['Th_Sdt']
+
+        ql = {"HoVaTen": HoVaTen, "GioiTinh": GioiTinh, "NgaySinh": NgaySinh, "Email": Email, "DiaChi": DiaChi,
+              "SoDienThoai": SoDienThoai}
+
+        value = db_session.query(QuanLi).filter(
+            QuanLi.TenDangNhap == quanli).first()
+
+        value.HoVaTen = ql['HoVaTen']
+        value.GioiTinh = ql['GioiTinh']
+        value.NgaySinh = datetime.strptime(ql['NgaySinh'], '%Y-%m-%d').date()
+        value.Email = ql['Email']
+        value.DiaChi = ql['DiaChi']
+        value.SoDienThoai = ql['SoDienThoai']
+        db_session.flush()
+        db_session.commit()
+        return redirect(url_for('trang_quan_li', message='Cập nhật thành công'))
+
+    form.Th_Gioi_tinh.default = quan_li['GioiTinh']
+    form.process()
+    return render_template('quan_ly/cap_nhat_thong_tin.html', quan_li=quan_li, form=form, error=error)
 
 @app.route('/quan-li/dang-xuat', methods=['GET', 'POST'])
 def dang_xuat_ql():
