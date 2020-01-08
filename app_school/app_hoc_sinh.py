@@ -121,16 +121,21 @@ def hoc_sinh():
     if session.get("hocsinh") == None:
         return redirect(url_for('index'))
     error = ''
+    message = ''
     hocsinh = session['hocsinh']
     hoc_sinh = Profile_hoc_sinh(hocsinh)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
 
-    return render_template('hoc_sinh/thong_tin.html',HocSinh=hoc_sinh )
+    return render_template('hoc_sinh/thong_tin.html',HocSinh=hoc_sinh, message=message )
 
 @app.route('/hoc-sinh/sua-hoc-sinh', methods=['GET','POST'])
 def cap_nhat_hoc_sinh():
     if session.get("hocsinh") == None:
         return redirect(url_for('index'))
     error = ''
+    message = ''
     hocsinh = session['hocsinh']
     form = Form_Update_Hs()
     id_hoc_sinh = hocsinh

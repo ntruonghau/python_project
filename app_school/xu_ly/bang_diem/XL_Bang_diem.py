@@ -15,28 +15,28 @@ def doc_danh_sach_bang_diem_hoc():  # select field tupple choice
     return ds_bang_diem
 
 def cap_nhat_bang_diem(id_bang_diem, loai_diem, diem_so):
-    try:
-        bang_diem = db_session.query(BangDiem).filter(BangDiem.IDBangDiem == id_bang_diem).one()
-        print(bang_diem.__dict__)
-        if BangDiem._15Phut_1_.name == loai_diem:
-            bang_diem._15Phut_1_ = diem_so
-        elif BangDiem._15Phut_2_.name == loai_diem:
-            bang_diem._15Phut_2_ = diem_so
-        elif BangDiem._15Phut_3_.name == loai_diem:
-            bang_diem._15Phut_3_ = diem_so
-        elif BangDiem._45Phut_1_.name == loai_diem:
-            bang_diem._45Phut_1_ = diem_so
-        elif BangDiem._45Phut_2_.name == loai_diem:
-            bang_diem._45Phut_2_ = diem_so
-        elif BangDiem._45Phut_3_.name == loai_diem:
-            bang_diem._45Phut_3_ = diem_so
-        elif BangDiem.HocKy.name == loai_diem:
-            bang_diem.HocKy = diem_so
-        db_session.flush()
-        db_session.commit()
-    except:
-        db_session.rollback()
-        pass
+    # try:
+    bang_diem = db_session.query(BangDiem).filter(BangDiem.IDBangDiem == id_bang_diem).one()
+    print(bang_diem.__dict__)
+    if BangDiem._15Phut_1_.name == loai_diem:
+        bang_diem._15Phut_1_ = diem_so
+    elif BangDiem._15Phut_2_.name == loai_diem:
+        bang_diem._15Phut_2_ = diem_so
+    elif BangDiem._15Phut_3_.name == loai_diem:
+        bang_diem._15Phut_3_ = diem_so
+    elif BangDiem._45Phut_1_.name == loai_diem:
+        bang_diem._45Phut_1_ = diem_so
+    elif BangDiem._45Phut_2_.name == loai_diem:
+        bang_diem._45Phut_2_ = diem_so
+    elif BangDiem._45Phut_3_.name == loai_diem:
+        bang_diem._45Phut_3_ = diem_so
+    elif BangDiem.HocKy.name == loai_diem:
+        bang_diem.HocKy = diem_so
+    db_session.flush()
+    db_session.commit()
+    # except:
+        # db_session.rollback()
+    pass
 
 def doc_bang_diem_theo_id_bang_diem(id_bang_diem):
     bd = {}
