@@ -33,7 +33,7 @@ def xem_lich_thi():
         form.Th_Nien_khoa.default = nien_khoa
 
     lichthi = load_lich_thi(nien_khoa,khoi)
-    return render_template('lich_thi/lich_thi.html',lich_thi = lichthi, )
+    return render_template('lich_thi/lich_thi.html',lich_thi = lichthi, form=form)
 
 @app.route('/them-lich-thi', methods=['GET', 'POST'])
 def Them_lich_thi():
