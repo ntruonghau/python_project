@@ -30,3 +30,9 @@ def Them_Lich_Thi(lich_thi):
         db_session.add(lich_thi)
         db_session.commit()
     return  "Đã Thêm Thành Công"
+
+def load_lich_thi_hs(id_hs):
+    hs = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == id_hs).one()
+    lp = db_session.query(Lop).filter(hs.IDLop == Lop.IDLop).one()
+    Kh = db_session.query(Khoi).filter(Khoi.IDKhoi == lp.IDKhoi).one()
+    return load_lich_thi(hs.IDNienKhoa,Kh.IDKhoi)

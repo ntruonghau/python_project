@@ -6,6 +6,7 @@ from app_school.xu_ly.bang_diem.XL_Bang_diem import tao_bang_diem_cho_hoc_sinh, 
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
 from app_school.xu_ly.Xu_ly_Model import HocSinh, Lop
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import *
+from app_school.xu_ly.lich_thi.XL_lich_thi import *
 from app_school import app, db_session
 from datetime import date
 
@@ -187,3 +188,18 @@ def doi_mat_khau_hs():
             return redirect(url_for('hoc_sinh', message='Đổi mật khẩu thành công'))
     return render_template('hoc_sinh/doi_mat_khau.html', form=form, ThongBao=ThongBao)
 
+@app.route('/hoc-sinh/lich-thi', methods=['GET', 'POST'])
+def lich_thi_hs():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    hocsinh = session['hocsinh']
+    lt = load_lich_thi_hs(hocsinh)
+    return render_template('hoc_sinh/xem_lich_thi.html',lich_thi = lt)
+
+@app.route('/hoc-sinh/thoi-khoa-bieu', methods=['GET', 'POST'])
+def thoi-khoa-bieu-hs():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    hocsinh = session['hocsinh']
+    lt = load_lich_thi_hs(hocsinh)
+    return render_template('hoc_sinh/xem_lich_thi.html',lich_thi = lt)
