@@ -2,6 +2,10 @@ from flask import Markup, url_for
 import json
 import os
 import sqlite3
+from flask import Markup, request, render_template, url_for, session, redirect
+from app_school import app, db_session
+from app_school.xu_ly.Xu_ly_Model import QuanLi
+from datetime import datetime
 
 Thu_muc_du_lieu ="app_school/du_lieu/"
 
@@ -49,3 +53,10 @@ def Them_tai_khoan(Danh_sach_info) :
         print("Đã thêm tài khoản thành công !")
     conn.commit()
     conn.close()
+
+
+def Profile_Quan_li(TaiKhoan):
+    ql1 = db_session.query(QuanLi).filter(QuanLi.TenDangNhap == TaiKhoan).first()
+    ql = {"HoVaTen": ql1.HoVaTen, "GioiTinh": ql1.GioiTinh, "NgaySinh": datetime.strptime(ql1.NgaySinh,'%Y-%m-%d' ).date(), "Email": ql1.Email, "DiaChi" : ql1.DiaChi,
+         "SoDienThoai": ql1.SoDienThoai, "ID_GV": ql1.IDQuanLi}
+    return ql

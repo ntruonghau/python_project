@@ -13,17 +13,29 @@ from flask_mail import Mail , Message
 
 @app.route("/quan-li" , methods = ['GET','POST'])
 def trang_quan_li() :
-    return render_template('web_layout/quan-ly-master.html')
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
+    quanli = session['quanli']
+    message = ''
+    quan_li = Profile_Quan_li(quanli)
+    if request.args.get('message'):
+        message = request.args.get('message')
+        print(message)
+    return render_template('quan_ly/thong_tin_quan_li.html',quan_li=quan_li,message=message)
 
 
 @app.route("/quan-li/doc-lien-he" , methods = ['GET','POST'])
 def trang_doc_lien_he() :
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
     Danh_sach_lh = Doc_danh_sach_lh()
     form = Form_Feedback()
     return render_template("quan_ly/doc_lien_he.html" , Danh_sach_lh=Danh_sach_lh)
 
 @app.route("/quan-li/doc-lien-he/<string:Chuoi_tra_cuu>/" , methods=['GET','POST'])
 def trang_tra_loi_lien_he(Chuoi_tra_cuu) :
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
     danh_sach = Doc_danh_sach_lh()
     danh_sach_chon = Lay_info_theo_Email(Chuoi_tra_cuu , danh_sach)
     noi_dung = ""
@@ -47,6 +59,8 @@ def trang_tra_loi_lien_he(Chuoi_tra_cuu) :
 
 @app.route("/quan-li/tao-tai-khoan" , methods=['GET','POST'])
 def trang_tao_tai_khoan() :
+    if session.get("quanli") == None:
+        return redirect(url_for('index'))
     id_giao_vien = ""
     ten_dang_nhap = ""
     mat_khau = ""
@@ -66,3 +80,10 @@ def trang_tao_tai_khoan() :
         Danh_sach.append(email)
         Them_tai_khoan(Danh_sach)
     return render_template("quan_ly/tao_tai_khoan.html")
+
+
+@app.route('/quan-li/dang-xuat', methods=['GET', 'POST'])
+def dang_xuat_ql():
+    if session.get("quanli") != None:
+        session.pop("quanli", None)
+    return redirect('/')

@@ -23,8 +23,10 @@ def index():
 def login():
     if session.get("giaovien") != None:
         return redirect('giao-vien')
-    if session.get("hocsinh") != None:
-            return redirect('hoc-sinh')
+    # if session.get("hocsinh") != None:
+    #         return redirect('hoc-sinh')
+    if session.get("quanli") != None :
+        return redirect('quan-li')
     form = Form_Login()
     Th_Taikhoan = ''
     Th_Matkhau = ''
@@ -41,6 +43,13 @@ def login():
                     return redirect(url_for('giao_vien'))
                 else:
                     error = 'Tài khoản hoặc mật khẩu không đúng'
+            elif Th_Quyen == 'ql': 
+                quanli = db_session.query(QuanLi).filter(QuanLi.TenDangNhap == Th_Taikhoan).one()
+                if quanli.MatKhau == Th_Matkhau:
+                    session['quanli'] = Th_Taikhoan
+                    return redirect(url_for('trang_quan_li'))
+                else:
+                    error = 'Tài khoản hoặc mật khẩu không đúng'   
             else:
                 hocsinh = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == Th_Taikhoan).one()
                 if hocsinh.MatKhau == Th_Matkhau:
