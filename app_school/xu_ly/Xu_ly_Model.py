@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Table,Column,ForeignKey,Integer,String,Float
+from sqlalchemy import Table,Column,ForeignKey,Integer,String,Float,Text,Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.orm import relationship
@@ -160,6 +160,24 @@ class QuanLi(Base):
 
     def __str__(self):
         return self.HoVaTen
+class Hoat_Dong(Base):
+    __tablename__ = 'Hoat_Dong'
+    IDHoatDong = Column(Integer, primary_key = True)
+    TieuDe = Column(String(200),  unique = True)
+    GiaoVienTao =  Column(String(100),ForeignKey('GiaoVien.TenDangNhap'))
+    NoiDung = Column(Text)
+    ThoiHanDangKy = Column(String(20))
+    Khoi_10 = Column(Boolean)
+    Khoi_11 = Column(Boolean)
+    Khoi_12 = Column(Boolean)
+    NienKhoa = Column(Integer, ForeignKey('NienKhoa.ID'))
+    SoNguoiDaThamGia  = Column(Integer)
+
+class Tham_Gia_Hoat_Dong(Base):
+    __tablename__ = 'Tham_Gia_Hoat_Dong'
+    IDHoatDong = Column(Integer, primary_key = True)
+    IDHocSinh = Column(Integer, ForeignKey(HocSinh.IDHocSinh),primary_key = True)
+    NgayDangKy = Column(String(20))
 
 Base.metadata.create_all(engine)
 ##############################################

@@ -42,4 +42,6 @@ def gv_doi_mat_khau(TaiKhoan,matkhau_cu,matkhau_moi):
             ThongBao = "Đổi Mật Khẩu Thành Công"
         return ThongBao
 
-
+def ten_giao_vien(taikhoan_gv):
+    gv1 = db_session.query(GiaoVien).filter(GiaoVien.TenDangNhap == taikhoan_gv).first()
+    return gv1.HoVaTen

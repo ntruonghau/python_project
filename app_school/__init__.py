@@ -20,3 +20,4 @@ import app_school.app_trang_chu
 import app_school.app_thoi_khoa_bieu
 import app_school.app_lich_thi
 import app_school.app_quan_li
+import app_school.app_hoat_dong

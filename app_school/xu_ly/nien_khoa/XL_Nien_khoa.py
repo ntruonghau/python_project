@@ -11,3 +11,7 @@ def doc_danh_sach_nien_khoa_select(): # select field tupple choice
     except:
         pass
     return ds_nien_khoa
+    
+def ten_nien_khoa(ID_NienKhoa):
+    nien_khoa = db_session.query(NienKhoa).filter(NienKhoa.ID == ID_NienKhoa).first()
+    return nien_khoa.NamNienKhoa
