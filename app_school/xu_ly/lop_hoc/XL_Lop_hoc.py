@@ -79,3 +79,7 @@ def cap_nhat_si_so(lop, sl_them_giam=1):
         db_session.rollback()
         return False
     return True
+
+def ten_lop(lop):
+    lop = db_session.query(Lop).filter(Lop.IDLop == lop).first()
+    return lop.TenLop

@@ -129,7 +129,6 @@ def hoc_sinh():
     if request.args.get('message'):
         message = request.args.get('message')
         print(message)
-
     return render_template('hoc_sinh/thong_tin.html',HocSinh=hoc_sinh, message=message )
 
 @app.route('/hoc-sinh/sua-hoc-sinh', methods=['GET','POST'])
@@ -228,5 +227,4 @@ def thoi_khoa_bieu_hs():
     hocsinh = session['hocsinh']
     hs  = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == hocsinh).first()
     tkb = doc_thoi_khoa_bieu_hs(hs.IDLop,hs.IDNienKhoa)
-
     return render_template('hoc_sinh/xem_thoi_khoa_bieu.html',tkb=tkb)

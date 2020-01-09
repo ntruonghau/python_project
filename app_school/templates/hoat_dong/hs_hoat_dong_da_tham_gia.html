@@ -26,13 +26,7 @@
                         <p class="card-text">{{i.NoiDung}}</p>
                     </div>
                     <div class="card-footer">
-                        <div class = "text-center">
-                            {% if  i.TinhTrang  == "Tham Gia" %}
-                                 <a href={{ "/hoc-sinh/hoat-dong/tham-gia/"+ i.IDHoatDong}} class="btn btn-primary btn-lg active" role="button" aria-pressed="true">{{ i.TinhTrang }}</a>
-                            {% else %}
-                                <a  href={{ "/hoc-sinh/hoat-dong/huy-tham-gia/"+ i.IDHoatDong}} class="btn btn-primary btn-lg active" role="button" aria-pressed="true">{{ i.TinhTrang }}</a>
-                            {% endif %}
-                           
+                        <div class = "text-center">                           
                             <a href={{ "#hoat_dong"+ i.IDHoatDong }} data-toggle="modal" class="btn btn-primary btn-lg active" >Xem chi tiết</a>
                         </div>
                     </div>
@@ -44,8 +38,7 @@
                                 <div class="modal-header">
                                     <h4 class="modal-title"  >{{i.TieuDe}}</h4>           
                                     <button class="close" type="button" data-dismiss="modal">×</button>
-                                </div>                
-                            
+                                </div>      
                                 <div align="center" class="modal-body"> 
                                         Nội Dung: {{i.NoiDung}}
                                         </br>
@@ -55,8 +48,7 @@
                                         </br>
                                         Số Người Đã Tham Gia: {{i.SoNguoiThamGia}}
                                         </br>
-                                </div>                
-                                
+                                </div>      
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Đóng</button>
                                 </div>                
