@@ -112,7 +112,7 @@ def sua_thong_tin_hoc_sinh(hoc_sinh):
     form.process()  
     return render_template('hoc_sinh/hs_sua_thong_tin.html',HocSinh=Hoc_Sinh,form=form )
 
-@app.route('/dang-xuat', methods=['GET', 'POST'])
+@app.route('/hoc-sinh/dang-xuat', methods=['GET', 'POST'])
 def dang_xuat_hs():
     if session.get("hocsinh") != None:
         session.pop("hocsinh", None)
