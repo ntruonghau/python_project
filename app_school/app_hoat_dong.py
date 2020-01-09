@@ -98,6 +98,18 @@ def danh_sach_nguoi_tham_gia(id_hoat_dong):
     
     danhsach = ds
     So_nguoi = len(danhsach)
-    
-
     return render_template('hoat_dong/gv_xem_danh_sach_nguoi_tham_gia.html',danhsach=danhsach,So_nguoi=So_nguoi)
+
+@app.route('/giao-vien/hoat-dong/xoa-hoat-dong/<string:id_hoat_dong>', methods=['GET', 'POST'])
+def xoa_hoat_dong(id_hoat_dong):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))   
+    giaovien = session['giaovien']
+    print(db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).count())
+    if db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).count() > 0 :
+        db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).delete()
+        db_session.commit()
+
+    db_session.delete(db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == id_hoat_dong).one()) 
+    db_session.commit()
+    return redirect(url_for('hoat_dong_gv'))  
