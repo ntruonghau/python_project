@@ -34,7 +34,21 @@ def load_danh_sach_hoat_dong(Nien_Khoa,hocsinh):
             hoatdong['ThoiHan'] =  datetime.strptime(i.ThoiHanDangKy, '%d-%m-%Y')
             hoatdong['NienKhoa'] = ten_nien_khoa(i.NienKhoa)
             hoatdong['SoNguoiThamGia'] =  i.SoNguoiDaThamGia
-
-
             danh_sach_hoat_dong.append(hoatdong)
     return(danh_sach_hoat_dong)
+
+def hoat_dong_da_tham_gia(id_HocSinh):
+    ds_hd = db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHocSinh == id_HocSinh).all()
+    danh_sach_hoat_dong = []
+    for i in ds_hd:
+        hdong = db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == i.IDHoatDong).first()
+        hoatdong = {}
+        hoatdong['IDHoatDong'] = str(i.IDHoatDong)
+        hoatdong['TieuDe'] = hdong.TieuDe
+        hoatdong['NoiDung'] = hdong.NoiDung
+        hoatdong['NguoiTao'] = ten_giao_vien(hdong.GiaoVienTao)
+        hoatdong['ThoiHan'] =  datetime.strptime(hdong.ThoiHanDangKy, '%d-%m-%Y')
+        hoatdong['NienKhoa'] = ten_nien_khoa(hdong.NienKhoa)
+        hoatdong['SoNguoiThamGia'] =  hdong.SoNguoiDaThamGia
+        danh_sach_hoat_dong.append(hoatdong)
+    return danh_sach_hoat_dong

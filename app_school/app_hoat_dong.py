@@ -40,3 +40,12 @@ def tham_gia_hoat_dong_hs(id_hoat_dong):
         db_session.flush()
         db_session.commit()
         return redirect('/hoc-sinh/hoat-dong')
+
+@app.route('/hoc-sinh/hoat-dong-da-tham-gia', methods=['GET', 'POST'])
+def hoat_dong_da_tham_gia_hs():
+    if session.get("hocsinh") == None:
+        return redirect(url_for('index'))
+    hocsinh = session['hocsinh'] 
+
+    ds_hd = hoat_dong_da_tham_gia(hocsinh)
+    return render_template('hoat_dong/hoat_dong_da_tham_gia.html',hoat_dong = ds_hd)
