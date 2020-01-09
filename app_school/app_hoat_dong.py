@@ -4,7 +4,7 @@ from app_school.xu_ly.Xu_ly_Model import *
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import * 
 from app_school.xu_ly.hoat_dong.XL_Hoat_dong import *
 from app_school.xu_ly.nien_khoa.XL_Nien_khoa import *
-
+from sqlalchemy import func 
 from app_school import app, db_session
 
 @app.route('/hoc-sinh/hoat-dong', methods=['GET', 'POST'])
@@ -77,6 +77,7 @@ def hoat_dong_gv():
     form.Th_Nien_khoa.choices = ds_nien_khoa
     if form.validate_on_submit():
         nien_khoa = request.form['Th_Nien_khoa']
+        form.Th_Nien_khoa.default = nien_khoa
     ds_hd =  load_danh_sach_hoat_dong_gv(nien_khoa)
     return render_template('hoat_dong/gv_xem_hoat_dong.html', hoat_dong=ds_hd, form = form)
 
@@ -105,11 +106,51 @@ def xoa_hoat_dong(id_hoat_dong):
     if session.get("giaovien") == None:
         return redirect(url_for('index'))   
     giaovien = session['giaovien']
-    print(db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).count())
     if db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).count() > 0 :
         db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).delete()
         db_session.commit()
 
     db_session.delete(db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == id_hoat_dong).one()) 
     db_session.commit()
-    return redirect(url_for('hoat_dong_gv'))  
+    return redirect("/giao-vien/hoat-dong")  
+
+@app.route('/giao-vien/hoat-dong/them-hoat-dong', methods=['GET', 'POST'])
+def them_hoat_dong():
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))   
+    giaovien = session['giaovien']
+    ds_nienkhoa = doc_danh_sach_nien_khoa_select()
+    
+    form = Form_Them_Hoat_Dong()
+    form.Th_Nien_khoa.choices = ds_nienkhoa
+
+    if form.validate_on_submit():
+        ds_doi_tuong = request.form.getlist('Th_Khoi')
+
+        khoi10 = 0
+        khoi11 = 0
+        khoi12 = 0
+
+        if '1' in ds_doi_tuong:
+            khoi10 = 1
+        if '2' in ds_doi_tuong:
+            khoi11 = 1
+        if '3' in ds_doi_tuong:
+            khoi12 = 1
+
+        nien_khoa = request.form['Th_Nien_khoa']
+        tieu_de = request.form['Th_TieuDe']
+        noi_dung = request.form['Th_NoiDung']
+
+        thoi_han = request.form['Th_HanDangKy']
+        thoi_han = datetime.strptime(thoi_han, '%Y-%m-%d')
+        thoi_han = thoi_han.strftime("%d-%m-%Y")
+        
+        IDHoat_Dong = db_session.query(func.max(Hoat_Dong.IDHoatDong)).first()
+        ID  = IDHoat_Dong[0] + 1
+
+        hd = Hoat_Dong(IDHoatDong = ID, GiaoVienTao = giaovien ,TieuDe = tieu_de, NoiDung = noi_dung,ThoiHanDangKy = thoi_han, Khoi_10 = khoi10 , Khoi_11 = khoi11, Khoi_12 = khoi12, NienKhoa = nien_khoa, SoNguoiDaThamGia = 0)
+        db_session.add(hd)
+        db_session.commit()
+        return redirect(url_for('hoat_dong_gv')) 
+    return render_template('hoat_dong/gv_them_hoat_dong.html',form=form)

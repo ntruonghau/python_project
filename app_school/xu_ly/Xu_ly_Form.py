@@ -154,6 +154,12 @@ class Form_Sua_Lich_Thi(FlaskForm):
 class Form_Xem_Hoat_Dong(FlaskForm):
     Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
     
+class Form_Them_Hoat_Dong(FlaskForm):
+    Th_TieuDe = TextField("Tiêu đề", [validators.Required("Vui lòng nhập tiêu đề.")])
+    Th_NoiDung = TextAreaField("Nội dung", [validators.InputRequired(), validators.Length(min=4, max=500)])
+    Th_HanDangKy = TextField("Hạn đăng ký", [validators.Required("Vui lòng nhập hạn đăng ký.")])
+    Th_Nien_khoa = SelectField("Niên Khóa", coerce=int)
+
 '''class Form_UpdateProfile(FlaskForm) :
     Th_Id = IntegerField("Mã số ID" , [validators.Required("Vui lòng nhập vào mã số ID") ,validators.Length(min=4, max=15)])
     Th_Taikhoan = TextField("Tên tài khoản đăng nhập" , [validators.Required("Vui lòng nhập vào tên đăng nhập"),validators.Length(min=4, max=20)])

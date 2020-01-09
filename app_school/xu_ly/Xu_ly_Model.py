@@ -163,7 +163,7 @@ class QuanLi(Base):
 class Hoat_Dong(Base):
     __tablename__ = 'Hoat_Dong'
     IDHoatDong = Column(Integer, primary_key = True)
-    TieuDe = Column(String(200),  unique = True)
+    TieuDe = Column(String(200))
     GiaoVienTao =  Column(String(100),ForeignKey('GiaoVien.TenDangNhap'))
     NoiDung = Column(Text)
     ThoiHanDangKy = Column(String(20))
