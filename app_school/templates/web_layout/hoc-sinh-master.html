@@ -205,6 +205,17 @@
             }
         )
         {% endif %}
+        {% if message_hoatdong %}
+        Swal.fire(
+            {
+                text: '{{ message_hoatdong }}',
+                type: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#626ed4',
+                cancelButtonColor: "#ec4561"
+            }
+        )
+        {% endif %}
     </script>
     {% endblock %}
 

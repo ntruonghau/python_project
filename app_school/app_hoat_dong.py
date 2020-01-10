@@ -13,13 +13,13 @@ def hoat_dong_hs():
         return redirect(url_for('index'))
     hocsinh = session['hocsinh']    
 
+    message = ''
     hs = db_session.query(HocSinh).filter(HocSinh.IDHocSinh == hocsinh).one()
     hdong = load_danh_sach_hoat_dong(hs.IDNienKhoa,hs)
-    if request.args.get('message'):
-        message = request.args.get('message')
-        print(message)
+    if request.args.get('message_hoatdong'):
+        message = request.args.get('message_hoatdong')
         
-    return render_template('hoat_dong/hs_xem_hoat_dong.html',hoat_dong = hdong)
+    return render_template('hoat_dong/hs_xem_hoat_dong.html',hoat_dong = hdong,message_hoatdong = message)
 
 @app.route('/hoc-sinh/hoat-dong/tham-gia/<string:id_hoat_dong>', methods=['GET', 'POST'])
 def tham_gia_hoat_dong_hs(id_hoat_dong):
@@ -31,7 +31,7 @@ def tham_gia_hoat_dong_hs(id_hoat_dong):
     hd = db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == id_hoat_dong).first()
     HanDangKy = datetime.strptime( hd.ThoiHanDangKy, '%d-%m-%Y')
     if ngay_dang_ky > HanDangKy:
-        return redirect(url_for('hoat_dong_hs', message='Đã Quá Hạn Đăng Ký'))
+        return redirect(url_for('hoat_dong_hs', message_hoatdong='Đã Quá Hạn Đăng Ký'))
     else: 
         ngay_dang_ky = datetime.now().date()
         ngay_dang_ky = ngay_dang_ky.strftime("%d-%m-%Y")
@@ -40,7 +40,8 @@ def tham_gia_hoat_dong_hs(id_hoat_dong):
         db_session.add(thamgia)
         db_session.flush()
         db_session.commit()
-        return redirect('/hoc-sinh/hoat-dong')
+        message = 'Đã Đăng Ký ' + hd.TieuDe
+        return redirect(url_for('hoat_dong_hs', message_hoatdong= message))
 
 @app.route('/hoc-sinh/hoat-dong/huy-tham-gia/<string:id_hoat_dong>', methods=['GET', 'POST'])
 def huy_tham_gia_hoat_dong_hs(id_hoat_dong):
@@ -52,7 +53,8 @@ def huy_tham_gia_hoat_dong_hs(id_hoat_dong):
     db_session.delete(db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong, Tham_Gia_Hoat_Dong.IDHocSinh == hocsinh).one())
     db_session.flush()
     db_session.commit()
-    return redirect('/hoc-sinh/hoat-dong')
+    message = 'Đã Hủy Đăng Ký ' + hd.TieuDe
+    return redirect(url_for('hoat_dong_hs', message_hoatdong= message))
 
 
 @app.route('/hoc-sinh/hoat-dong-da-tham-gia', methods=['GET', 'POST'])
@@ -75,11 +77,15 @@ def hoat_dong_gv():
     ds_nien_khoa = doc_danh_sach_nien_khoa_select()
     nien_khoa = ds_nien_khoa[0][0]
     form.Th_Nien_khoa.choices = ds_nien_khoa
+    message = ''
+    if request.args.get('message_hoatdong'):
+        message = request.args.get('message_hoatdong')
+
     if form.validate_on_submit():
         nien_khoa = request.form['Th_Nien_khoa']
         form.Th_Nien_khoa.default = nien_khoa
     ds_hd =  load_danh_sach_hoat_dong_gv(nien_khoa)
-    return render_template('hoat_dong/gv_xem_hoat_dong.html', hoat_dong=ds_hd, form = form)
+    return render_template('hoat_dong/gv_xem_hoat_dong.html', hoat_dong=ds_hd, form = form,message_hoatdong = message)
 
 @app.route('/giao-vien/hoat-dong/danh-sach-nguoi-tham-gia/<string:id_hoat_dong>', methods=['GET', 'POST'])
 def danh_sach_nguoi_tham_gia(id_hoat_dong):
@@ -109,10 +115,12 @@ def xoa_hoat_dong(id_hoat_dong):
     if db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).count() > 0 :
         db_session.query(Tham_Gia_Hoat_Dong).filter(Tham_Gia_Hoat_Dong.IDHoatDong == id_hoat_dong).delete()
         db_session.commit()
-
+    hd = db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == id_hoat_dong).one()
     db_session.delete(db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == id_hoat_dong).one()) 
     db_session.commit()
-    return redirect("/giao-vien/hoat-dong")  
+   
+    message = "Đã xóa hoạt động " + hd.TieuDe
+    return redirect(url_for('hoat_dong_gv', message_hoatdong= message))
 
 @app.route('/giao-vien/hoat-dong/them-hoat-dong', methods=['GET', 'POST'])
 def them_hoat_dong():
@@ -152,7 +160,8 @@ def them_hoat_dong():
         hd = Hoat_Dong(IDHoatDong = ID, GiaoVienTao = giaovien ,TieuDe = tieu_de, NoiDung = noi_dung,ThoiHanDangKy = thoi_han, Khoi_10 = khoi10 , Khoi_11 = khoi11, Khoi_12 = khoi12, NienKhoa = nien_khoa, SoNguoiDaThamGia = 0)
         db_session.add(hd)
         db_session.commit()
-        return redirect(url_for('hoat_dong_gv')) 
+        message = "Đã thêm hoạt động " + hd.TieuDe
+        return redirect(url_for('hoat_dong_gv', message_hoatdong= message))
     return render_template('hoat_dong/gv_them_hoat_dong.html',form=form)
 
 @app.route('/giao-vien/hoat-dong/sua-hoat-dong/<string:ID_hoat_dong>', methods=['GET', 'POST'])
@@ -172,7 +181,8 @@ def sua_hoat_dong(ID_hoat_dong):
     form.Th_Nien_khoa.default = ds_nienkhoa[0][0]
 
     if hd.GiaoVienTao != giaovien:
-        return redirect(url_for('hoat_dong_gv'))
+            message = "Bạn không phải giáo viên tạo hoạt động ^_^"
+            return redirect(url_for('hoat_dong_gv', message_hoatdong= message))
     else:
         if form.validate_on_submit():
             ds_doi_tuong = request.form.getlist('Th_Khoi')
@@ -206,5 +216,6 @@ def sua_hoat_dong(ID_hoat_dong):
             value.NienKhoa = nien_khoa
             db_session.flush()
             db_session.commit()
-            return redirect(url_for('hoat_dong_gv'))
+            message = "Đã Sửa hoạt động " + hd.TieuDe
+            return redirect(url_for('hoat_dong_gv', message_hoatdong= message))
     return render_template('hoat_dong/gv_sua_hoat_dong.html',form=form, hoat_dong= hd)  
