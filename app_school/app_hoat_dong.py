@@ -154,3 +154,57 @@ def them_hoat_dong():
         db_session.commit()
         return redirect(url_for('hoat_dong_gv')) 
     return render_template('hoat_dong/gv_them_hoat_dong.html',form=form)
+
+@app.route('/giao-vien/hoat-dong/sua-hoat-dong/<string:ID_hoat_dong>', methods=['GET', 'POST'])
+def sua_hoat_dong(ID_hoat_dong):
+    if session.get("giaovien") == None:
+        return redirect(url_for('index'))   
+    giaovien = session['giaovien']
+
+    form = Form_Them_Hoat_Dong()
+
+    ds_nienkhoa = doc_danh_sach_nien_khoa_select()
+    form = Form_Sua_Hoat_Dong()
+    form.Th_Nien_khoa.choices = ds_nienkhoa
+
+    hd = db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong ==  ID_hoat_dong).first()
+    hd.ThoiHanDangKy = datetime.strptime(hd.ThoiHanDangKy,'%d-%m-%Y' ).date()
+    form.Th_Nien_khoa.default = ds_nienkhoa[0][0]
+
+    if hd.GiaoVienTao != giaovien:
+        return redirect(url_for('hoat_dong_gv'))
+    else:
+        if form.validate_on_submit():
+            ds_doi_tuong = request.form.getlist('Th_Khoi')
+
+            khoi10 = 0
+            khoi11 = 0
+            khoi12 = 0
+
+            if '1' in ds_doi_tuong:
+                khoi10 = 1
+            if '2' in ds_doi_tuong:
+                khoi11 = 1
+            if '3' in ds_doi_tuong:
+                khoi12 = 1        
+
+            nien_khoa = request.form['Th_Nien_khoa']
+            tieu_de = request.form['Th_TieuDe']
+            noi_dung = request.form['Th_NoiDung']
+
+            thoi_han = request.form['Th_HanDangKy']
+            thoi_han = datetime.strptime(thoi_han, '%Y-%m-%d')
+            thoi_han = thoi_han.strftime("%d-%m-%Y")   
+
+            value = db_session.query(Hoat_Dong).filter(Hoat_Dong.IDHoatDong == ID_hoat_dong).first()     
+            value.TieuDe = tieu_de
+            value.NoiDung = noi_dung
+            value.ThoiHanDangKy = thoi_han
+            value.Khoi_10 = khoi10
+            value.Khoi_11 = khoi11
+            value.Khoi_12 = khoi12
+            value.NienKhoa = nien_khoa
+            db_session.flush()
+            db_session.commit()
+            return redirect(url_for('hoat_dong_gv'))
+    return render_template('hoat_dong/gv_sua_hoat_dong.html',form=form, hoat_dong= hd)  
