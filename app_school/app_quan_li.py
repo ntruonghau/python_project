@@ -4,6 +4,7 @@ from app_school.xu_ly.lop_hoc.XL_Lop_hoc import lay_nien_khoa_theo_lop, cap_nhat
 from app_school.xu_ly.giao_vien.XL_Giao_vien import Profile_Giao_Vien
 from app_school.xu_ly.bang_diem.XL_Bang_diem import tao_bang_diem_cho_hoc_sinh, doc_bang_diem_theo_hoc_sinh
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import Profile_hoc_sinh
+from app_school.xu_ly.lop_hoc.XL_Lop_hoc import doc_danh_sach_lop_hoc, doc_danh_sach_lop_hoc_theo_giao_vien
 from app_school.xu_ly.Xu_ly_Model import HocSinh, Lop
 from app_school.xu_ly.hoc_sinh.XL_Hoc_sinh import *
 from app_school.xu_ly.quan_li.xu_ly_doc_lien_he import *
@@ -190,6 +191,11 @@ def trang_xem_tai_khoan_hs_chon(Chuoi_Tra_cuu) :
     Danh_sach_hs = Doc_danh_sach_hs()
     Danh_sach_hs_chon = Lay_info_theo_ID(Chuoi_Tra_cuu,Danh_sach_hs)
     return render_template("quan_ly/xem_tai_khoan_hs_chon.html", Danh_sach_hs_chon=Danh_sach_hs_chon)
+
+@app.route("/quan-li/xem-cac-lop" , methods = ['GET','POST'])
+def trang_them_tkb() :
+    danh_sach_lop = doc_danh_sach_lop_hoc()
+    return render_template("quan_ly/xem_cac_lop.html",danh_sach_lop=danh_sach_lop)
 
 @app.route('/quan-li/dang-xuat', methods=['GET', 'POST'])
 def dang_xuat_ql():
