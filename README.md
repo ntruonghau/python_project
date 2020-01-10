@@ -33,6 +33,7 @@ About 1 mounth
 | 2  	| Template admin page, DS Lớp, DS Học sinh,<br>bảng điểm, Thời Khóa biểu 	| Trường Hậu                                           	|
 | 3  	| Template trang chủ, quản lý trường, liên hệ                            	| Thanh Hòa                                            	|
 | 4  	| Template trang học sinh, sự kiện, lịch thi                             	| Tuấn Anh                                             	|
+| 5  	| Thiết kế model/database                                                	| Team/Model dựa trên task                             	|
 | 6  	| Tính năng đăng nhập/đăng xuất                                          	| Team                                                 	|
 | 7  	| Tính năng đổi mật khẩu                                                 	| Tuấn Anh                                             	|
 | 8  	| Tính năng Giáo vụ xem/sửa thông tin lớp                                	| Trường Hậu                                           	|
