@@ -5,9 +5,9 @@ Xây dựng website trường học sử dụng Flask Python
 
 | # 	| Tên thành viên 	| Vai trò 	|
 |---	|----------------	|----------------	|
-| 3 	| Trường Hậu    	|Nhóm Trưởng       	|
-| 1 	| Tuấn Anh       	|Thành Viên      	|
-| 2 	| Thanh Hòa       |Thành Viên     	|
+| 1   | Trường Hậu    	|Nhóm Trưởng       	|
+| 2 	| Tuấn Anh       	|Thành Viên      	|
+| 3 	| Thanh Hòa       |Thành Viên     	|
 
 ## Build Time
 About 1 mounth
